@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane fx:controller="controller.login.loginpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="477.0" prefWidth="391.0" style="-fx-background-color: #00ff0000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="txtid" layoutX="74.0" layoutY="95.0" prefHeight="23.0" prefWidth="270.0" promptText="아이디">
+         <font>
+            <Font name="MT Extra" size="11.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="txtpwd" layoutX="74.0" layoutY="141.0" prefHeight="23.0" prefWidth="270.0" promptText="비밀번호">
+         <font>
+            <Font name="MT Extra" size="11.0" />
+         </font>
+      </PasswordField>
+      <Button fx:id="btnsignup" layoutX="284.0" layoutY="59.0" mnemonicParsing="false" onAction="#accsignup" style="-fx-background-color: #00ff0000;" text="회원가입">
+         <font>
+            <Font name="MT Extra" size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnlogin" layoutX="74.0" layoutY="209.0" mnemonicParsing="false" onAction="#login" prefHeight="23.0" prefWidth="270.0" style="-fx-background-color: #00ff0000;" text="로그인 ">
+         <font>
+            <Font name="MT Extra" size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnfindid" layoutX="242.0" layoutY="256.0" mnemonicParsing="false" onAction="#accfindid" prefHeight="23.0" prefWidth="102.0" style="-fx-background-color: #00ff0000;" text="아이디찾기">
+         <font>
+            <Font name="MT Extra" size="11.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnfindpwd" layoutX="242.0" layoutY="291.0" mnemonicParsing="false" onAction="#accfindpassword" prefHeight="23.0" prefWidth="102.0" style="-fx-background-color: #00ff0000;" text="비밀번호찾기">
+         <font>
+            <Font name="MT Extra" size="11.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblconfirm" alignment="CENTER" layoutY="181.0" prefHeight="28.0" prefWidth="391.0" style="-fx-background-color: #00ff0000;" text="          오류시 표시되는 문구 " textFill="#e14848" />
+   </children>
+</AnchorPane>
