@@ -1,4 +1,4 @@
-package application;
+package application.Day21;
 
 import javafx.application.Application;
 import javafx.application.Platform;

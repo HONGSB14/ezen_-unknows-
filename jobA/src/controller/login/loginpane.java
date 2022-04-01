@@ -4,6 +4,7 @@ package controller.login;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import dao.MemberDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +17,7 @@ public class loginpane  implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {	
-	
+		lblconfirm.setText("");//로그인 화면시 오류 표시문구를 공백으로 하여 문구를 없내는 부분
 	}
 
     @FXML
@@ -42,12 +43,12 @@ public class loginpane  implements Initializable{
 
     @FXML
     void accfindid(ActionEvent event) {
-    		System.out.println("아이디 찾기로 이동");
+    	Login.본인객체.loadpage("/view/findid.fxml");
     }
 
     @FXML
     void accfindpassword(ActionEvent event) {
-    		System.out.println("패스워드 찾기로 이동");
+    		Login.본인객체.loadpage("/view/findpwd.fxml");
     }
 
     @FXML
@@ -57,24 +58,26 @@ public class loginpane  implements Initializable{
     			//문제?!: borderpane  클래스가 다르다.
     			//새롭게 객체 생성을 하면  메모리 할당이 새로 되기 때문에 기존의 것을 가져와야함.
     			//기존 login 클래스에서사용중인 borderpane 을 가져와야함.
-    			Login.본인객체.loadpage("/view/sighuppane.fxml");
+    			Login.본인객체.loadpage("/view/signuppane.fxml");
     }
 
     @FXML
     void login(ActionEvent event) {
-    	System.out.println("로그인 처리");
     	
-    	String id = txtid.getText();
-    	String pwd = txtpwd.getText();
+    	//1.컨트롤에 입력된 값 가져오기
+    		String id = txtid.getText();
+    		String pwd = txtpwd.getText();
     	
-    	if(id.equals("adimn") && pwd.equals("1234")) {
-    		lblconfirm.setText("hi admin! ");
-    	}else {
-    		lblconfirm.setText("환영합니다!");
-    	}
-    	System.out.println("로그인 처리 !!");
+		//2.DB객체 내 메소드 호출
+    		boolean result =MemberDao.memberDao.login(id, pwd);
+    	
+    	//3.결과 확인
+    		if(result) {
+    				//페이지 전환
+    				//*테스트
+    				lblconfirm.setText("로그인성공!");
+    		}else {
+    			lblconfirm.setText("동일회원정보를 차지 못하였습니다.");
+    		}
     }
-	
-	
-
 }
