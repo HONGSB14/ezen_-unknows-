@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 
 import dto.Member;
 
@@ -13,9 +14,8 @@ public class MemberDao {	//DB 접근객체
 	private PreparedStatement ps;	//연결된 DB 내 SQL 조작할때 사용되는 인터페이스
 	private ResultSet rs;			//결과물을 조작하는 인터페이스
 	
-	
-	//DB연동 할때마다 객체 선언 시 불필요한 코드 될 수 있기 때문에
-	public static MemberDao memberDao = new MemberDao();	//DB연동 객체 
+	//DB연동 객체
+	public static MemberDao memberDao = new MemberDao();	// DB연동 할때마다 객체 선언 시 불필요한 코드 될 수 있기 때문에
 	
 	//constructor
 	
@@ -35,7 +35,7 @@ public class MemberDao {	//DB 접근객체
 
 	//method 
 	
-	//아디 중복 체크 메소드(인수: 아이디를 인수로 받아 db에 존재하는지 체크)
+	//아디 중복 체크 메소드(인수: 아이디를 인수로 받아 DB에 존재하는지 체크)
 	public boolean idcheck(String id) {
 		
 		try {
@@ -110,6 +110,7 @@ public class MemberDao {	//DB 접근객체
 		}
 		return false;				//로그인 실패
 	}
+	
 	//3. 아이디찾기 메소드(인수:아이디찾기 시 필요한 이메일)
 	public String findid(String email) {
 		
@@ -121,16 +122,16 @@ public class MemberDao {	//DB 접근객체
 			ps.setString(1, email);
 			//3.SQL 실행
 			rs=ps.executeQuery();
-			//4.SQL 결과
-		
-			if(rs.next()) {	
-				return rs.getString(2);
+			//4.SQL 결과	
+			if(rs.next()) {		//실행 결과의 다음 레코드
+				return rs.getString(2);	//rs.getring (가져올 필드순서번호)
 			}
 		} catch (Exception e) {
 			
 		}
 		return null;
 	}
+	
 	//4. 비밀번호 찾기 메소드(인수:비밀번호 찾기시 필요한 아이디,이메일)
 	public String findpwd(String id , String email) {
 		
@@ -144,28 +145,105 @@ public class MemberDao {	//DB 접근객체
 				return rs.getString(3);
 			}
 		} catch (Exception e) {
-			
-		}
 		
+		}
 		return null;
 	}
 
+	//5.  아이디 인수로 아이디로 회원정보 호출
+	public Member getMember(String id) {
+		try {
+			//1.SQL 작성
+			String sql = "select * from member where mid=?";
+		//2.SQL 조작
+			ps.getConnection().prepareStatement(sql);
+			ps.setString(1, id);
+		//3.SQL 실행
+			rs=ps.executeQuery();
+		//4.SQL 결과
+			if(rs.next()) {
+				//1. 객체 선언
+				Member meber = new Member(
+						rs.getInt(1),
+						rs.getString(2),
+						rs.getString(3),
+						rs.getString(4),
+						rs.getString(5),
+						rs.getInt(6),
+						rs.getString(7));
+				
+				//rs.next () 				: 결과 내 다음 레코드 (줄,가로)
+				//rs.getint (필드순서번호)		: 해당 필드의 자료형이 정수형으로 가져오기
+				//rs.getString(필드순서번호)	: 해당필드의 자료형이 문자열로 가져오기
+				
+				return meber;
+			}
+		} catch (Exception e) {
+		}
+		return null;	
+	}
 	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	//6. 회원탈퇴 [회원번호를 인수받아 해당 회원번호의 레코드를 삭제 ]
+	public boolean delete(int mnum) {
+		try {
+			//1.SQL 작성
+			String sql = " delete from member where mnum = ? ";
+			//2.SQL	조작
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, mnum);
+			//3.SQL	실행
+			ps.executeUpdate();	//insert , update ,delete 실행//
+			//4.SQL	결과
+			return true;
+		} catch (Exception e) {
+			System.out.println("[sql오류]"+e);
+		}
+		
+		
+		return false;
+	}
+	
+	//7. 회원수정	
+	public boolean update(int mnum , String email ,String add) {
+		
+		try {
+			//수정 : update 테이블명 set 필드명 = 수정값1 , 필드명2 = 수정값 2 ......
+			String sql = "update member set memail =? , madd=? where mnum =?";
+											// 두 필드는 , 구분 ! 
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, email);
+			ps.setString(2, add);
+			ps.setInt(3, mnum);
+			
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			System.out.println("sql 오류!!!   "+e);
+		}
+		
+		return false;
+	}
+	
+	//8.포인트 메소드 
+	public boolean getpoint(int mnum , String id ,int point) {
+		Date date = new Date();
+		
+		try {
+			String sql = "update member set mid =? , mpoint=? where mnum=?";
+			
+			ps=con.prepareStatement(sql);
+			
+			ps.setString(1, id);
+			ps.setInt(2, mnum);
+			ps.setInt(3, point+10);
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
 
 
 }

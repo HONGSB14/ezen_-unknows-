@@ -2,6 +2,8 @@ package controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import controller.login.Login;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,7 +13,13 @@ import javafx.scene.layout.BorderPane;
 public class Main implements Initializable {
 							//Initializable  :해당 fxml이 열렸을떄 초기값 메소드 제공 ( view가 열렸을때 초기값 설정 메소드 제공)
 
-    @FXML
+    public static Main 본인객체;
+    
+    public Main() {
+    	본인객체=this;
+    }
+	
+	@FXML
     private BorderPane borderpane; //fx :id 
 	
 	@Override

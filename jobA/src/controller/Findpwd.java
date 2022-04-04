@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import controller.login.Login;
 import dao.MemberDao;
+import dto.Member;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,7 +19,7 @@ public class Findpwd implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
+		lblconfirm.setText("");
 		
 	}
 	
@@ -59,10 +60,10 @@ public class Findpwd implements Initializable{
 			
 			
     	}else {
+    		Member.sendmail(email, findpwd);
     		Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("알림!");							
-			alert.setHeaderText("당신의 비밀번호는?");
-			alert.setContentText(findpwd);
+			alert.setTitle("비밀번호 전송완료");							
+			alert.setHeaderText("이메일로 전송이 되었습니다.");
 			alert.showAndWait();
 			Login.본인객체.loadpage("/view/loginpane.fxml");
 			

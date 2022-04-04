@@ -4,6 +4,7 @@ package controller.login;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controller.Main;
 import dao.MemberDao;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,9 +74,13 @@ public class loginpane  implements Initializable{
     	
     	//3.결과 확인
     		if(result) {
+    				//로그인 성공시 성공한 회원정보 저장 [ 로그아웃 시 초기화 ]
+    				Login.member=MemberDao.memberDao.getMember(id);
     				//페이지 전환
+    				Main.본인객체.loadpage("/view/home/home"); // loadpage 메소드에 fxml 이라고 + 로 연결이 되어 있기 때문에 fxml 제외해서 작성하셔야합니다.. [ 강사 코드랑 다름 ] 
     				//*테스트
     				lblconfirm.setText("로그인성공!");
+   
     		}else {
     			lblconfirm.setText("동일회원정보를 차지 못하였습니다.");
     		}
