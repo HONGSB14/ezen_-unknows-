@@ -69,13 +69,13 @@ public class MemberDao {	//DB 접근객체
 			//1. SQL 작성		[회원번호(자동번호 =auto) , 포인트 (가입시0)  제외한 모든 필드 삽입]
 			String sql = "insert into member(mid , mpwd, memail , madd, mpoint ,mcince )values(?,?,?,?,?,?)";
 			//2. SQL 조작
-			ps= con.prepareStatement(sql);		// prepareStatement 인터페이스 내 연결된 DB에 SQL 넣기
-			ps.setString(1, member.getMid());	//1번 ? 에 아이디 넣어주기
-			ps.setString(2, member.getMpwd());	//2번 ? 에 비밀번호 넣어주기
-			ps.setString(3, member.getMemail());//3번 ? 에 이메일 넣어주기
-			ps.setString(4, member.getMadd());	//4번 ? 에 주소 넣어주기
+			ps= con.prepareStatement(sql);			// prepareStatement 인터페이스 내 연결된 DB에 SQL 넣기
+			ps.setString(1, member.getMid());		//1번 ? 에 아이디 넣어주기
+			ps.setString(2, member.getMpwd());		//2번 ? 에 비밀번호 넣어주기
+			ps.setString(3, member.getMemail());	//3번 ? 에 이메일 넣어주기
+			ps.setString(4, member.getMadd());		//4번 ? 에 주소 넣어주기
 			ps.setInt	(5, member.getMpoint());	//5번 ? 에 포인트 넣어주기
-			ps.setString(6, member.getMcince());//6번 ? 에 가입일 넣어주기
+			ps.setString(6, member.getMcince());	//6번 ? 에 가입일 넣어주기
 			
 			//3. SQL 실행		//insert 실행 -> 삽입은 결과물이 없기때문에  -> resultset 할 필요가 없음
 			ps.executeUpdate();
@@ -226,24 +226,22 @@ public class MemberDao {	//DB 접근객체
 	}
 	
 	//8.포인트 메소드 
-	public boolean getpoint(int mnum , String id ,int point) {
+	public boolean getpoint(int mnum , String cince ,int point) {
 		Date date = new Date();
 		
 		try {
-			String sql = "update member set mid =? , mpoint=? where mnum=?";
+			String sql = "update member set mpoint =?";
 			
 			ps=con.prepareStatement(sql);
 			
-			ps.setString(1, id);
-			ps.setInt(2, mnum);
-			ps.setInt(3, point+10);
+		
+			ps.setInt(1, mnum);
+			ps.setInt(2, point);
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
+			
 		}
 		return false;
 	}
-
-
 }

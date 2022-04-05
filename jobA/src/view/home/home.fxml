@@ -29,7 +29,7 @@
             <Label layoutX="193.0" layoutY="403.0" prefHeight="28.0" prefWidth="51.0" text="쿵푸" />
             <Label layoutX="26.0" layoutY="438.0" prefHeight="28.0" prefWidth="78.0" text="커뮤니티" />
             <Line endX="-44.5" layoutX="160.0" layoutY="466.0" startX="-134.0" />
-            <Label layoutX="27.0" layoutY="466.0" prefHeight="28.0" prefWidth="51.0" text="자유게시" />
+            <Label fx:id="lblboard" onMouseClicked="#board" layoutX="27.0" layoutY="466.0" prefHeight="28.0" prefWidth="51.0" text="자유게시" />
             <Label layoutX="29.0" layoutY="494.0" prefHeight="28.0" prefWidth="78.0" text="정보" />
             <Line endX="-44.5" layoutX="160.0" layoutY="522.0" startX="-134.0" />
             <Label layoutX="26.0" layoutY="557.0" prefHeight="28.0" prefWidth="78.0" text="관리자" />

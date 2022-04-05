@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class Start extends Application{
@@ -27,6 +28,12 @@ public class Start extends Application{
 			//절대 경로 :모든 경로
 			//상대 경로 :현 위치[프로젝트 기준 src] 경로
 			//		생략[src폴더부터]  /img/파일명.확장자
+		
+		//*외부폰트 가져오기
+		//1.폰트 로드
+		Font.loadFont(getClass().getResourceAsStream("YUniverse-L.ttf"),  15);
+		//2.외부 스타일시트 적용
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm() );
 		
 		stage.getIcons().add(iconImage); 	//3.스테이지 아이콘 설정
 		stage.setResizable(false); 			//4. 스테이지 크기 변경 불가

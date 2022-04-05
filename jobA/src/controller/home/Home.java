@@ -20,6 +20,13 @@ import javafx.scene.layout.BorderPane;
 
 public class Home implements Initializable {
 
+	public static Home home;
+	
+	public Home() {
+		home = this;
+	}
+	
+	
 	@FXML
 	private Label lblloginid;
 	@FXML
@@ -36,6 +43,8 @@ public class Home implements Initializable {
 	private Label lblinfo;
 	@FXML
 	private Label lblupdate;
+	@FXML
+	private Label lblboard;
 	
 	//회원정보 레이블 클릭이벤트
 	@FXML
@@ -88,6 +97,7 @@ public class Home implements Initializable {
 	
 	//화면전환 이벤트
 	public void loadpage(String page) {
+
 		try {
 			Parent parent = FXMLLoader.load(getClass().getResource(page));
 			borderpane.setCenter(parent);
@@ -96,6 +106,9 @@ public class Home implements Initializable {
 		}
 	}
 
-	
+	//자유게시 이벤트
+	public void board(MouseEvent e) {
+		loadpage("/view/board/board.fxml");
+	}
 	
 }

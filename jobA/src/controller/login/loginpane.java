@@ -54,7 +54,6 @@ public class loginpane  implements Initializable{
 
     @FXML
     void accsignup(ActionEvent event) {
-    		System.out.println("회원가입 페이지로 이동");
     		//login 컨트롤에 존재하는 borderpane 객체 내 센터 변경
     			//문제?!: borderpane  클래스가 다르다.
     			//새롭게 객체 생성을 하면  메모리 할당이 새로 되기 때문에 기존의 것을 가져와야함.
