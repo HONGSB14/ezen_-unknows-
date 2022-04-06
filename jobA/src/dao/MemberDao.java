@@ -244,4 +244,20 @@ public class MemberDao {	//DB 접근객체
 		}
 		return false;
 	}
+	
+	//9.해당 회원번호 로 해당 id찾기
+	public String getmid(int mnum) {
+		try {
+			String sql="select mid from member where mnum=?";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, mnum);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString(1);
+			}
+		} catch (Exception e) {
+			
+		}
+		return null;
+	}
 }

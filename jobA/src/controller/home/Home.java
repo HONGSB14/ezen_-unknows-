@@ -45,6 +45,10 @@ public class Home implements Initializable {
 	private Label lblupdate;
 	@FXML
 	private Label lblboard;
+	@FXML
+	private Label lblproduct;
+	
+	
 	
 	//회원정보 레이블 클릭이벤트
 	@FXML
@@ -110,5 +114,12 @@ public class Home implements Initializable {
 	public void board(MouseEvent e) {
 		loadpage("/view/board/board.fxml");
 	}
+	
+
+	//상품등록 이벤트
+	public void accproduct(MouseEvent e) {
+		loadpage("/view/product/product.fxml");
+	}
+	
 	
 }
