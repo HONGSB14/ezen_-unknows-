@@ -26,6 +26,7 @@ public class Board implements Initializable{
 
 	    @FXML
 	    void accwrite(ActionEvent event) {
+	    
 	    	// 쓰기 버튼 클릭했을때 메소드 입니다!!!!!
 	    	// 버튼 클릭시 Home 클래스내 borderpane center 값을 변경 해야합니다.
 	    	// 그래서 기존 home 메모리를 사용하기 위해 this 객체를 만들고 호출합니다.
@@ -61,21 +62,19 @@ public class Board implements Initializable{
 			//테이블명(fxid).setItems(observableList);  테이블에 표시할 리스트 (일반적 Arreylist 사용 불가)
 		
 		//* tableview 에서 해당 셀 클릭했을때 이벤트
-			
-			
-			
+
 			// [1회용]	인수 -> 람다식 (익명함수: 이름이 없는 함수 [인수와 실행코드만 존재] ) 
 			
 			//1.테이블에서 클릭한 객체를 임시객체에 저장
 			//boardtable.setOnMouseClicked( ) : 테이블을 클릭 했을때
 			boardtable.setOnMouseClicked( e -> {
 				
-				board=boardtable.getSelectionModel().getSelectedItem();
-				//2.조회수 증가
+			board=boardtable.getSelectionModel().getSelectedItem();
+			//2.조회수 증가
 				
-				//3.페이지전환
-				System.out.println(board.getBtitle());
-				Home.home.loadpage("/view/board/boardview.fxml");
+			//3.페이지전환
+			System.out.println(board.getBtitle());
+			Home.home.loadpage("/view/board/boardview.fxml");
 			
 			}
 			);	//클릭된 board객체 호출

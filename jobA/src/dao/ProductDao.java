@@ -47,14 +47,27 @@ public class ProductDao {
 		}
 		return false;
 	}
-	//2.모든 제품 출력 [tableview 사용 x -> arraylist 사용 ]
-	public ArrayList<Product> list() {
+	
+	//2.모든 제품 출력 [tableview 사용 x -> arraylist 사용  o]
+	public ArrayList<Product> list(String category ,String search) {
 		ArrayList<Product> productlist = new ArrayList<>();
 		
 		try {
-			String sql ="select * from product";
-			ps= conn.prepareStatement(sql);
+			String sql=null;
+			//검색이 없을경우
+			
+			if(search ==null) {//검색이  없을경우
+				 sql ="select * from product where pcategory =? order by pnum desc";
+				ps= conn.prepareStatement(sql);
+				ps.setString(1, category);
+			}else{													//필드명 like %값%   ->    [값이 포함된걸 찾는 비교연산자]
+				 sql ="select * from product where pcategory =? and pname like '%"+search+"%' order by pnum desc";
+				ps= conn.prepareStatement(sql);
+				ps.setString(1, category);
+				//ps.setString(2, search);
+			}
 			rs=ps.executeQuery();
+			
 			while(rs.next()) {
 				Product product = new Product(
 						rs.getInt(1),
@@ -70,12 +83,14 @@ public class ProductDao {
 			}
 			return productlist;					//리스트 반환
 		} catch (Exception e) {
-			
+			System.out.println("카테고리 오류 !"+e);
 		}
 		return null;							//만약 실패시 NULL 반환
 	}
-//	//3.제품조회
-//	public boolean add() {}
+//	
+	//3.제품조회
+//	public boolean search() {}
+	
 	//4.제품삭제
 	public boolean delete(int pnum) {
 		try {
@@ -89,6 +104,7 @@ public class ProductDao {
 		}
 		return false;
 	}
+	
 	//5.제품수정
 	public boolean update(Product product) {
 		try {
@@ -107,6 +123,35 @@ public class ProductDao {
 		}
 		return false;
 	}
+	
+	//6.상태변경
+    public boolean activation(int pnum) {
+    	try {
+    		String sql = "select pacctivation from product where pnum=?";
+        	ps=conn.prepareStatement(sql);
+        	ps.setInt(1, pnum);
+        	rs=ps.executeQuery();
+        	if(rs.next()) { //검색 결과가 존재하면 다음레코드 가져오기
+        		String upsql = null;
+        		if(rs.getInt(1)==1){	//현재 제품의 상태가 거래중 이면
+        			upsql = "update product set pacctivation=2 where pnum=?";
+        		}else if(rs.getInt(1)==2) {//현재 제품의 상태가 판매완료이면
+        			upsql = "update product set pacctivation=3 where pnum=?";
+        		}else if (rs.getInt(1)==3) {//현재 제품의 상태가 판매 중이면
+        			upsql = "update product set pacctivation=1 where pnum=?";
+        		}
+        		ps=conn.prepareStatement(upsql);
+        		ps.setInt(1, pnum);
+        		ps.executeUpdate();
+        		return true;
+        	}
+		} catch (Exception e) {
+			System.out.println("sql 오류!!!! "+e);
+		}
+    	
+    	return false;
+    	
+    }
 	
 	
 	

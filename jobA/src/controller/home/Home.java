@@ -21,6 +21,7 @@ import javafx.scene.layout.BorderPane;
 public class Home implements Initializable {
 
 	public static Home home;
+	public static String category;
 	
 	public Home() {
 		home = this;
@@ -46,9 +47,13 @@ public class Home implements Initializable {
 	@FXML
 	private Label lblboard;
 	@FXML
-	private Label lblproduct;
-	
-	
+	private Label lblproduct1;
+	@FXML
+	private Label lblproduct2;
+	@FXML
+	private Label lblproduct3;
+	@FXML
+	private Label lblproduct4;
 	
 	//회원정보 레이블 클릭이벤트
 	@FXML
@@ -83,7 +88,7 @@ public class Home implements Initializable {
 					}
 			}
 			//아니면
-	}
+	}	
 	
 	//회원수정 이벤트
 	@FXML
@@ -94,8 +99,10 @@ public class Home implements Initializable {
 	//HOME 오버라이딩
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		loadpage("/view/chatting.fxml");
 		lblloginid.setText(Login.member.getMid()+"님");
 		lblpoint.setText("포인트"+Login.member.getMpoint()+"점");
+		
 		
 	}
 	
@@ -112,14 +119,36 @@ public class Home implements Initializable {
 
 	//자유게시 이벤트
 	public void board(MouseEvent e) {
-		loadpage("/view/board/board.fxml");
+		loadpage("/view/board/board.fxml"); 
 	}
 	
 
-	//상품등록 이벤트
-	public void accproduct(MouseEvent e) {
+	//상품등록1 이벤트
+	public void accproduct1(MouseEvent e) {
+		
 		loadpage("/view/product/product.fxml");
+		category="태권도";
 	}
+	
+	//상품등록2 이벤트
+	public void accproduct2(MouseEvent e) {
+		loadpage("/view/product/product.fxml"); 
+		category="유도";
+	}
+	
+	//상품등록3 이벤트
+	public void accproduct3(MouseEvent e) {
+		loadpage("/view/product/product.fxml"); 
+		category="검도";
+	}
+	
+	//상품등록4 이벤트
+	public void accproduct4(MouseEvent e) {
+		loadpage("/view/product/product.fxml");	
+		category="쿵푸";
+	}
+		
+		
 	
 	
 }

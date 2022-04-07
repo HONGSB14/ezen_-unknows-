@@ -90,7 +90,7 @@ public class ProductUpdate implements Initializable{
 
     @FXML
     void back(ActionEvent event) {
-    	
+    	Home.home.loadpage("/view/product/product.fxml");
     }
 
     @FXML
@@ -153,7 +153,7 @@ public class ProductUpdate implements Initializable{
 
     @FXML
     void update(ActionEvent event) {
-    		Home.home.loadpage("/view/product/product.fxml");
+    		
     		if(pimage==null) { // 사진 수정을 안했으면 
     			pimage= ProductControl.select.getPimg();
     		}
