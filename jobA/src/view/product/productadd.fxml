@@ -21,16 +21,11 @@
       <Button fx:id="btnimg" layoutX="481.0" layoutY="120.0" mnemonicParsing="false" onAction="#imgadd" prefHeight="29.0" prefWidth="293.0" text="이미지등록" />
       <RadioButton fx:id="opt1" layoutX="37.0" layoutY="475.0" mnemonicParsing="false" text="남성의류 ">
          <toggleGroup>
-            <ToggleGroup fx:id="hello" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="opt2" layoutX="117.0" layoutY="475.0" mnemonicParsing="false" text="여성의류 " toggleGroup="$hello" />
-      <RadioButton fx:id="opt3" layoutX="205.0" layoutY="475.0" mnemonicParsing="false" text="태권용품">
-         <toggleGroup>
             <ToggleGroup fx:id="category" />
-         </toggleGroup>
-      </RadioButton>
-      <RadioButton fx:id="opt4" layoutX="287.0" layoutY="475.0" mnemonicParsing="false" text="어린이 태권 용품" toggleGroup="$hello" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="opt2" layoutX="117.0" layoutY="475.0" mnemonicParsing="false" text="여성의류 " toggleGroup="$category" />
+      <RadioButton fx:id="opt3" layoutX="205.0" layoutY="475.0" mnemonicParsing="false" text="태권용품" toggleGroup="$category" />
+      <RadioButton fx:id="opt4" layoutX="287.0" layoutY="475.0" mnemonicParsing="false" text="어린이 태권 용품" toggleGroup="$category" />
       <ImageView fx:id="imp" fitHeight="194.0" fitWidth="293.0" layoutX="481.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btnback" layoutX="653.0" layoutY="490.0" mnemonicParsing="false" onAction="#back" prefHeight="29.0" prefWidth="121.0" text="취소" />
       <Label layoutX="39.0" layoutY="451.0" text="카테고리" />

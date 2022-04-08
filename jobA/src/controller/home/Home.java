@@ -126,25 +126,25 @@ public class Home implements Initializable {
 		
 	//상품등록1 이벤트	
 	@FXML
-	void accproduct1(MouseEvent event) {
+	public void accproduct1(MouseEvent e) {
 		loadpage("/view/product/product.fxml");
 		category="태권도";
 	   }
 	//상품등록2 이벤트
 	@FXML
-	void accproduct2(MouseEvent event) {
+	public void accproduct2(MouseEvent event) {
 	    loadpage("/view/product/product.fxml"); 
     	category="유도";
 	}
 	//상품등록3 이벤트
 	@FXML
-	void accproduct3(MouseEvent event) {
+	public void accproduct3(MouseEvent event) {
 		loadpage("/view/product/product.fxml"); 
 		category="검도";
 	}
 	//상품등록4 이벤트
 	@FXML
-	void accproduct4(MouseEvent event) {
+	public void accproduct4(MouseEvent event) {
 	    loadpage("/view/product/product.fxml");	
 		category="쿵푸";
 	}

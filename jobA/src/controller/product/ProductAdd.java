@@ -40,50 +40,47 @@ public class ProductAdd implements Initializable{
 		
 	}
 
-	@FXML
-    private Button btnadd;
+	 @FXML
+	    private Button btnadd;
 
-    @FXML
-    private TextField txtpname;
+	    @FXML
+	    private TextField txtpname;
 
-    @FXML
-    private TextArea txtpcontent;
+	    @FXML
+	    private TextArea txtpcontent;
 
-    @FXML
-    private TextField txtpprice;
+	    @FXML
+	    private TextField txtpprice;
 
-    @FXML
-    private Button btnimg;
+	    @FXML
+	    private Button btnimg;
 
-    @FXML
-    private RadioButton opt1;
+	    @FXML
+	    private RadioButton opt1;
 
-    @FXML
-    private ToggleGroup hello;
+	    @FXML
+	    private ToggleGroup category;
 
-    @FXML
-    private RadioButton opt2;
+	    @FXML
+	    private RadioButton opt2;
 
-    @FXML
-    private RadioButton opt3;
+	    @FXML
+	    private RadioButton opt3;
 
-    @FXML
-    private ToggleGroup category;
+	    @FXML
+	    private RadioButton opt4;
 
-    @FXML
-    private RadioButton opt4;
+	    @FXML
+	    private ImageView imp;
 
-    @FXML
-    private ImageView imp;
+	    @FXML
+	    private Button btnback;
 
-    @FXML
-    private Button btnback;
+	    @FXML
+	    private Label txtpath;
 
-    @FXML
-    private Label txtpath;
-    
-    @FXML
-    private Label miribogi;
+	    @FXML
+	    private Label miribogi;
  
     //상품등록 메소드
     @FXML
@@ -94,7 +91,7 @@ public class ProductAdd implements Initializable{
     	int pprice =Integer.parseInt(txtpprice.getText());
     	
     	String pcategory = null;
-    	if(opt1.isSelected()) {//만약에 opt1 이라는 fxid 의 컨트롤이 선택되었으면 
+    	if(opt1.isSelected()) {//만약에 opt1 이라는 fxid 의 컨트롤(라디오버튼)이 선택되었으면 
     		pcategory="남성의류";
     	}
     	if(opt2.isSelected()) {
@@ -111,7 +108,7 @@ public class ProductAdd implements Initializable{
     	//2.객체화
     	Product product = new Product(0, pname, pimage, pcontent, pcategory, pprice, 1, null, mnum);
     	//3.DB처리
-    		boolean result= ProductDao.productDao.add(product);
+    	boolean result= ProductDao.productDao.add(product);
     	//4.결과처리
     		if(result) {
     			
