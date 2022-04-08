@@ -85,7 +85,7 @@ public class ProductView implements Initializable{
 	    		Home.home.loadpage("/view/product/productupdate.fxml");
 	    }
 
-	    //판매상태 버튼
+	    //판매상태 버튼 메소드
 	    @FXML
 	    void acctivation(ActionEvent event) {
 	    	if(btnacctivation.getText().equals("거래 중")) {

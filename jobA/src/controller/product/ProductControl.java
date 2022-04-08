@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -37,6 +38,9 @@ public class ProductControl implements Initializable{
 	    @FXML
 	    private Button btnsearch;
 
+	    @FXML
+	    private ScrollPane scrollpane;
+	  
 	    @FXML
 	    private VBox vbox;
 
@@ -138,7 +142,7 @@ public class ProductControl implements Initializable{
 						//3.화면전환
 						 Home.home.loadpage("/view/product/productview.fxml");
 						});
-					gridPane.add(button , col, row);	//마지막 행에 나머지 값 만큼 버튼을 추가하여 그리드에 추가
+					gridPane.add(button , col, row+1);	//마지막 행에 나머지 값 만큼 버튼을 추가하여 그리드에 추가
 				i++;
 			}
 		}
