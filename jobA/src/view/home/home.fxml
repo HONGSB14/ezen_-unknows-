@@ -34,7 +34,7 @@
             <Line endX="-44.5" layoutX="160.0" layoutY="522.0" startX="-134.0" />
             <Label layoutX="26.0" layoutY="557.0" prefHeight="28.0" prefWidth="78.0" text="관리자" />
             <Line endX="-84.5" layoutX="163.0" layoutY="585.0" startX="-137.0" />
-            <Label layoutX="26.0" layoutY="585.0" prefHeight="28.0" prefWidth="78.0" text="통계" />
+            <Label fx:id="lblrecord"  onMouseClicked="#accrecord" layoutX="26.0" layoutY="585.0" prefHeight="28.0" prefWidth="78.0" text="통계" />
             <Label layoutX="25.0" layoutY="523.0" prefHeight="28.0" prefWidth="51.0" text="내가쓴글" />
             <Label fx:id="lblinfo" onMouseClicked="#accinfo" layoutX="82.0" layoutY="523.0" prefHeight="28.0" prefWidth="51.0" text="회원정보" />
             <Label fx:id="lbldelete" onMouseClicked="#delete" layoutX="193.0" layoutY="523.0" prefHeight="28.0" prefWidth="51.0" text="회원탈퇴" />

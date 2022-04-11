@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 import dto.Member;
 
@@ -260,4 +263,58 @@ public class MemberDao {	//DB 접근객체
 		}
 		return null;
 	}
+	
+	//10. 전체 (인수에 따른 : 테이블명 )의 레코드 전체 개수 반환
+	public int counttotal(String tname ) {
+		String sql = "select count(*) from "+tname;
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+				//조회 결과의 첫번쨰 필드를 반환
+			}
+		} catch (Exception e) {
+			System.out.println("전체 레코드 반환 실패 !!! dao.MemberDao : "+e);
+		}
+		return 0;
+	}
+
+
+	//11.전체 (인수 :테이블명,날짜필드명 ) 의 날짜별 레코드 전체 개수 반환
+	public Map<String, Integer> datetotal(String 테이블명 ,String 날짜필드명){
+		Map<String, Integer> map = new HashMap<String, Integer>();	// HashMap:  set 계열 (순서가 없음)       TreeMap (순서가 있음) 
+		String sql = "SELECT substring_index("+날짜필드명+",' ' , 1 ) ,COUNT(*) FROM "+테이블명+" GROUP BY substring_index("+날짜필드명+" , ' ' , 1 )";
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				map.put(rs.getString(1), rs.getInt(2));
+				//map 집어넣기(해당 레코드 첫번째 필드  , 두번째 필드)
+				
+			}
+			return map;
+		} catch (Exception e) {
+			System.out.println("날짜별 등록 수 반환 실패 !!!! dao.MemberDao:  "+e);
+		}
+		return null;
+	}
+
+	//12.카테고리별 개수
+	public Map<String, Integer> countcategoty() {
+		String sql = "SELECT pcategory , COUNT(*) FROM product GROUP BY pcategory";
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				map.put(rs.getString(1), rs.getInt(2));
+			}
+			return map;
+		} catch (Exception e) {
+			System.out.println("카테고리별 개수 반환 실패 !!!! dao.MemberDao:  "+e);
+		}
+	return null;
+	}
+
 }

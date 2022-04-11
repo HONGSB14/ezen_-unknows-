@@ -54,6 +54,14 @@ public class Home implements Initializable {
 	private Label lblproduct3;
 	@FXML
 	private Label lblproduct4;
+	@FXML
+	private Label lblrecord;
+	
+	
+	//통게 레이블 클릭 이벤트
+	@FXML void accrecord(MouseEvent e) {
+		loadpage("/view/record.fxml");
+	}
 	
 	//회원정보 레이블 클릭이벤트
 	@FXML

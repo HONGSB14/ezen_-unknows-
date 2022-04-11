@@ -54,7 +54,11 @@ public class ProductDao {
 		
 		try {
 			String sql=null;
-			//검색이 없을경우
+			
+			if(category==null && search==null) { //모든 제품 뺴오기
+				sql = "SELECT * FROM product";
+				ps=conn.prepareStatement(sql);
+			}
 			
 			if(search ==null) {//검색이  없을경우
 				 sql ="select * from product where pcategory =? order by pnum desc";
