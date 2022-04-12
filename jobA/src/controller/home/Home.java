@@ -142,13 +142,13 @@ public class Home implements Initializable {
 	@FXML
 	public void accproduct2(MouseEvent event) {
 	    loadpage("/view/product/product.fxml"); 
-    	category="유도";
+    	category="검도";
 	}
 	//상품등록3 이벤트
 	@FXML
 	public void accproduct3(MouseEvent event) {
 		loadpage("/view/product/product.fxml"); 
-		category="검도";
+		category="유도";
 	}
 	//상품등록4 이벤트
 	@FXML

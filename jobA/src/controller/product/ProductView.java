@@ -82,6 +82,7 @@ public class ProductView implements Initializable{
 	    //수정 메소드
 	    @FXML
 	    void update(ActionEvent event) {
+	    	
 	    		Home.home.loadpage("/view/product/productupdate.fxml");
 	    }
 

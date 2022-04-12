@@ -92,16 +92,16 @@ public class ProductAdd implements Initializable{
     	
     	String pcategory = null;
     	if(opt1.isSelected()) {//만약에 opt1 이라는 fxid 의 컨트롤(라디오버튼)이 선택되었으면 
-    		pcategory="남성의류";
+    		pcategory="태권도";
     	}
     	if(opt2.isSelected()) {
-    		pcategory="여성의류";
+    		pcategory="검도";
     	}
     	if(opt3.isSelected()) {
-    		pcategory ="태권용품";
+    		pcategory ="유도";
     	}
     	if(opt4.isSelected()) {
-    		pcategory ="어린이태권용품";
+    		pcategory ="쿵푸";
     	}
     	int mnum = Login.member.getMnum(); 	// (로그인정보 불러오기) loginpane 에  로그인 성공시 로그인 정보를 이미 담아놨기때문에 
     	

@@ -43,6 +43,7 @@ public class Server  {	//fxml 사용하지 않는 클래스 [ 서버 컨트롤 사용]
 						try {
 							Socket socket = serverSocket.accept(); //요청 수락후에 수락된 소켓을 저장
 							clientlist.add(new Client(socket));	   //연결된 클라이언트(연결된소켓) 생성 후에 리스트 저장
+				
 						} catch (Exception e) {
 							
 							

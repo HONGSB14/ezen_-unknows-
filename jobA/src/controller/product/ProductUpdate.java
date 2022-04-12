@@ -36,10 +36,10 @@ public class ProductUpdate implements Initializable{
 		txtpcontent.setText(product.getPcontent());
 		txtpprice.setText(product.getPprice()+"");
 		txtpath.setText(product.getPimg());
-		if(product.getPcategory().equals("남성의류")) {opt1.setSelected(true);}
-		if(product.getPcategory().equals("여성의류")) {opt2.setSelected(true);}
-		if(product.getPcategory().equals("태권용품")) {opt3.setSelected(true);}
-		if(product.getPcategory().equals("어린이태권용품")) {opt4.setSelected(true);}
+		if(product.getPcategory().equals("태권도")) {opt1.setSelected(true);}
+		if(product.getPcategory().equals("검도")) {opt2.setSelected(true);}
+		if(product.getPcategory().equals("유도")) {opt3.setSelected(true);}
+		if(product.getPcategory().equals("쿵푸")) {opt4.setSelected(true);}
 	
 	}
 
@@ -159,16 +159,16 @@ public class ProductUpdate implements Initializable{
     		}
     		String pcategory = null;
         	if(opt1.isSelected()) {//만약에 opt1 이라는 fxid 의 컨트롤이 선택되었으면 
-        		pcategory="남성의류";
+        		pcategory="태권도";
         	}
         	if(opt2.isSelected()) {
-        		pcategory="여성의류";
+        		pcategory="검도";
         	}
         	if(opt3.isSelected()) {
-        		pcategory ="태권용품";
+        		pcategory ="유도";
         	}
         	if(opt4.isSelected()) {
-        		pcategory ="어린이태권용품";
+        		pcategory ="쿵푸";
         	}
     			
     		

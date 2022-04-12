@@ -1,4 +1,4 @@
-package controller.product;
+		package controller.product;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -65,8 +65,10 @@ public class ProductControl implements Initializable{
 			 vbox.getChildren().remove(0);	//객체가 비어있지 않으면 기존객체를 삭제
     	 }
     	
+		 
     	//1. 모든 제품 가져오기
 		ArrayList<Product> productlist = ProductDao.productDao.list(Home.category ,search);
+		
 		
 	
 		

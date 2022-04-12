@@ -60,7 +60,7 @@ public class ProductDao {
 				ps=conn.prepareStatement(sql);
 			}
 			
-			if(search ==null) {//검색이  없을경우
+			if(search==null) {//검색이  없을경우
 				 sql ="select * from product where pcategory =? order by pnum desc";
 				ps= conn.prepareStatement(sql);
 				ps.setString(1, category);

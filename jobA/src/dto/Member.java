@@ -64,7 +64,7 @@ public class Member {	//데이터 모델
 		try {	
 			MimeMessage message = new MimeMessage(session);										//Mime 프로토콜 :전자우편 표준 포멧[형식]
 			message.setFrom(new InternetAddress(보내는사람이메일));									//보내는사람
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(받는사람이메일));	//받는사람
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(받는사람이메일));		//받는사람
 			
 			//메일전송
 			message.setSubject("결투회원 비밀번호 찾기");		

@@ -284,7 +284,7 @@ public class MemberDao {	//DB 접근객체
 	//11.전체 (인수 :테이블명,날짜필드명 ) 의 날짜별 레코드 전체 개수 반환
 	public Map<String, Integer> datetotal(String 테이블명 ,String 날짜필드명){
 		Map<String, Integer> map = new HashMap<String, Integer>();	// HashMap:  set 계열 (순서가 없음)       TreeMap (순서가 있음) 
-		String sql = "SELECT substring_index("+날짜필드명+",' ' , 1 ) ,COUNT(*) FROM "+테이블명+" GROUP BY substring_index("+날짜필드명+" , ' ' , 1 )";
+		String sql = "SELECT SUBSTRING_INDEX("+날짜필드명+",' ' , 1 ) ,COUNT(*) FROM "+테이블명+" GROUP BY SUBSTRING_INDEX("+날짜필드명+" , ' ' , 1 )";
 		try {
 			ps=con.prepareStatement(sql);
 			rs=ps.executeQuery();
