@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>표를 만들어 봅시다.</title>
+
+<style type="text/css">
+
+input{
+font-size: 20px;
+
+}
+table{
+
+margin:auto; font-size:20px;
+margin-bottom: 150px;
+}
+
+
+
+</style>
+
+
+</head>
+
+<body>
+
+ <p style="text-align: center; font-size: 30px; font-weight: bolder; ">회원가입 폼</p>
+ 	
+  <hr>
+  <table style="margin: auto; font-size: 20px;">
+  <tr><td>아이디</td><td><input type="text"></input></td></tr>
+  <tr><td>비밀번호</td><td><input type="password"></input></td></tr>
+  <tr><td>비밀번호 확인</td><td><input type="password"></input></td></tr>
+  <tr><td>이름</td><td><input type="text"></input></td></tr>
+  <tr><td>이메일</td><td><input type="text">@<select style="font-size: 20px"><option>직접입력</option><option>nate.com</option><option>naver.com</option></select></td></tr>
+  <tr><td>이메일 수신</td> <td> <input type="radio" name="sns">예<input type="radio" name="sns">아니오</td></tr>
+  <tr><td>가입 경로</td> <td> <input type="checkbox" name="친구추천">친구추천 <input type="checkbox" name="인터넷">인터넷 <input type="checkbox" name="기타">기타</td></tr>
+  <tr><td>인사말</td> <td> <textarea rows="5" cols="40"></textarea> </td> </tr>
+  </table>
+  
+  <hr>
+  <p style="text-align: center; font-size: 30px; font-weight: bolder; ">로그인</p>
+  <table>
+  	<tr><td>아이디</td><td><input type="text"></td><td rowspan="2"><button style="height: 65px ; width: 70px;">로그인</button></td></tr>
+  	<tr><td>비밀번호</td><td><input type="password"></td></tr>
+  
+  </table>
+  
+  <hr>
+
+
+</body>
+</html>
