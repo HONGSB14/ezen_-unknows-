@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>포지션 지정!</title>
+
+	<style type="text/css">
+		
+		div{
+		
+			width: 100px ; height: 60px;
+			background-color: yellow; border: solid 1px red;
+		}
+		#b { position:  relative;}
+		
+		#e {position: absolute; left: 100px; top : 220px; }
+		
+		#parent{
+			width: 350px;  height: 200px;
+			border: solid 1px red;
+			position: relative; left: 550px; top: 450px; 
+		}
+		
+		#parent2{
+			width: 350px;  height: 200px;
+			border: solid 1px red;
+			position: absolute; left: 550px; top: 650px; 
+		}
+		
+		#k{
+			position: fixed; top: 30px; left: 880px;
+		}
+	</style>
+
+</head>
+<body>
+
+	<h3>상대위치 지정</h3>
+		<div id="a">a</div>
+		<div id="b">b</div>
+		<div id="c">c</div>
+	<h3>절대 위치 지정</h3>
+		<div id="d">d</div>	
+		<div id="e">e</div>
+		<div id="f">f</div>
+		
+	<h3>부모: 상대위치(relative)일 경우 절대위치</h3>
+		<div id="parent">
+			<div id="g">g</div>
+			<div id="h">h</div>
+			<div id="i">i</div>
+		</div>
+		
+		<h3>부모: 절대위치(abslute)일 경우 절대위치</h3>
+		<div id="parent2">
+			<div id="g2">g2</div>
+			<div id="h2">h2</div>
+			<div id="i2">i2</div>
+		</div>
+		
+		<div id="k"> 위치 고정 </div>
+</body>
+</html>

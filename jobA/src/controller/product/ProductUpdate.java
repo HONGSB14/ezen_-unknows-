@@ -31,7 +31,9 @@ public class ProductUpdate implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		Product product = ProductControl.select;
+		
 		txtpname.setText(product.getPname());
 		txtpcontent.setText(product.getPcontent());
 		txtpprice.setText(product.getPprice()+"");
