@@ -61,7 +61,7 @@ public class Day03_6_별찍기 {
 		System.out.println("\n-----------------------------------------");
 		
 		// 별문제4 : 입력받은 줄 수 만큼 출력
-		System.out.print("문제3) 줄수 : "); 
+		System.out.print("문제4) 줄수 : "); 
 		int line4 = scanner.nextInt();
 		
 		for( int i = 1 ; i<=line4 ; i++ ) {
