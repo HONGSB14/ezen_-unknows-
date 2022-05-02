@@ -4,7 +4,8 @@ package dto;
 
 public class Member {
 
-	private int mid;
+	private int mno;
+	private String mid;
 	private String mpassword;
 	private String mname;
 	private String mphone;
@@ -19,9 +20,10 @@ public class Member {
 	}
 
 
-	public Member(int mid, String mpassword, String mname, String mphone, String memail, String maddress, int mpoint,
+	public Member(int mno, String mid, String mpassword, String mname, String mphone, String memail, String maddress, int mpoint,
 			String mdate) {
 		super();
+		this.mno = mno;
 		this.mid = mid;
 		this.mpassword = mpassword;
 		this.mname = mname;
@@ -33,13 +35,23 @@ public class Member {
 	}
 
 
-	public int getMid() {
+	public String getMid() {
 		return mid;
 	}
 
 
-	public void setMid(int mid) {
+	public void setMid(String mid) {
 		this.mid = mid;
+	}
+	
+	
+	public int getMno() {
+		return mno;
+	}
+
+
+	public void setMno(int mno) {
+		this.mno = mno;
 	}
 
 

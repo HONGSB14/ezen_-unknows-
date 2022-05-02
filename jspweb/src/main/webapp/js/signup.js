@@ -23,14 +23,18 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 			// { 최소길이 , 최대길이 } : 문자 최소길이~최대길이 까지만 입력
 				// 정규표현식.test( 변수 ) : 해당 변수가 정규표현식에 동일하면 true 다르면 false
 		if( idj.test( mid) ){ // 정규표현식과 같으면
-			 idchack.innerHTML = "사용가능한 아이디 입니다.";
+			
 			//아이디 중복체크
 				//비동기식 통신[목적 : 페이지 전환이 없이 ]
 			$.ajax({
 				url: "../Idcheck",	//해당 서블릿의 경로
 				data: {"mid":mid},			//해당 경로로 보내는 데이터
 				success :function(result){	//해당 경로에서 받은 데이터
-					alert("java와 통신");
+					if(result==1){
+						idchack.innerHTML="사용중인 아이디 입니다.";
+					}else{
+						idchack.innerHTML="사용가능한 아이디 입니다.";
+					}
 				}
 			});
 		}else{
@@ -174,3 +178,6 @@ $( function(){  // 문서 열리면 해당 코드가 실행
             }
         }).open();
     }
+    
+    
+    

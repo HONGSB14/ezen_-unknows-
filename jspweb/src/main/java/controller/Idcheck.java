@@ -30,18 +30,21 @@ public class Idcheck extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String mid = request.getParameter("mid");
 		//1. Dao 이용한 해당 id 가 있는지 체크
-		MemberDao.getMemberDao();
+		boolean result=MemberDao.getMemberDao().idcheck(mid);
 		//2. 만약 해당 아이디가 존재하면 1  존재하지 않으면 2
-		
-		System.out.println("js 와 통신");
+		if(result) {
+			response.getWriter().print(1);
+		}else {
+			response.getWriter().print(2);
+		}
+
 		
 		//요청할때 request
 		//응답할때 response
 			//ajax 에게 데이터를 보내기
 		
-		response.getWriter().print(1);
 		
-		response.getWriter().print(2);
+		
 	}
 
 	/**
