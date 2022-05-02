@@ -1,6 +1,6 @@
 package dto;
 
-import java.sql.Date;
+
 
 public class Member {
 
@@ -11,7 +11,7 @@ public class Member {
 	private String memail;
 	private String maddress;
 	private int mpoint;
-	private Date mdate;
+	private String mdate;
 	
 	
 	public Member() {
@@ -20,7 +20,7 @@ public class Member {
 
 
 	public Member(int mid, String mpassword, String mname, String mphone, String memail, String maddress, int mpoint,
-			Date mdate) {
+			String mdate) {
 		super();
 		this.mid = mid;
 		this.mpassword = mpassword;
@@ -103,12 +103,12 @@ public class Member {
 	}
 
 
-	public Date getMdate() {
+	public String getMdate() {
 		return mdate;
 	}
 
 
-	public void setMdate(Date mdate) {
+	public void setMdate(String mdate) {
 		this.mdate = mdate;
 	}
 	

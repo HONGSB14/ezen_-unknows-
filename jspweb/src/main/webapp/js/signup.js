@@ -4,6 +4,8 @@
 	// js식		id불러오기  .getElementById( id명 )
 	// jquery식	id불러오기  $("#id명")
 		// keyup(  ) : 해당 id에 키보드가 눌렸을때 [ 입력 되었을때 ]
+
+
 $( function(){  // 문서 열리면 해당 코드가 실행 
 	// 아이디 체크
 	$("#mid").keyup( function(){	// mid 가 입력될때마다 해당 함수 실행
@@ -103,10 +105,13 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 		
 		let memail = $("#memail").val();
 		console.log(memail);
-		let emailj = /^([a-zA-z0-9])@([a-zA-Z0-9]).([a-z])$/;
-		if( emailj.test(memail) ){
+		let emailj = /^([a-zA-Z0-9]{4,12})@([a-z0-9]{4,10}).([a-z]{2,3})$/;
+		let emailk = /^([a-zA-Z0-9]{4,12})@([a-z0-9]{4,10}).([a-z]{2,2}).([a-z]{2,2})$/;
+		if( emailj.test(memail) || emailk.test(memail) ){
+			
 			$("#emailchack").html( "사용가능한 이메일 입니다." );
 		}else{
+			
 			$("#emailchack").html( "올바른 이메일 기입방식으로 입력하여주십시오." );
 		}
 	}); // keyup end 
