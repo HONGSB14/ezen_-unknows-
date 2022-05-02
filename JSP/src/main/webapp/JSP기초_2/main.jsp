@@ -11,7 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<h3> 회원제 게시판</h3>
+		<h3> 회원제 게시판ㅎㅎ</h3>
 		
 		
 		
