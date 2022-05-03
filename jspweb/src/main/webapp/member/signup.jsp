@@ -7,6 +7,7 @@
 	<style type="text/css">
 		
 		span{color: red;}
+		.checkinfo{color: blue;}
 	
 	</style>
 </head>
@@ -18,14 +19,12 @@
 
 <div class="container">
 	<div class="col-md-12 text-center" >
-		
 		<form  id="signupform" action="../signup" method="post">
 			<div>
 				아이디 : <input type="text" id="mid" name="id" placeholder="user id">
-						<br>
-		
-						<span id="idchack"></span>
-		
+				<br>
+				<span id="idchack"></span>
+				<span id="idchack1" class="checkinfo"></span>
 			</div>
 			
 			<div>
@@ -34,19 +33,23 @@
 				비밀번호 확인 : <input type="password"  id="mpasswordcheck" placeholder="password chack">
 				<br>
 				 
-				<span id="passwordchack"></span>
+				
+				<span id="passwordchack" ></span>
+				<span id="passwordchack1" class="checkinfo""></span>
 			</div>
 			
 			<div>
 				이름: <input type="text" id="mname"  name="mname" placeholder="user name">
 				<br>
 				<span id="namechack"></span>
+				<span id="namechack1" class="checkinfo"></span>
 			</div>
 			
 			<div>
 				연락처 : <input type="text" id="mphone" name="mphone"  placeholder="user phone">
 				<br>
 				<span id="phonechack"></span>
+				<span id="phonechack1" class="checkinfo"></span>
 			</div>
 		
 			<div>
@@ -60,6 +63,7 @@
 				</select>
 				<br>
 				<span id="emailcheck"></span>
+				<span id="emailcheck1" class="checkinfo"></span>
 			</div>
 		
 			<div>
@@ -72,6 +76,7 @@
 				<input type="text" id="sample4_detailAddress"  name="address4"placeholder="상세주소">
 				<br>
 				<span id="addresscheck"></span>
+				<span id="addresscheck1" class="checkinfo"></span>
 				<button onclick="signup()" type="button">가입하기</button>
 			</div>
 
@@ -81,8 +86,6 @@
 </div>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="../js/signup.js" type="text/javascript"></script>
-
-
 
 <%@include file = "../footer.jsp" %>
 

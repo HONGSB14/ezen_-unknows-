@@ -41,14 +41,16 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 						
 						idchack.innerHTML="사용중인 아이디 입니다.";  pass[0] = false;
 													//체크 스위치
+						
 					}else{
 						idchack.innerHTML="사용가능한 아이디 입니다.";  pass[0]= true;
 					}
 				}
 			});
-		
+			
+			
 		}else{
-			idchack.innerHTML = "영문 , 숫자 포함 5~15길이로 입력해주세요.";
+			idchack.innerHTML = "영문 , 숫자 포함 5~15길이로 입력해주세요.";	pass[0] = false;
 		}
 		
 		console.log(pass[0]);
@@ -66,13 +68,14 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 				// equals(x)  //  != ( o )
 			$("#passwordchack").html("패스워드가 서로 다릅니다.");		pass[1] = false;
 			}else{
-				$("#passwordchack").html("사용 가능한 비밀번호 입니다."); pass[1] =true;
+				$("#passwordchack").html("");
+				$("#passwordchack1").html("사용 가능한 비밀번호 입니다."); pass[1] =true;
 			
 			}
 		}else{ // 정규현식 다르면
 			$("#passwordchack").html("영소문자 5~15 사이로 입력해주세요!"); pass[1] = false;
 		}
-		console.log(pass[1]);
+		
 	}); // keyup end 
 	
 	// 비밀번호확인 체크 
@@ -88,9 +91,11 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 				// equals(x)  //  != ( o )
 			$("#passwordchack").html("패스워드가 서로 다릅니다.");			pass[2] = false;
 			}else{
-				$("#passwordchack").html("사용 가능한 비밀번호 입니다.");		pass[2] = true; pass[1] =true;
+				$("#passwordchack").html("");
+				$("#passwordchack1").html("사용 가능한 비밀번호 입니다.");		pass[2] = true; pass[1] =true;
 			}
 		}else{ // 정규현식 다르면
+			$("#passwordchack1").html("");
 			$("#passwordchack").html("영소문자 5~15 사이로 입력해주세요!");		pass[2] = false;
 		}
 	console.log(pass[2]);
@@ -101,8 +106,10 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 		let mname = $("#mname").val(); // 해당 id의 데이터 가져오기
 		let namej = /^[가-힣]{2,10}$/;	// 한글만 2~10 정규표현식
 		if( namej.test(mname) ){
-			$("#namechack").html( "사용가능한 이름입니다." );		pass[3] = true;
+			$("#namechack").html( "" );
+			$("#namechack1").html( "사용가능한 이름입니다." );		pass[3] = true;
 		}else{
+			$("#namechack1").html( "" );	
 			$("#namechack").html( "한글 2~10 사이만 가능합니다." );	pass[3] = false;
 		}
 	console.log(pass[3]);
@@ -113,8 +120,10 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 		let mphone = $("#mphone").val();
 		let phonej = /^([0-9]{2,3})-([0-9]{4,4})-([0-9]{4,4})$/;
 		if( phonej.test(mphone) ){
-			$("#phonechack").html( "사용가능한 번호 입니다." );					pass[4] = true;
+			$("#phonechack").html( "" );
+			$("#phonechack1").html( "사용가능한 번호 입니다." );					pass[4] = true;
 		}else{
+			$("#phonechack1").html( "" )
 			$("#phonechack").html( "010-0000-0000 형식으로 입력해주세요." ); pass[4] = false;
 		}
 		console.log(pass[4]);
@@ -141,7 +150,8 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 					success:function(result){
 						
 						if(result==1){
-							$("#emailcheck").html("사용가능한 이메일 입니다.");  
+							$("#emailcheck").html("");
+							$("#emailcheck1").html("사용가능한 이메일 입니다.");  
 							pass[5] = true; 
 						}else{
 							$("#emailcheck").html("사용중인 이메일 입니다.");  
@@ -173,8 +183,10 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 				let emailj = /^([a-z0-9]{4,10}).([a-z]{3,3})$/;
 				let emailk = /^([a-z0-9]{4,10}).([a-z]{2,2}).([a-z]{2,2})$/;
 				if( emailj.test(memail) || emailk.test(memail) ){
-					$("#emailchack").html( "사용가능한 이메일 입니다." );
+					$("#emailchack").html("");
+					$("#emailchack1").html( "사용가능한 이메일 입니다." );
 				}else{
+					$("#emailchack1").html("");
 					$("#emailchack").html( "올바른 이메일 기입방식으로 입력하여주십시오." );
 				}
 			}); // keyup end 
@@ -195,10 +207,12 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 		let address4=$("#sample4_detailAddress").val();	
 		
 		if(address1==""||address2 ==""||address3==""||address4==""){
+			$("#addresscheck1").html("");
 			$("#addresscheck").html("모든 주소를 입력해주세요."); pass[6] =false;
 			
 		}else{
-			$("#addresscheck").html("사용가능한 주소입니다.");	pass[6] =true;
+			$("#addresscheck").html("");
+			$("#addresscheck1").html("사용가능한 주소입니다.");	pass[6] =true;
 		}
 		
 		console.log(pass[6]);
