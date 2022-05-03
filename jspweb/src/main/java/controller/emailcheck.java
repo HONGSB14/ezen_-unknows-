@@ -10,15 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MemberDao;
 
 /**
- * Servlet implementation class idcheck
+ * Servlet implementation class emailcheck
  */
-
-//URL:프로젝트명/경로
-@WebServlet("/Idcheck")
-public class Idcheck extends HttpServlet {
+@WebServlet("/emailcheck")
+public class emailcheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public Idcheck() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public emailcheck() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -26,24 +28,14 @@ public class Idcheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("UTF-8");
-		String mid = request.getParameter("mid");
-		//1. Dao 이용한 해당 id 가 있는지 체크
-		boolean result=MemberDao.getMemberDao().idcheck(mid);
-		//2. 만약 해당 아이디가 존재하면 1  존재하지 않으면 2
+		String email = request.getParameter("email");
+		boolean  result = MemberDao.getMemberDao().emailcheck(email);
+		System.out.println("통신");
 		if(result) {
-			response.getWriter().print(1);
-		}else {
 			response.getWriter().print(2);
+		}else {
+			response.getWriter().print(1);
 		}
-
-		
-		//요청할때 request
-		//응답할때 response
-		//ajax 에게 데이터를 보내기
-		
-		
 	}
 
 	/**

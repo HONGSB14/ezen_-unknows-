@@ -6,7 +6,14 @@
 		// keyup(  ) : 해당 id에 키보드가 눌렸을때 [ 입력 되었을때 ]
 
 
-$( function(){  // 문서 열리면 해당 코드가 실행 
+//회원가입 통과를 위한 배열 생성 (체크스위치)
+	let pass=[ false ,false, false, false, false ,false ,false];  // 배열 = [ ]
+	
+	
+
+//아이디 체크
+$(function(){  // 문서 열리면 해당 코드가 실행 
+	
 	// 아이디 체크
 	$("#mid").keyup( function(){	// mid 가 입력될때마다 해당 함수 실행
 		// 1. HTML 태그내 값 가져오기 
@@ -27,21 +34,25 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 			//아이디 중복체크
 				//비동기식 통신[목적 : 페이지 전환이 없이 ]
 			$.ajax({
-				url: "../Idcheck",	//해당 서블릿의 경로
+				url: "../Idcheck",			//해당 서블릿의 경로
 				data: {"mid":mid},			//해당 경로로 보내는 데이터
 				success :function(result){	//해당 경로에서 받은 데이터
 					if(result==1){
-						idchack.innerHTML="사용중인 아이디 입니다.";
+						
+						idchack.innerHTML="사용중인 아이디 입니다.";  pass[0] = false;
+													//체크 스위치
 					}else{
-						idchack.innerHTML="사용가능한 아이디 입니다.";
+						idchack.innerHTML="사용가능한 아이디 입니다.";  pass[0]= true;
 					}
 				}
 			});
+		
 		}else{
 			idchack.innerHTML = "영문 , 숫자 포함 5~15길이로 입력해주세요.";
 		}
+		
+		console.log(pass[0]);
 	}); // keyup end 
-	
 	// 비밀번호 체크 
 	$("#mpassword").keyup( function(){  // 비밀번호 입력할때마다
 		// let mpassword = document.getElementById("mpassword").value;  // js식
@@ -53,13 +64,15 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 		if( passswordj.test( mpassword ) ){ // 정규표현식 같으면
 			if( mpassword != mpasswordcheck ){ // 비밀번호 와 비밀번호체크 와 다르면
 				// equals(x)  //  != ( o )
-			$("#passwordchack").html("패스워드가 서로 다릅니다.");
+			$("#passwordchack").html("패스워드가 서로 다릅니다.");		pass[1] = false;
 			}else{
-				$("#passwordchack").html("사용 가능한 비밀번호 입니다.");
+				$("#passwordchack").html("사용 가능한 비밀번호 입니다."); pass[1] =true;
+			
 			}
 		}else{ // 정규현식 다르면
-			$("#passwordchack").html("영소문자 5~15 사이로 입력해주세요!");
+			$("#passwordchack").html("영소문자 5~15 사이로 입력해주세요!"); pass[1] = false;
 		}
+		console.log(pass[1]);
 	}); // keyup end 
 	
 	// 비밀번호확인 체크 
@@ -73,13 +86,14 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 		if( passswordj.test( mpasswordcheck ) ){ // 정규표현식 같으면
 			if( mpassword != mpasswordcheck ){ // 비밀번호 와 비밀번호체크 와 다르면
 				// equals(x)  //  != ( o )
-			$("#passwordchack").html("패스워드가 서로 다릅니다.");
+			$("#passwordchack").html("패스워드가 서로 다릅니다.");			pass[2] = false;
 			}else{
-				$("#passwordchack").html("사용 가능한 비밀번호 입니다.");
+				$("#passwordchack").html("사용 가능한 비밀번호 입니다.");		pass[2] = true; pass[1] =true;
 			}
 		}else{ // 정규현식 다르면
-			$("#passwordchack").html("영소문자 5~15 사이로 입력해주세요!");
+			$("#passwordchack").html("영소문자 5~15 사이로 입력해주세요!");		pass[2] = false;
 		}
+	console.log(pass[2]);
 	}); // keyup end 
 	
 	// 이름 체크
@@ -87,43 +101,135 @@ $( function(){  // 문서 열리면 해당 코드가 실행
 		let mname = $("#mname").val(); // 해당 id의 데이터 가져오기
 		let namej = /^[가-힣]{2,10}$/;	// 한글만 2~10 정규표현식
 		if( namej.test(mname) ){
-			$("#namechack").html( "사용가능한 이름입니다." );
+			$("#namechack").html( "사용가능한 이름입니다." );		pass[3] = true;
 		}else{
-			$("#namechack").html( "한글 2~10 사이만 가능합니다." );
+			$("#namechack").html( "한글 2~10 사이만 가능합니다." );	pass[3] = false;
 		}
+	console.log(pass[3]);
 	 }); // keyup end 
 	 
 	// 전화번호 체크 
 	$("#mphone").keyup( function(){ 
 		let mphone = $("#mphone").val();
-		let phonej = /^([0-9]{2,3})-([0-9]{3,4})-([0-9]{3,4})$/;
+		let phonej = /^([0-9]{2,3})-([0-9]{4,4})-([0-9]{4,4})$/;
 		if( phonej.test(mphone) ){
-			$("#phonechack").html( "사용가능한 번호 입니다." );
+			$("#phonechack").html( "사용가능한 번호 입니다." );					pass[4] = true;
 		}else{
-			$("#phonechack").html( "지역번호-0000-0000 형식으로 입력해주세요." );
+			$("#phonechack").html( "010-0000-0000 형식으로 입력해주세요." ); pass[4] = false;
 		}
+		console.log(pass[4]);
 	}); // keyup end 
 	 
 	//이메일 체크
-	$("#memail").keyup( function(){ 
+	$("#memail").keyup(function(){ 
 		
 		let memail = $("#memail").val();
-		console.log(memail);
-		let emailj = /^([a-zA-Z0-9]{4,12})@([a-z0-9]{4,10}).([a-z]{2,3})$/;
-		let emailk = /^([a-zA-Z0-9]{4,12})@([a-z0-9]{4,10}).([a-z]{2,2}).([a-z]{2,2})$/;
-		if( emailj.test(memail) || emailk.test(memail) ){
-			
-			$("#emailchack").html( "사용가능한 이메일 입니다." );
+		let memailaddress = $("#memailaddress").val();
+	
+		if(memailaddress==""){
+			$("#emailcheck").html( "올바른 이메일 기입방식으로 입력하여주십시오.");	pass[5]= false;
+
 		}else{
-			
-			$("#emailchack").html( "올바른 이메일 기입방식으로 입력하여주십시오." );
+				let emailj = /^[a-zA-Z0-9]{3,20}$/;
+				if( emailj.test(memail) ){
+				//이메일 중복 체크
+				let email = memail+"@"+memailaddress;
+				
+				$.ajax({
+					url:"../emailcheck",
+					data:{"email":email},
+					success:function(result){
+						
+						if(result==1){
+							$("#emailcheck").html("사용가능한 이메일 입니다.");  
+							pass[5] = true; 
+						}else{
+							$("#emailcheck").html("사용중인 이메일 입니다.");  
+							pass[5] = false;
+						}
+					}		
+				});
+			}else{
+				$("#emailcheck").html( "올바른 이메일 기입방식으로 입력하여주십시오.");	pass[5] = false;
+		
+			}
 		}
+		console.log(pass[5]);
 	}); // keyup end 
+	
+	//이메일주소 목록상자 선택 시 
+	$("#emailselect").change(function(){	
+		
+		let emailselect =$("#emailselect").val();
+		if(emailselect==""){
+			$("#memailaddress").attr("readonly" ,false);
+			$("#memailaddress").val("");
+			
+			
+			$("#memail").keyup( function(){ 
+		
+				let memail = $("#memail").val();
+				console.log(memail);
+				let emailj = /^([a-z0-9]{4,10}).([a-z]{3,3})$/;
+				let emailk = /^([a-z0-9]{4,10}).([a-z]{2,2}).([a-z]{2,2})$/;
+				if( emailj.test(memail) || emailk.test(memail) ){
+					$("#emailchack").html( "사용가능한 이메일 입니다." );
+				}else{
+					$("#emailchack").html( "올바른 이메일 기입방식으로 입력하여주십시오." );
+				}
+			}); // keyup end 
+			
+			
+		}else{
+			$("#memailaddress").attr("readonly" ,true);
+			$("#memailaddress").val(emailselect);
+		}
+	});
+	
+	//주소체크
+	$("#sample4_detailAddress").keyup(function() {
+	
+		let address1=$("#sample4_postcode").val();	
+		let address2=$("#sample4_roadAddress").val();	
+		let address3=$("#sample4_jibunAddress").val();	
+		let address4=$("#sample4_detailAddress").val();	
+		
+		if(address1==""||address2 ==""||address3==""||address4==""){
+			$("#addresscheck").html("모든 주소를 입력해주세요."); pass[6] =false;
+			
+		}else{
+			$("#addresscheck").html("사용가능한 주소입니다.");	pass[6] =true;
+		}
+		
+		console.log(pass[6]);
+	});
 	
 }); // 문서 열리면 해당 코드가 종료 
 
 
-// 다음 api js
+//폼 전송 메소드
+function signup(){
+	
+	// pass 배열이 모두 true 이면 폼 전송
+	let check = true;
+	for(let i =0 ; i<pass.length; i++){
+		
+		if(pass[i]== false){
+			check = false;
+		}
+	}
+	//js 에서 form 전송하는 방법
+	if(check){
+		document.getElementById("signupform").submit();
+	}else{
+		alert("필수 입력사항이 입력되지 않았습니다.")
+	}
+
+}
+
+
+
+// 다음 API JS
   function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -152,14 +258,7 @@ $( function(){  // 문서 열리면 해당 코드가 실행
                 document.getElementById('sample4_postcode').value = data.zonecode;
                 document.getElementById("sample4_roadAddress").value = roadAddr;
                 document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
-                
-                // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
-                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("sample4_extraAddress").value = '';
-                }
-
+ 
                 var guideTextBox = document.getElementById("guide");
                 // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
                 if(data.autoRoadAddress) {
@@ -178,6 +277,8 @@ $( function(){  // 문서 열리면 해당 코드가 실행
             }
         }).open();
     }
+  
     
     
-    
+ 
+ 

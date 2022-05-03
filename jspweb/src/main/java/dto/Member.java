@@ -19,6 +19,16 @@ public class Member {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
+	@Override
+	public String toString() {
+		return "Member [mno=" + mno + ", mid=" + mid + ", mpassword=" + mpassword + ", mname=" + mname + ", mphone="
+				+ mphone + ", memail=" + memail + ", maddress=" + maddress + ", mpoint=" + mpoint + ", mdate=" + mdate
+				+ "]";
+	}
+
+
 
 	public Member(int mno, String mid, String mpassword, String mname, String mphone, String memail, String maddress, int mpoint,
 			String mdate) {
