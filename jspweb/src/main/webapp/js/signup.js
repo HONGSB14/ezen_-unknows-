@@ -20,6 +20,7 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 		let mid=document.getElementById("mid").value;
 		// 2. HTML 태그id 가져오기
 		let idchack = document.getElementById("idchack");
+		
 		// 정규표현식 : 특정한 규칙을 가지는 문자열의 집합 언어
 		let idj = /^[a-zA-Z0-9]{5,15}$/;	// 한글을 제외한 영문+숫자 5~15 사이 문자열
 			// /^ : 정규표현식 시작
@@ -292,7 +293,9 @@ function signup(){
         }).open();
     }
   
-    
+function passwordchange(){
+	$("#passwordbox").css("display","block");
+}
     
  
  
