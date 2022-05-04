@@ -39,12 +39,8 @@ public class update extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
-		request.setCharacterEncoding("UTF-8");
-		
-
-		
+				request.setCharacterEncoding("UTF-8"); // 요청 시 UTF-8 로 인코딩 
 				//패스워드 체크 [유효성 검사 ]
-				
 				String oldpassword = request.getParameter("oldpassword");
 				String newpassword = request.getParameter("newpassword");
 				

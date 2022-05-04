@@ -27,9 +27,10 @@ public class delete extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    //오류생각해보기@@
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String mid =request.getParameter("mid");
-		boolean result = MemberDao.getMemberDao().delete("mid");
+		boolean result = MemberDao.getMemberDao().delete(mid);
 		if(result) {
 			System.out.println(1);
 			response.getWriter().print(1);

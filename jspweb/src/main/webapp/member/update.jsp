@@ -22,10 +22,12 @@
 	
 	<div class="container"> <!-- 박스권 -->
 		<div class="row"> <!-- 가로배치 -->
-			<div class="col-md-3"> <!-- 사이드바 -->
+			
+			<div class="col-md-3"> <!--------------- 사이드바 ----------------->
 				<%@include file ="infosidebar.jsp" %>
 			</div>	
-			<div class="col-md-9"> <!-- 본문 -->
+			
+			<div class="col-md-9"> <!--------------------본문 ---------------->
 				<%
 					if( request.getParameter("result") != null  && request.getParameter("result").equals("1") ){
 				%>
@@ -49,7 +51,7 @@
 					
 						<div id="passwordbox" style="display: none;">
 							기존 비밀번호 : <input type="password" name="oldpassword"><br>
-							새온 비밀번호 : <input type="password" name="newpassword">	
+						   새로운 비밀번호 : <input type="password" name="newpassword">	
 						</div>
 						
 					이름 : <input type="text" name="mname" value="<%=member.getMname()%>"> <br>

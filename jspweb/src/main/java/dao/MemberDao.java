@@ -128,12 +128,13 @@ public class MemberDao extends Dao {
 	//회원 삭제
 	public boolean delete(String mid) {
 		
-		String sql = "delete from member where mid =?";
 		try {
+			String sql = "delete from member where mid =?";
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, mid);
+			System.out.println(mid);
 			ps.executeUpdate();
-
+			System.out.println("탈퇴성공");
 			return true;
 		} catch (Exception e) {
 			System.out.println("오류 :" +e);
