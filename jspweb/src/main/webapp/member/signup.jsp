@@ -32,10 +32,9 @@
 				<br>
 				비밀번호 확인 : <input type="password"  id="mpasswordcheck" placeholder="password chack">
 				<br>
-				 
-				
+		
 				<span id="passwordchack" ></span>
-				<span id="passwordchack1" class="checkinfo""></span>
+				<span id="passwordchack1" class="checkinfo"></span>
 			</div>
 			
 			<div>
@@ -87,7 +86,7 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="../js/signup.js" type="text/javascript"></script>
 
-<%@include file = "../footer.jsp" %>
+<%@include file = "../footer.jsp"%>
 
 </body>
 </html>
