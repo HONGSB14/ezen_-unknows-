@@ -86,4 +86,23 @@ public class MemberDao extends Dao {
 		}
 		return 3;	//db오류이면 = 3
 	}
+	
+	//개별 회원정보 출력 [인수 : 세션에 저장된 회원 id ] 
+	public Member getmember(String mid) {
+		String sql ="select * from member where mid=?";
+	
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, mid);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				//패스워드를 제외한 모든 플디의 값을 객체화
+				Member member = new Member(rs.getInt(1),rs.getString(2),null,rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getInt(8),rs.getString(9));
+				return member;
+			}
+		} catch (Exception e) {
+			System.out.println("member정보 오류 : "+e);
+		}
+		return null;
+	}
 }

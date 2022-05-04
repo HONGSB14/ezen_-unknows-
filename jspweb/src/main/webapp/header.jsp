@@ -18,8 +18,26 @@
 	%>
 	
 	<div class="container">
+	
 	<!-- ----공통---- -->
+		<a href="jsp/main.jsp">ezen shop</a>
+		<a href="#">BIG SIZE</a>
+		<a href="#">MUSCLE-FIT</a>
+		<a href="#">1+1이벤트</a>
+		<a href="#">아우터</a>
+		<a href="#">상의</a>
+		<a href="#">바지</a>
+		<a href="#">슈즈</a>
+		<a href="#">악세사리</a>
+		<a href="#">BSET</a>
+		<a href="#">트레이닝</a>
+		<a href="#">모델처리입자</a>
+		<a href="#">50%</a>
+		
+		<input type="text"><button>검색</button>
+		<a href="#"><img src="#">장바구니 이미지</a>
 		<a href="/jspweb/main.jsp">home</a>
+	
 		<!--  로그인이 안된 상태    -->
 		<%if(loginid== null){%>
 		<a href="/jspweb/member/login.jsp">로그인</a>
@@ -31,10 +49,11 @@
 		<!--  만약 로그인이 된 상태  -->
 		<%if(loginid!= null){%>
 		<a href="/jspweb/logout">로그아웃</a>
-		<a href="/jspweb/member/memberinfo.jsp">회원정보</a>
+		<a href="/jspweb/member/myshopping.jsp">나의쇼핑</a>
 		<%
 		} 
 		%>
+		<a href="#" > 고객센터 </a>
 	</div>
 	<!-- 부트스트랩 js cdn -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
