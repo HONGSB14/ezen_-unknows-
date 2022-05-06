@@ -169,6 +169,40 @@ public class MemberDao extends Dao {
 		}catch (Exception e) {} return false;
 	}
 	
+	//회원 번호 출력 메소드
+	public int getmno(String mid) {
+		String sql =" select mno from member where mid=?";
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, mid);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (Exception e) {
+			System.out.println("회원번호 출력 실패 :"  +e);
+		}
+		return 0;
+	};
+	
+	public String getid(int mno) {
+		
+		String sql="select mid from member where mno=?";
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, mno);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				return rs.getString("");
+				
+			}
+		} catch (Exception e) {
+			System.out.println("아이디 가져오기 실패 :"  +e);
+		}
+		return null;
+	}
+	
+
 }
 
 

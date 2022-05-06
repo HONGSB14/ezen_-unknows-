@@ -4,15 +4,15 @@ package dto;
 
 public class Member {
 
-	private int mno;
-	private String mid;
-	private String mpassword;
-	private String mname;
-	private String mphone;
-	private String memail;
-	private String maddress;
-	private int mpoint;
-	private String mdate;
+	private int mno;			//회원번호		(PK)
+	private String mid;			//회원 아이디
+	private String mpassword;	//회원 비밀번호
+	private String mname;		//회원 이름
+	private String mphone;		//회원 전화번호
+	private String memail;		//회원 이메일
+	private String maddress;	//회원 주소
+	private int mpoint;			//회원 포인트
+	private String mdate;		//회원 가입 날짜
 	
 	
 	public Member() {

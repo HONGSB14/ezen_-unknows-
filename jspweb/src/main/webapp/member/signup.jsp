@@ -17,7 +17,7 @@
 
 
 
-<div class="container">
+<div class="container" style="border: solid 1px black ;  border-radius: 20px;">
 	<div class="col-md-12 text-center" >
 		<form  id="signupform" action="../signup" method="post">
 			<div>
