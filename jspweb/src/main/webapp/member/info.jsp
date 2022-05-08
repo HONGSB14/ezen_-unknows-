@@ -33,7 +33,7 @@
 				이메일 : <%=member.getMemail() %>		<Br>
 				배송주소 : <%=member.getMaddress() %>	<Br>	
 				포인트 : <%=member.getMpoint() %>		<Br>
-				가입날짜 : <%=member.getMdate() %>	    <Br>
+				가입날짜 : <%=member.getMdate() %>	<Br>
 			</div>
 		</div>
 	</div>

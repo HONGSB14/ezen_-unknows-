@@ -57,6 +57,7 @@ public class signup extends HttpServlet {
 			Member member = new Member(0, mid, mpassword, mname, mphone, email, address, 0, null);
 			boolean result = MemberDao.getMemberDao().signup(member);
 			if(result) {
+			
 				response.sendRedirect("/jspweb/member/signupsuccess.jsp");
 				}else {
 				response.sendRedirect("/jspweb/errorpage.jsp");

@@ -15,7 +15,7 @@
 $(function(){  // 문서 열리면 해당 코드가 실행 
 	
 	// 아이디 체크
-	$("#mid").keyup( function(){	// mid 가 입력될때마다 해당 함수 실행
+	$("#mid").keydown( function(){	// mid 가 입력될때마다 해당 함수 실행
 		// 1. HTML 태그내 값 가져오기 
 		let mid=document.getElementById("mid").value;
 		// 2. HTML 태그id 가져오기
@@ -30,7 +30,7 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 			// [0-9] : 숫자 찾음
 			// { 최소길이 , 최대길이 } : 문자 최소길이~최대길이 까지만 입력
 				// 정규표현식.test( 변수 ) : 해당 변수가 정규표현식에 동일하면 true 다르면 false
-		if( idj.test( mid) ){ // 정규표현식과 같으면
+		if( idj.test(mid) ){ // 정규표현식과 같으면
 			
 			//아이디 중복체크
 				//비동기식 통신[목적 : 페이지 전환이 없이 ]
@@ -141,6 +141,7 @@ $(function(){  // 문서 열리면 해당 코드가 실행
 
 		}else{
 				let emailj = /^[a-zA-Z0-9]{3,20}$/;
+				
 				if( emailj.test(memail) ){
 				//이메일 중복 체크
 				let email = memail+"@"+memailaddress;

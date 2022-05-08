@@ -1,4 +1,4 @@
-package controller;
+package controller.member;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,15 +10,17 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MemberDao;
 
 /**
- * Servlet implementation class idcheck
+ * Servlet implementation class FindId
  */
-
-//URL:프로젝트명/경로
-@WebServlet("/Idcheck")
-public class Idcheck extends HttpServlet {
+@WebServlet("/FindId")
+public class FindId extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    public Idcheck() {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public FindId() {
+        super();
         // TODO Auto-generated constructor stub
     }
 
@@ -28,22 +30,17 @@ public class Idcheck extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
+		String mname=request.getParameter("mname");
+		String memail=request.getParameter("memail");
+	
+	
+		String mid=MemberDao.getMemberDao().findid(mname,memail);
 		
-		String mid = request.getParameter("id");
-		//1. Dao 이용한 해당 id 가 있는지 체크
-		boolean result=MemberDao.getMemberDao().idcheck(mid);
-		//2. 만약 해당 아이디가 존재하면 1  존재하지 않으면 2
-		if(result) {
-			response.getWriter().print(1);
-		}else {
-			response.getWriter().print(2);
+		if(mid!= null){ //만약 찾은 값이 있다면
+			response.sendRedirect("/taxicompany_data_system/member/findidsuccess.jsp?mid="+mid);
+		}else {	//그 외 
+			response.sendRedirect("/taxicompany_data_system/member/findid.jsp?result=false");
 		}
-
-		
-		//요청할때 request
-		//응답할때 response
-		//ajax 에게 데이터를 보내기
-		
 		
 	}
 
@@ -52,7 +49,7 @@ public class Idcheck extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
+		doGet(request, response);
 	}
 
 }
