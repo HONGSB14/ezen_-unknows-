@@ -193,7 +193,7 @@ public class MemberDao extends Dao {
 			ps.setInt(1, mno);
 			rs=ps.executeQuery();
 			if(rs.next()) {
-				return rs.getString("");
+				return rs.getString("mid");
 				
 			}
 		} catch (Exception e) {

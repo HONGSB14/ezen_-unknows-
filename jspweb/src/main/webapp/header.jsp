@@ -20,6 +20,9 @@
 	<div class="container">
 	
 	<!-- ----공통---- -->
+		<div class="">
+		
+		</div>
 		<a href="jsp/main.jsp">ezen shop</a>
 		<a href="#">BIG SIZE</a>
 		<a href="#">MUSCLE-FIT</a>
@@ -36,24 +39,28 @@
 		
 		<input type="text"><button>검색</button>
 		<a href="#"><img src="#">장바구니 이미지</a>
-		<a href="/jspweb/main.jsp">home</a>
-	
-		<!--  로그인이 안된 상태    -->
-		<%if(loginid== null){%>
-		<a href="/jspweb/member/login.jsp">로그인</a>
-		<a href="/jspweb/member/signup.jsp">회원가입</a>
+		<div class="py-4">
 		
-		<%
-		}
-		%>
-		<!--  만약 로그인이 된 상태  -->
-		<%if(loginid!= null){%>
-		<a href="/jspweb/logout">로그아웃</a>
-		<a href="/jspweb/member/myshopping.jsp">나의쇼핑</a>
-		<%
-		} 
-		%>
-		<a href="/jspweb/board/boardlist.jsp" > 자유게시판 </a>
+			<a href="/jspweb/main.jsp">home</a>
+		
+			<!--  로그인이 안된 상태    -->
+			<%if(loginid== null){%>
+			<a href="/jspweb/member/login.jsp">로그인</a>
+			<a href="/jspweb/member/signup.jsp">회원가입</a>
+			
+			<%
+			}
+			%>
+			<!--  만약 로그인이 된 상태  -->
+			<%if(loginid!= null){%>
+			<a href="/jspweb/logout">로그아웃</a>
+			<a href="/jspweb/member/myshopping.jsp">나의쇼핑</a>
+			<%
+			} 
+			%>
+			<a href="/jspweb/board/boardlist.jsp" > 자유게시판 </a>
+		</div>
+		
 	</div>
 	<!-- 부트스트랩 js cdn -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

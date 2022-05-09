@@ -14,6 +14,7 @@
 	<%@include file="../header.jsp" %>
 	
 	<div class="container">
+			
 			<a href="boardlist.jsp"><button>뒤로가기</button></a>
 			<H3>글쓰기</H3>
 			<form action="../board/Write" method="post" enctype="multipart/form-data">  <!-- controller/board/Write 로 경로설정 --> 
