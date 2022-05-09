@@ -51,6 +51,9 @@ public class login extends HttpServlet {
 											
 			session.setAttribute("login", mid);	//세션에 값 저장
 								//세션명 , 데이터
+			
+			//session.getMaxInactiveInterval();  세션 생명주기 설정 (초 단위);
+			
 			response.sendRedirect("/jspweb/main.jsp");	//페이지 전환
 		}else if(result==2){
 			response.sendRedirect("/jspweb/member/login.jsp?result=2"); //아이디 혹은 비밀번호가 다름

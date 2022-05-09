@@ -1,3 +1,5 @@
+<%@page import="dao.BoardDao"%>
+<%@page import="dto.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,24 +15,43 @@
 <body>
 	<%@include file="../header.jsp" %>
 	
+	<%
+		//bno가져오기
+		int bno=Integer.parseInt(request.getParameter("bno")) ;
+	
+		Board board =BoardDao.getBoardDao().getboard(bno);
+	%>
+	
 	<div class="container">
+			
+			<a href="boardlist.jsp"><button>뒤로가기</button></a>
 			<H3>글쓰기</H3>
-			<form action="../board/Write" method="post" enctype="multipart/form-data">  <!-- controller/board/Write 로 경로설정 --> 
+			<form action="../board/Update?bno=<%=board.getBno()%>" method="post" enctype="multipart/form-data">  <!-- controller/board/Write 로 경로설정 --> 
 													<!-- (1.) form 전송 인코딩타입: form 은 기본으로 "문자"밖에 전송 못하기 때문에 enctype 설정  -->
 													<!-- (2.) cos.jar 라이브러리 추가  -->
-				제목 : <input type="text" name="btitle">
+				제목 : <input type="text" name="btitle" value="<%=board.getBtitle()%>">
 				<br>
-				내용 :<textarea name="bcontent" id="summernote"></textarea>
+				내용 :<textarea name="bcontent" id="summernote"><%=board.getBcontent()%></textarea>
 				<br>
-				첨부파일: <input type="file" name="bfile">
-			
-				<input type="submit" value="작성하기">
-				<input type="reset" value="작성삭제">
+				첨부파일: 
+				<%
+					if(board.getBfile()==null){
+				%>	
+					<span>첨부된 파일이 없습니다.</span>
+				<% 
+					}else{
+				%>
+					<%=board.getBfile()%> 
+					<button type="button" onclick="filedelete(<%=board.getBno()%>)">파일삭제</button>
+				<%
+					}
+				%>
+				
+																					<!-- bno를 board.js 로 인수 넘기기 -->
+				<input type="submit" value="수정하기">
+				<input type="reset" value="취소"> 
+				
 			</form>
-			<div class="py-4">
-			<a href="boardlist.jsp"><button>뒤로가기</button></a>
-			</div>
-			
 	</div>
 	
 	<%@include file="../footer.jsp" %>

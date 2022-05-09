@@ -1,5 +1,11 @@
 package dto;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import dao.MemberDao;
+
 public class Board {
 	
 	private int bno;			//게시판 번호 (PK)
@@ -22,9 +28,25 @@ public class Board {
 		this.bcontent = bcontent;
 		this.mno = mno;
 		this.bview = bview;
-		this.bdate = bdate;
+		//작성일이 오늘이면 시간만 표시 // 아니면 날짜만 표시
+		if( bdate != null ) {
+		DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");	//날짜 형식 변환설정
+		String today = dateformat.format(LocalDate.now());	//오늘 날짜를 문자열 반환
+		String boardday = bdate.split(" ")[0];//날짜만
+		String boardtime= bdate.split(" ")[1];//시간만
+		
+			if(today.equals(boardday)) { //만약 날짜가 같다면
+				this.bdate=boardtime;	//시간만 출력
+			}else{						//만약 날짜가 틀리다면
+				this.bdate=boardday;	//전체 출력
+			}
+		}else{ 
+			this.bdate=bdate; 
+		} 
+		
 		this.bfile = bfile;
-		this.mid= mid;
+		// mno를 가지고 mid출력 (모든 곳에 아이디 출력)
+		this.mid= MemberDao.getMemberDao().getid(mno);
 	}
 
 	

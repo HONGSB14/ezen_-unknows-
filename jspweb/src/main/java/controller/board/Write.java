@@ -42,12 +42,13 @@ public class Write extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//(3.)COS 저장 경로
+		//(3.)개발중인 프로젝트 경로 : COS 저장 경로
 		//String uploadpath="C:\\Users\\504\\git\\ezen_-unknows-\\jspweb\\src\\main\\webapp\\board\\upload";
 			
 		//(3-2)서버 저장 경로
-		//서버 경로 찾기 : requset.getSesscion().getServeletContext().getRealpath(경로);
 		String uploadpath=request.getSession().getServletContext().getRealPath("/board/upload");
+		//서버 경로 찾기 : requset.getSesscion().getServeletContext().getRealpath(경로);
+		
 		
 		//(4.) 첨부파일 업로드 [MultipartRequest : cos라이브러리 제공]
 		MultipartRequest multl = new MultipartRequest(request, uploadpath,  1024*1024*10,    "UTF-8",   new DefaultFileRenamePolicy());
@@ -55,7 +56,7 @@ public class Write extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		//boardWritre.jsp 에서 input 에 입력된 name 값 가져오기
-		String btitle= multl.getParameter("btitle");
+		String btitle= multl.getParameter("btitle");	//multl 안 요청방식 requset 가 있어 따로 request 쓰지는 안흥ㅁ
 		String bcontent= multl.getParameter("bcontent");
 		//(5.) 첨부파일 : getFilesystemname
 		String bfile= multl.getFilesystemName("bfile");	
@@ -71,8 +72,8 @@ public class Write extends HttpServlet {
 		
 		boolean result =BoardDao.getBoardDao().write(board);
 		
-		if(result) { response.sendRedirect("/jspweb/board/boardlist.jsp");
-		
+		if(result) { 
+			response.sendRedirect("/jspweb/board/boardlist.jsp");
 		}else {
 			response.sendRedirect("/jspweb/board/baordwrite.jsp");
 		}

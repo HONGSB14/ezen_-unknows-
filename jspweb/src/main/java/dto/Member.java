@@ -1,6 +1,6 @@
 package dto;
 
-
+import dao.MemberDao;
 
 public class Member {
 

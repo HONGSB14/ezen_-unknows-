@@ -22,7 +22,6 @@
 		String mid=(String)session.getAttribute("login");
 		if(mid !=null){
 	%>
-	
 		<a href="boardwrite.jsp"><button>글쓰기</button></a>
 	
 	<%
@@ -39,14 +38,21 @@
 			//모든 게시물 호출
 			ArrayList<Board> boardlist = BoardDao.getBoardDao().getboardlist();
 			
-		
-			
 				for(Board board : boardlist){
 				
-		%>		
+		%>	
+			<!-- 행을 클릭 했을 때  <tr onclick="location.href='boardview.jsp'" style="cursor:pointer;"> JS version   -->
+			<!-- 상세 이동 시  [ 식별 번호 같이 이동] 
+				
+					1. HTML: a href="'파일명(경로).jsp?변수명=값'"
+					2. JS: "location.href="'파일명(경로).jsp?변수명=값'"
+					3.java: respone.sendRedirect("파일명(경로).jsp?변수명=값);
+			-->	
 			<tr>
 				<td><%=board.getBno()%></td>
-				<td><%=board.getBtitle()%></td>
+				<td>
+			    <a href="boardview.jsp?bno=<%=board.getBno()%>"><%=board.getBtitle()%></a>
+			    </td>	
 				<td><%=board.getMid()%></td>
 				<td><%=board.getBview()%></td>
 				<td><%=board.getBdate()%></td>

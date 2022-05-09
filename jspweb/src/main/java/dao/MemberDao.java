@@ -184,7 +184,7 @@ public class MemberDao extends Dao {
 		}
 		return 0;
 	};
-	
+	//아이디 출력 메소드
 	public String getid(int mno) {
 		
 		String sql="select mid from member where mno=?";
@@ -193,7 +193,7 @@ public class MemberDao extends Dao {
 			ps.setInt(1, mno);
 			rs=ps.executeQuery();
 			if(rs.next()) {
-				return rs.getString("mid");
+				return rs.getString(1);
 				
 			}
 		} catch (Exception e) {
