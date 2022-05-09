@@ -128,12 +128,9 @@ span{color: blue;}
 						<div class="py-2"> 
 						<a href="../main.jsp"><button  class="form-control py-3" type="button">취소</button></a>
 						</div>
-						
+			
 					</div>	
-				
-				
 			</div>
-		
 		</div>
 	</div>
 	

@@ -37,9 +37,13 @@ $(function(){ //문서시작 시 함수시작
             let pwdc=/^[a-zA-Z0-9]{5,15}$/;
 
             if(pwdc.test(pwd)){ //비밀번호 형식이 알맞을 경우
+                    $("#pwdcheck3").html("");
+            		$("#pwdcheck4").html("");
                     $("#pwdcheck2").html("");
                     $("#pwdcheck").html("사용할 수 있는 비밀번호입니다."); pass[1] = true;
             }else{ // 비밀번호 형식이 다를경우
+               	$("#pwdcheck3").html("");
+            	$("#pwdcheck4").html("");
                 $("#pwdcheck").html("");
                 $("#pwdcheck2").html("비밀번호 형식이 올바르지 않습니다."); pass[1] = false;
             }
@@ -53,9 +57,13 @@ $(function(){ //문서시작 시 함수시작
             let pwdcheck=$("#mpwdcheck").val();
             
             if(pwd==pwdcheck){
+                $("#pwdcheck").html("");
+	  			$("#pwdcheck2").html("");
                 $("#pwdcheck4").html("");
                 $("#pwdcheck3").html("비밀번호가 일치합니다.");	pass[1] = true;
             }else{
+                $("#pwdcheck").html("");
+	  			$("#pwdcheck2").html("");
                 $("#pwdcheck3").html("");
                 $("#pwdcheck4").html("비밀번호가 일치하지 않습니다."); pass[1] = false;
             }
@@ -83,7 +91,7 @@ $(function(){ //문서시작 시 함수시작
             
             let phone=$("#mphone").val();
             
-            let phonec=/^[0-9]{11,11}$/;
+            let phonec=/^([010]{3,3})([0-9]{8,8})$/;
             
             if(phonec.test(phone)){
                 $("#phonecheck2").html("");

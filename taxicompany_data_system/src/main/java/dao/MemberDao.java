@@ -111,7 +111,7 @@ public class MemberDao extends Dao{
 	//비밀번호 찾기
 	public boolean findpwd(String mid, String mname) {
 		
-		String sql="SELECT mpassword FROM member where mid=? AND mname=?";
+		String sql="SELECT mpassword FROM taxisaledata.member WHERE mid=? AND mname=?";
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setString(1, mid);
@@ -123,6 +123,25 @@ public class MemberDao extends Dao{
 		} catch (Exception e) {
 			System.out.println("findpassword  err !!  "+e);
 		}
+		return false;
+	}
+	
+	public boolean updatepwd(String pwd,String mid) {
+		
+		String sql ="UPDATE taxisaledata.member SET mpassword=? where mid=?";
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, pwd);
+			ps.setString(2, mid);
+			ps.executeUpdate();
+			if(rs.next()) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("findpassword  err !!  "+e);
+		}
+		
 		return false;
 	}
 }

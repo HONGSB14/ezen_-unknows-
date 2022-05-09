@@ -1,11 +1,15 @@
 package controller.member;
 
 import java.io.IOException;
+import java.util.Set;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.MemberDao;
 
@@ -33,10 +37,11 @@ public class FindPassword extends HttpServlet {
 		String mid=request.getParameter("mid");
 		String mname=request.getParameter("mname");
 		
+		
 		boolean result=MemberDao.getMemberDao().findpwd(mid, mname);
 		
 		if(result) {
-			response.sendRedirect("/taxicompany_data_system/member/findpasswordsuccess.jsp");
+			response.sendRedirect("/taxicompany_data_system/member/findpasswordsuccess.jsp?mid="+mid);
 		}else {
 			response.sendRedirect("/taxicompany_data_system/member/findpassword.jsp?result=false");
 		}
