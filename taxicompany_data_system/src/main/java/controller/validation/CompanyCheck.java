@@ -1,26 +1,25 @@
-package controller.member;
+package controller.validation;
 
 import java.io.IOException;
-import java.net.URLEncoder;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dao.MemberDao;
+
+import dao.CompanyDao;
 
 /**
- * Servlet implementation class FindId
+ * Servlet implementation class CompanyCheck
  */
-@WebServlet("/member/FindId")
-public class FindId extends HttpServlet {
+@WebServlet("/validation/CompanyCheck")
+public class CompanyCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FindId() {
+    public CompanyCheck() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,18 +30,16 @@ public class FindId extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		String mname=request.getParameter("mname");
-		String memail=request.getParameter("memail");
-	
-	
-		String mid=MemberDao.getMemberDao().findid(mname,memail);
 		
-		if(mid!= null){ //만약 찾은 값이 있다면
-			response.sendRedirect("/taxicompany_data_system/member/findidsuccess.jsp?mid="+mid+"&mname="+URLEncoder.encode(mname, "UTF-8"));
-		}else {	//그 외 
-			response.sendRedirect("/taxicompany_data_system/member/findid.jsp?result=false");
+		int crn=Integer.parseInt(request.getParameter("crn"));
+		String cname=request.getParameter("cname");
+		
+		boolean result=CompanyDao.getCompanyDao().comapnycheck(crn,cname);
+		if(result) {
+			response.getWriter().print(1);
+		}else {
+			response.getWriter().print(2);
 		}
-		
 	}
 
 	/**

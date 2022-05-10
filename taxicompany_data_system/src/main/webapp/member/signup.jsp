@@ -6,30 +6,47 @@
 <meta charset="UTF-8">
 <style type="text/css">
 span{color: blue;}
-
 </style>
 
 </head>
 <body>
+	<%  %>
 	<%@include file = "../header.jsp" %>
 	
 	<div class="container">
 		<div class="col-md-12 text-left row">
-			
-			
+
 			<div id="signup" class="offset-3 col-md-7 py-4"> <!--sign up 사이트 -->
-				
-				
+								
 					<div class="offset-2 col-md-7"> <!-- 틀 -->
 						
 						<form action="../Signup" method="post" id="signupform">
-						<!-- 회사인증번호 입력 란 -->
-						<!-- 구상 필요  -->
-						<!-- 회사번호 입력 란 -->
-						<!-- 구상 필요  -->
-							
+							<!-- 회사인증번호 입력 란 -->
+							<div class="py-1"> 
+									 <div class="col-md-4 text-left">사업자 등록 번호<Strong class="must_do">*</Strong></div>
+									<input class="form-control" type="text" id="crn" name="crn" placeholder="사업자 등록 번호를 입력해 주세요.">
+									<div class="py-1">
+									<span id="crncheck"></span>
+									<span class="check" id="crncheck2"></span>
+									</div>
+							</div>
+							<!-- 회사번호 입력 란 -->
+							<div class="py-1"> 
+									 <div class="col-md-4 text-left">회사 명<Strong class="must_do">*</Strong></div>
+									<input class="form-control" type="text" id="cname" name="cname" placeholder="회사 명을 입력해 주세요.">
+									<div class="py-1">
+									<span id="cnamecheck"></span>
+									<span class="check" id="cnamecheck2"></span>
+									</div>
+							</div>
+							<!-- 회사 고유번호 란 -->
+							<div class="py-1">
+								<div class="col-md-4 text-left">회사 고유번호<Strong class="must_do">*</Strong></div>
+									<input value="" id="cnum" name="cnum" class="form-control" placeholder="회사 고유번호" readonly="readonly">
+							</div>
+						
 							<!--  아이디 입력 란 -->
-							<div class="py-2"> 
+							<div class="py-1"> 
 								 <div class="col-md-4 text-left">아이디<Strong class="must_do">*</Strong></div>
 								<input class="form-control" type="text" id="mid" name="mid" placeholder="아이디를 입력해 주세요.(4~15자리 까지 가능합니다.)">
 								<div class="py-1">
@@ -38,7 +55,7 @@ span{color: blue;}
 								</div>
 							</div>
 							<!--  패스워드 입력 란 -->
-							<div class="py-2"> 
+							<div class="py-1"> 
 								<div class="col-md-4">비밀번호<Strong class="must_do">*</Strong></div>
 								<input class="form-control" type="password" id="mpwd" name="mpwd" placeholder="비밀번호를 입력해 주세요.(5~20자리까지 가능합니다.)">
 								<div class="py-1">
@@ -47,7 +64,7 @@ span{color: blue;}
 								</div>
 							</div>
 							<!--  패스워드 재 입력 란 -->
-							<div class="py-2">
+							<div class="py-1">
 								<div class="col-md-4">비밀번호 재확인<Strong class="must_do">*</Strong></div>
 								<input class="form-control" type="password" id="mpwdcheck" name="mpwdcheck" placeholder="비밀번호를 재 입력해주세요.">
 								<div class="py-1">
@@ -56,7 +73,7 @@ span{color: blue;}
 								</div>
 							</div>
 							<!--  이름 입력 란 -->
-							<div class="py-2">
+							<div class="py-1">
 								<div class="col-md-4 my-left">이름<Strong class="must_do">*</Strong></div>
 									<input class="form-control" type="text" id="mname" name="mname" placeholder="이름을 입력해주세요.">
 									<div class="py-1">
@@ -74,7 +91,7 @@ span{color: blue;}
 									</div>
 							</div>
 							<!--  이메일 입력 란 -->
-							<div class="py-2">
+							<div class="py-1">
 								<div class="col-md-4">이메일 주소<Strong class="must_do">*</Strong></div>
 									<div class="row">
 										<!-- 이메일 아이디 입력 란 -->
@@ -87,7 +104,7 @@ span{color: blue;}
 										</div>
 										<!-- 이메일 주소 -->
 									
-										<div class="col-md-12 py-2">
+										<div class="col-md-12 py-1">
 												<div class="col-md-4">이메일 선택</div>
 											<select class="form-select" id="selectemail" >
 												<option id="first">

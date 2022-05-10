@@ -55,14 +55,15 @@ public class MemberDao extends Dao{
 	//회원가입 메소드
 	public boolean signup(Member member) {
 		
-		String sql ="INSERT INTO member (mid, mpassword, mname ,mphone ,memail ) VALUES (?,?,?,?,?)";
+		String sql ="INSERT INTO member (cnum,mid, mpassword, mname ,mphone ,memail ) VALUES (?,?,?,?,?,?)";
 		try {
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, member.getMid());
-			ps.setString(2, member.getMpassword());
-			ps.setString(3, member.getMname());
-			ps.setString(4, member.getMphone());
-			ps.setString(5, member.getMemail());
+			ps.setInt(1, member.getCnum());
+			ps.setString(2, member.getMid());
+			ps.setString(3, member.getMpassword());
+			ps.setString(4, member.getMname());
+			ps.setString(5, member.getMphone());
+			ps.setString(6, member.getMemail());
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {

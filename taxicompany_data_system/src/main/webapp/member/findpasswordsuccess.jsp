@@ -10,7 +10,6 @@
 <body>
 		<%
 		String mid =request.getParameter("mid");	
-		
 		%>
 		<%@include file = "../header.jsp" %>
 		
@@ -21,7 +20,7 @@
 				</div>
 				<div class="offset-4 col-md-4 py-5">
 					
-					<form action="../PwdUpdate" method="post" id="pwdupdate">
+					<form action="../member/PwdUpdate" method="post" id="pwdupdate">
 						<input type="hidden" name="mid" value="<%=mid%>">
 						<div class="py-2">
 							비밀번호 변경

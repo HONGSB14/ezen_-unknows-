@@ -12,7 +12,7 @@ import dao.MemberDao;
 /**
  * Servlet implementation class PwdUpdate
  */
-@WebServlet("/PwdUpdate")
+@WebServlet("/member/PwdUpdate")
 public class PwdUpdate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

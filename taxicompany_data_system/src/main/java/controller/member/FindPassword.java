@@ -16,7 +16,7 @@ import dao.MemberDao;
 /**
  * Servlet implementation class FindPassword
  */
-@WebServlet("/FindPassword")
+@WebServlet("/member/FindPassword")
 public class FindPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

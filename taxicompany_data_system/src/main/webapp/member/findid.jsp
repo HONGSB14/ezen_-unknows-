@@ -21,7 +21,7 @@
 				</div>
 				
 				<div class="offset-4 col-md-4 py-3">
-					<form action="../FindId" method="get">
+					<form action="../member/FindId" method="get">
 						<div class="py-5">
 							<div class="text-left">이름</div>
 							<div>

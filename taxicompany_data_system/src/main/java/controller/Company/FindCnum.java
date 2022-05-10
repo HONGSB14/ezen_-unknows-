@@ -1,4 +1,4 @@
-package controller;
+package controller.Company;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.MemberDao;
+import dao.CompanyDao;
 
 /**
- * Servlet implementation class idcheck
+ * Servlet implementation class FindCnum
  */
-@WebServlet("/Idcheck")
-public class Idcheck extends HttpServlet {
+@WebServlet("/Company/FindCnum")
+public class FindCnum extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Idcheck() {
+    public FindCnum() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,14 +29,17 @@ public class Idcheck extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
 		request.setCharacterEncoding("UTF-8");
 		
-		String mid=request.getParameter("mid");
+		int crn=Integer.parseInt(request.getParameter("crn"));
+		String cname=request.getParameter("cname");
+		System.out.println(crn);
+		System.out.println(cname);
 		
-		boolean result= MemberDao.getMemberDao().idcheck(mid);
-		if(result) {
-			response.getWriter().print(2);
+		String cnum =CompanyDao.getCompanyDao().findcnum(crn,cname);
+		
+		if(cnum != null) {
+			response.getWriter().print(cnum);
 		}else {
 			response.getWriter().print(1);
 		}
@@ -46,8 +49,8 @@ public class Idcheck extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

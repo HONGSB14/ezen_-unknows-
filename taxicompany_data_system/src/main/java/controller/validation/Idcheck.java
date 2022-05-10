@@ -1,4 +1,4 @@
-package controller;
+package controller.validation;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MemberDao;
 
 /**
- * Servlet implementation class EmailCheck
+ * Servlet implementation class idcheck
  */
-@WebServlet("/EmailCheck")
-public class EmailCheck extends HttpServlet {
+@WebServlet("/validation/Idcheck")
+public class Idcheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmailCheck() {
+    public Idcheck() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,11 +29,12 @@ public class EmailCheck extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
 		request.setCharacterEncoding("UTF-8");
-		String email =request.getParameter("emailfinal");
 		
-		boolean result=MemberDao.getMemberDao().emailcheck(email);
+		String mid=request.getParameter("mid");
 		
+		boolean result= MemberDao.getMemberDao().idcheck(mid);
 		if(result) {
 			response.getWriter().print(2);
 		}else {
@@ -45,8 +46,8 @@ public class EmailCheck extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+	
 	}
 
 }

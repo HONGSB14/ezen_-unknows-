@@ -15,6 +15,7 @@
 <body>
 		<%String login=(String)session.getAttribute("login"); %>
 		
+		
 		<div class="text-center py-3">
 			<div class="col-md-12 row">
 				
@@ -38,7 +39,7 @@
 					}else{
 					%>
 						<span style="color: blue;">welcome  <%=login%> |</span> 
-						<a href="/taxicompany_data_system/Logout">Logout |</a>
+						<a href="/taxicompany_data_system/member/Logout">Logout |</a>
 						<a href="/taxicompany_data_system/main_sale.jsp">Sales |</a>
 						<a href="/taxicompany_data_system/main_info.jsp">Info </a>
 						

@@ -17,7 +17,7 @@
 				</div>
 				
 				<div class="offset-4 col-md-4 py-3">
-					<form action="../FindPassword" method="get">
+					<form action="../member/FindPassword" method="get">
 						<div class="py-5">
 							<div class="text-left">아이디</div>
 							<div>

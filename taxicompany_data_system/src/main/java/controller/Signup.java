@@ -40,6 +40,7 @@ public class Signup extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
+		int cnum=Integer.parseInt(request.getParameter("cnum"));
 		String id=request.getParameter("mid");
 		String pwd=request.getParameter("mpwd");
 		String name=request.getParameter("mname");
@@ -48,7 +49,7 @@ public class Signup extends HttpServlet {
 		String memailaddress=request.getParameter("memailaddress");
 		String email=memail+"@"+memailaddress;
 		
-		Member member = new Member(0, id, pwd, name, phone, email);
+		Member member = new Member(0, cnum, id, pwd, name, phone, email);
 		
 		boolean result =MemberDao.getMemberDao().signup(member);
 		
