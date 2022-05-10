@@ -49,6 +49,7 @@
 					3.java: respone.sendRedirect("파일명(경로).jsp?변수명=값);
 			-->	
 			<tr>
+				<td></td>
 				<td><%=board.getBno()%></td>
 				<td>
 			    <a href="boardview.jsp?bno=<%=board.getBno()%>"><%=board.getBtitle()%></a>
