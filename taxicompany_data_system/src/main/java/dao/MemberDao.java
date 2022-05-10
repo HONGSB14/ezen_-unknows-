@@ -125,23 +125,21 @@ public class MemberDao extends Dao{
 		}
 		return false;
 	}
-	
-	public boolean updatepwd(String pwd,String mid) {
-		
-		String sql ="UPDATE taxisaledata.member SET mpassword=? where mid=?";
+	//비밀번호 수정 메소드
+	public boolean updatepwd(String mpassword, String mid) {
+		System.out.println(mid);
+		System.out.println(mpassword);
+		String sql ="UPDATE taxisaledata.member SET mpassword=? WHERE mid=?";
 		
 		try {
 			ps=conn.prepareStatement(sql);
-			ps.setString(1, pwd);
+			ps.setString(1, mpassword);
 			ps.setString(2, mid);
 			ps.executeUpdate();
-			if(rs.next()) {
-				return true;
-			}
+			return true;
 		} catch (Exception e) {
 			System.out.println("findpassword  err !!  "+e);
 		}
-		
 		return false;
 	}
 }

@@ -37,13 +37,13 @@ public class PwdUpdate extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String pwd=request.getParameter("pwd");
-		String mid=request.getParameter("id"); //아이디 값 어떻게 가져오지?
-		System.out.println(pwd);
-		boolean result=MemberDao.getMemberDao().updatepwd(mid,pwd);
+		String mpwd=request.getParameter("pwd");
+		String mid= request.getParameter("mid");
+		
+		boolean result=MemberDao.getMemberDao().updatepwd(mpwd,mid);
 		
 		if(result) {
-			response.sendRedirect("/taxicompany_data_system/login.jsp");
+			response.sendRedirect("/taxicompany_data_system/member/login.jsp");
 		}else {
 			response.sendRedirect("/taxicompany_data_system/member/findpasswordsuccess.jsp?result=false");
 		}
