@@ -10,7 +10,8 @@ public class BoardDao extends Dao {
 
 	
 	public BoardDao() {
-		super();
+		super();// 슈퍼클래스 호출 ( db연동 )
+		// super.메소드()  super.필드명	   super() : 생성자
 	}
 	
 	public static BoardDao boardDao = new BoardDao();
