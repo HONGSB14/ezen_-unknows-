@@ -130,7 +130,7 @@ $(function(){ //문서시작 시 함수시작
             
             if(namec.test(name)){
                 $("#namecheck2").html("");
-                $("#namecheck").html("환영합니다. "+name+"*　님");	pass[3] = true;
+                $("#namecheck").html("환영합니다. ' "+name+" '　님");	pass[3] = true;
             }else{
                 $("#namecheck").html("");
                 $("#namecheck2").html("사용할 수 없는 이름입니다.");	pass[3] =false;

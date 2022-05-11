@@ -5,8 +5,9 @@
 <head>
 </head>
 <body>
-	
+	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 	<div class="container text-center">
+		
 		<p>푸터페이지</p>
 	</div>
 	
