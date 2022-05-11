@@ -14,8 +14,8 @@
 </head>
 <body>
 		<%
-		String login=(String)session.getAttribute("login");
-		Integer cnum=(Integer)session.getAttribute("cnum");
+			String login=(String)session.getAttribute("login");
+			Integer cnum=(Integer)session.getAttribute("cnum");
 		%>
 		
 		
@@ -34,20 +34,20 @@
 				
 				<div class="offset-6 col-md-3">
 					<%
-					if(login==null){
+						if(login==null){
 					%>
-						<a href="/taxicompany_data_system/member/login.jsp">Login |</a>
-						<a href="/taxicompany_data_system/member/agreementpage.jsp">SignUp</a>
+							<a href="/taxicompany_data_system/member/login.jsp">Login |</a>
+							<a href="/taxicompany_data_system/member/agreementpage.jsp">SignUp</a>
 					<%
-					}else{
+						}else{
 					%>
-						<span style="color: blue;">Welcome  <%=login%> |</span> 
-						<a href="/taxicompany_data_system/member/Logout">Logout |</a>
-						<a href="/taxicompany_data_system/main_sale.jsp">Sales |</a>
-						<a href="/taxicompany_data_system/main_info.jsp">Info </a>
-						
+							<span style="color: blue;">Welcome  <%=login%> |</span> 
+							<a href="/taxicompany_data_system/member/Logout">Logout |</a>
+							<a href="/taxicompany_data_system/main_sale.jsp?cnum=<%=cnum%>">Sales |</a>
+							<a href="/taxicompany_data_system/main_info.jsp?cnum=<%=cnum%>">Info </a>
+							
 					<%
-					}
+						}
 					%>
 				</div>
 				
