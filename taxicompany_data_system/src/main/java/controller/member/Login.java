@@ -41,8 +41,8 @@ public class Login extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String id=request.getParameter("id");
 		String pwd=request.getParameter("pwd");
-		
-		int result=MemberDao.getMemberDao().login(id, pwd);
+		int cnum=Integer.parseInt(request.getParameter("cnum"));
+		int result=MemberDao.getMemberDao().login(id, pwd, cnum);
 		
 		
 		
@@ -51,7 +51,7 @@ public class Login extends HttpServlet {
 			HttpSession session =request.getSession();
 			
 			session.setAttribute("login", id);
-			
+			session.setAttribute("cnum", cnum);
 			response.sendRedirect("/taxicompany_data_system/main.jsp");
 			
 		}else if(result==2) {

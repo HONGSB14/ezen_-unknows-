@@ -13,7 +13,10 @@
 	
 </head>
 <body>
-		<%String login=(String)session.getAttribute("login"); %>
+		<%
+		String login=(String)session.getAttribute("login");
+		Integer cnum=(Integer)session.getAttribute("cnum");
+		%>
 		
 		
 		<div class="text-center py-3">
@@ -38,7 +41,8 @@
 					<%
 					}else{
 					%>
-						<span style="color: blue;">welcome  <%=login%> |</span> 
+						<span style="color: blue;">Welcome  <%=login%> |</span> 
+						<span style="color: blue;">Company Num <%=cnum%> |</span> 
 						<a href="/taxicompany_data_system/member/Logout">Logout |</a>
 						<a href="/taxicompany_data_system/main_sale.jsp">Sales |</a>
 						<a href="/taxicompany_data_system/main_info.jsp">Info </a>

@@ -73,14 +73,16 @@ public class MemberDao extends Dao{
 		return false;
 	}
 	//로그인 메소드
-	public	int login(String mid, String mpwd) {
+	public	int login(String mid, String mpwd,int cnum) {
 		
-		String sql="SELECT *FROM member where mid=? and mpassword=? ";
+		String sql="SELECT *FROM member where mid=? AND mpassword=? AND cnum=?";
 		
 		try {
 			ps=conn.prepareStatement(sql);
+			
 			ps.setString(1, mid);
 			ps.setString(2, mpwd);
+			ps.setInt(3, cnum);
 			rs=ps.executeQuery();
 			if(rs.next()) {
 				return 1;

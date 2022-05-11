@@ -18,7 +18,12 @@
 		<a href="../main.jsp"><h1>Taxi Company Data System</h1></a>
 		</div>
 			<div class="col-md-12 text-center">
+				<div class="py-5"></div>
 				<form action="../member/Login" method="post">
+					
+					<div class="offset-4 col-md-3 py-2 ">
+						<input class="form-control" type="text" id="cnum" name="cnum"  placeholder="회사등록번호">
+					</div>
 					
 					<div class="offset-4 col-md-3 py-2 ">
 						<input class="form-control" type="text" id="id" name="id"  placeholder="아이디">

@@ -33,8 +33,7 @@ public class FindCnum extends HttpServlet {
 		
 		int crn=Integer.parseInt(request.getParameter("crn"));
 		String cname=request.getParameter("cname");
-		System.out.println(crn);
-		System.out.println(cname);
+		
 		
 		String cnum =CompanyDao.getCompanyDao().findcnum(crn,cname);
 		

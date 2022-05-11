@@ -56,7 +56,7 @@ public class Signup extends HttpServlet {
 		if(result) {
 			
 			HttpSession session =request.getSession();
-			
+			session.setAttribute("cnum", cnum);
 			session.setAttribute("login", id);	//세션에 값 저장
 			
 			response.sendRedirect("/taxicompany_data_system/member/signupsuccess.jsp");
