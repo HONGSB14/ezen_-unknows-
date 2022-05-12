@@ -15,10 +15,9 @@ public class SlipDao extends Dao{
 	}
 	
 	//전표 등록 메소드
-	
 	public boolean addSlip(Slip slip) {
 		
-		String sql ="INSERT INTO slip(cnum,carnum,sflux,sfee,scardfee,sdaysale,snote) values(?,?,?,?,?,?,?)";
+		String sql ="INSERT INTO taxisaledata.slip(cnum,carnum,sflux,sfee,scardfee,sdaysale,snote) values(?,?,?,?,?,?,?)";
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, slip.getCnum());

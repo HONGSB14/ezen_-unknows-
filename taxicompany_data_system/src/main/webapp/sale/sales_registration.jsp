@@ -36,7 +36,7 @@
 	
 				<!-- 매출정보 기입 란 -->
 				<div class="col-md-12">
-					<form action="../slip/SalesRegistration" method="get">
+					<form action="../slip/SalesRegistration" id="saleform" method="get">
 						<!-- 회사 번호 넘기기 (hidden) -->
 						<input type="hidden" name="cnum" value="<%=cnum%>">
 						<div class="row">
@@ -44,9 +44,9 @@
 								<tr class="table-info"><th>차 번호</th><th>유량</th><th>실입금액</th><th>신용카드</th><th>일 매출</th><th>비고</th></tr>
 								<tr>  	
 									<td><input type="text" name="carnum" id="carnum" class="form-control"></td> 
-									<td> <input type="text" name="flux" id="flux"  class="form-control"></td> 
-									<td><input type="text" name="fee" id="fee"  class="form-control"> </td >
-									<td><input type="text" name="cardfee" id="cardfee"  class="form-control"></td> 
+									<td> <input type="text" name="flux" id="flux"  class="form-control" autofocus="autofocus"></td> 
+									<td><input type="text" name="fee" id="fee"  class="form-control"></td >
+									<td><input type="text" name="cardfee" id="cardfee"   class="form-control"></td> 
 									<td> <input type="text" name="daysale" id="daysale"  class="form-control"></td> 
 									<td> <input type="text" name="note" id="note"  class="form-control"></td> 
 								</tr>
@@ -55,7 +55,7 @@
 						<!-- 등록/취소 (버튼) -->
 						<div class="offset-4 col-md-4 row">
 							<div class="offset-3 col-md-3">
-							 <input class="form-control" type="submit" value="등록">
+							 <input class="form-control" onclick="salecheck()" type="submit" value="등록">
 							</div>
 							<div class="col-md-3">
 								<input class="form-control" type="reset" value="취소">
@@ -87,5 +87,6 @@
 	</div>
 	
 	<%@include file ="../footer.jsp" %>
+	<script src="../js/sales.js" type="text/javascript"></script>
 </body>
 </html>

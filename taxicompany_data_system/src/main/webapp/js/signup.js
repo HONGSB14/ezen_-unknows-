@@ -3,8 +3,7 @@ let pass=[false,false,false,false,false,false];
 
 $(function(){ //문서시작 시 함수시작
   
-  
-  
+ 
 	
 	//회사 유효성 검사
   	$("#cname").keyup(function(){

@@ -31,16 +31,17 @@ public class SalesRegistration extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		int cnum = Integer.parseInt(request.getParameter("cnum"));
+		
+		int cnum =Integer.parseInt(request.getParameter("cnum"));
 		String carnum=request.getParameter("carnum");
 		int sflux=Integer.parseInt(request.getParameter("flux"));
 		int sfee=Integer.parseInt(request.getParameter("fee"));
 		int scardfee=Integer.parseInt(request.getParameter("cardfee"));
 		int sdaysale=Integer.parseInt(request.getParameter("daysale"));
 		String snote=request.getParameter("note");
-		
-		Slip slip = new Slip(cnum, 0, carnum, sflux, sfee, scardfee, sdaysale, snote, null);
+		Slip slip = new Slip(cnum,0,carnum,sflux,sfee,scardfee,sdaysale,snote,null);
 		boolean result=SlipDao.getSlipDao().addSlip(slip);
+		
 		if(result) {
 			//일단 새로고침으로 . 나중에 ajax 써야할 수도 ?
 			response.sendRedirect("/taxicompany_data_system/sale/sales_registration.jsp");
