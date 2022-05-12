@@ -1,4 +1,4 @@
-package controller.Company;
+package controller.company;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -12,7 +12,7 @@ import dao.CompanyDao;
 /**
  * Servlet implementation class FindCnum
  */
-@WebServlet("/Company/FindCnum")
+@WebServlet("/company/FindCnum")
 public class FindCnum extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

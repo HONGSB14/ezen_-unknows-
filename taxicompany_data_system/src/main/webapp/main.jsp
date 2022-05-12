@@ -15,6 +15,10 @@
 	<%@include file="header.jsp" %>
 	
 	<div class="container">
+		<div class="text-center">
+			<a href="main.jsp"><h1>Taxi Company Data System</h1></a>
+		</div>
+		
 		<div class="col-md-12">
 			<div class="text-center">
 				메인광고사진 (캐러셀)

@@ -28,7 +28,7 @@ $(function(){ //문서시작 시 함수시작
 						
 						$.ajax({
 								
-							url:"../Company/FindCnum",
+							url:"../company/FindCnum",
 							data:{"crn":crn,"cname":cname},
 							success:function(result){
 								

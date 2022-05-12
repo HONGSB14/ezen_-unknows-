@@ -2,9 +2,9 @@ package dto;
 
 public class Company {
 
-	private int cnum;
-	private int crn;
-	private String cname;
+	private int cnum;		//회사고유번호
+	private int crn;		//사업자 등록 번호 
+	private String cname;	//회사 명
 	
 	public Company() {
 		

@@ -20,8 +20,8 @@
 		
 		
 		<div class="text-center py-3">
+			
 			<div class="col-md-12 row">
-				
 				<div class="col-md-3">
 					
 					<a href="/taxicompany_data_system/main.jsp">HOME |</a>
@@ -36,15 +36,15 @@
 					<%
 						if(login==null){
 					%>
-							<a href="/taxicompany_data_system/member/login.jsp">Login |</a>
+							<a href="/taxicompany_data_system/member/login.jsp">Login </a>|
 							<a href="/taxicompany_data_system/member/agreementpage.jsp">SignUp</a>
 					<%
 						}else{
 					%>
 							<span style="color: blue;">Welcome  <%=login%> |</span> 
-							<a href="/taxicompany_data_system/member/Logout">Logout |</a>
-							<a href="/taxicompany_data_system/main_sale.jsp?cnum=<%=cnum%>">Sales |</a>
-							<a href="/taxicompany_data_system/main_info.jsp?cnum=<%=cnum%>">Info </a>
+							<a href="/taxicompany_data_system/main_sale.jsp?cnum=<%=cnum%>">Sales </a>|
+							<a href="/taxicompany_data_system/main_info.jsp?cnum=<%=cnum%>">Info  </a>|
+							<a href="/taxicompany_data_system/member/Logout">Logout </a>
 							
 					<%
 						}

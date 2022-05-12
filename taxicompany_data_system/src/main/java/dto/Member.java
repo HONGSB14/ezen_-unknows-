@@ -2,7 +2,7 @@ package dto;
 
 public class Member {
 	private int mnum;			//사용자 가입고유번호
-	private int cnum;
+	private int cnum;			//회사 고유번호
 	private String mid;			//사용자 아이디
 	private String mpassword;	//사용자 패스워드
 	private String mname;		//사용자 이름

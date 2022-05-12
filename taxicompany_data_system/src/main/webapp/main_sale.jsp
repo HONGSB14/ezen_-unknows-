@@ -20,18 +20,18 @@
 			<span>company. <%=cnum %></span>
 			</div>
 			<div class=" offset-8 col-md-1">
-				<button class="form-control">매출 등록</button>
+			<a href="sale/sales_registration.jsp"><button class="form-control">매출 등록</button></a>	
 			</div>
 			<div class="col-md-1">
-			<button class="form-control">기사 등록</button>
+			<a href="sale/driver_registration.jsp"><button class="form-control">기사 등록</button></a>	
 			</div>
 		</div>
 		<!-- 테이블 표 -->
 		<div class="col-md-12">
 			<table class="table table-center table-bordered">
-				<tr class="table-info"><th>번호</th><th>날짜</th><th>타코미터</th><th>휘발유</th><th>LPG</th><th>일 매출</th></tr>
+				<tr class="table-info"><th>차 번호</th><th>유량</th><th>실입금액</th><th>신용카드</th><th>일 매출</th><th>비고</th></tr>
 				<!-- for 문으로 등록  -->
-				<tr><td>1</td><td>22-05-01</td><td>452km</td><td>2,302원</td><td>1394원</td><td>323,600</td></tr>
+				<tr><td>1653</td><td>29.270</td><td>131,000원</td><td>6,900원</td><td>137,900원</td><td></td></tr>
 			</table>
 		
 		</div>
@@ -40,7 +40,7 @@
 			
 			<div class="col-md-4">
 				<div class="offset-4 col-md-4">
-				323,600원
+				137,900원
 				</div>
 				Week (pie Chart) 
 			</div>

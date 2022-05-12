@@ -2,6 +2,7 @@ package dao;
 
 import java.util.ArrayList;
 
+import controller.board.rerelywrite;
 import dto.Category;
 import dto.Product;
 import dto.Stock;
@@ -18,27 +19,52 @@ public class ProductDao extends Dao {
 			// 반환타입이 기본자료형이면 -> false , 0  , 2 , 0.1  
 ///////////////////////////////////  카테고리 ////////////////////////
 	// 1. 카테고리 등록 [ C ]
-	public boolean csave() { return false; }
+	public boolean csave( String cname) { 
+		String sql = "insert into category(cname)values('"+cname+"')";
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.executeUpdate(); return true;
+		}catch (Exception e) {} return false;
+	}
 	// 2. 카테고리 호출 [ R ] 
-	public ArrayList<Category> getcategorylist(){ return null; }
-	// 3. 카테고리 수정 [ U ] 
-	// 4. 카테고리 삭제 [ D ]
-///////////////////////////////////  제품 ////////////////////////////////	
+	public ArrayList<Category> getcategorylist(){ 
+		ArrayList<Category> list = new ArrayList<Category>();
+		String sql = "select * from category";
+		try {
+			ps =conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) { // 1개 호출시 if // 여러개 호출시 while
+				Category category = new Category( rs.getInt(1) , rs.getString(2) );
+				list.add(category);
+			}
+			return list;
+		}catch (Exception e) {} return null; 
+	}
+	///////////////////////////////////  제품 ////////////////////////////////	
 	// 1. 제품 등록 
-	public boolean psave() { return false; }
+	public boolean psave( Product product ) {
+	String sql = "insert into product(pname,pprice,pdiscount,pimg,cno ) "
+	+ "values(?,?,?,?,?)";
+	try {
+	ps = conn.prepareStatement(sql);
+	ps.setString( 1 , product.getPname() );		ps.setInt( 2 , product.getPprice() );
+	ps.setFloat( 3 , product.getPdiscount() );	ps.setString( 4 , product.getPimg() );
+	ps.setInt( 5 , product.getCno() );ps.executeUpdate(); return true;
+	}catch (Exception e) {System.out.println(e);}return false; 
+	}
 	// 2. 제품 모든 호출
 	public ArrayList<Product> getproductlist() { return null; }
 	// 3. 제품 개별 호출 
 	public Product getproduct() { return null; }
 	// 4. 제품 수정 
 	// 5. 제품 삭제 
-///////////////////////////////////  재고 ////////////////////////////////	
+	///////////////////////////////////  재고 ////////////////////////////////	
 	// 1. 제품의 재고 등록 
 	public boolean ssvae() { return false; }
 	// 2. 제품의 재고 호출 
 	public Stock getStock() { return null; }
 	// 3. 제품의 재고 수정 
 	// 4. 제품의 재고 삭제
-//////////////////////////////////////////////////////////////////////////
-	
+	//////////////////////////////////////////////////////////////////////////
+		
 }
