@@ -39,6 +39,7 @@ public class SalesRegistration extends HttpServlet {
 		int scardfee=Integer.parseInt(request.getParameter("cardfee"));
 		int sdaysale=Integer.parseInt(request.getParameter("daysale"));
 		String snote=request.getParameter("note");
+	
 		Slip slip = new Slip(cnum,0,carnum,sflux,sfee,scardfee,sdaysale,snote,null);
 		boolean result=SlipDao.getSlipDao().addSlip(slip);
 		

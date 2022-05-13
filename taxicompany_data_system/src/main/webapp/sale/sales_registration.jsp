@@ -1,4 +1,6 @@
 
+<%@page import="java.time.LocalDateTime"%>
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="dto.Slip"%>
 <%@page import="java.util.ArrayList"%>
@@ -18,15 +20,20 @@
 	<%@include file = "../header.jsp" %>
 	<%
 		//세션 값
-	   session.getAttribute("cnum");
+	  	session.getAttribute("cnum");
 		//날짜 계산
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(date);
+		//페이지 반환
 		String result=request.getParameter("result");
+		//테이블 뷰 리스트 생성 
 		ArrayList<Slip> sliplist= SlipDao.getSlipDao().sliplist(cnum);
+		//천 자리 표현식
+		DecimalFormat df = new DecimalFormat("#,###원");
+		LocalDateTime now = LocalDateTime.now();
 		
-		
+		int time=now.getHour();
 	%>
 	
 	<div class="container">
@@ -87,12 +94,7 @@
 						</div>	
 					</form>
 				</div>
-				
-				
 		</div>
-		
-		
-		
 		<!------------------------------------------- 운송일보 표  ------------------------------------------>
 		
 		<!--------------------------------------------------운송일보 오전 ---------------------------------->
@@ -108,24 +110,21 @@
 						String ssplit= slip.getSdate();	
 					 	String sdate=ssplit.split(" ")[0];
 					 	String stime=ssplit.split(" ")[1];
-					 	System.out.print(sdate);
-					 	
-					 	
-					 		
+					 	int hour=Integer.parseInt(stime.split(":")[0]);
 					 	if(sdate.equals(today)){
-					 		
+					 		if(hour<12){
 				%>
-				<tr>
-				
-						<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
-						<td><%=slip.getSflux() %></td>						<!-- 유량 -->
-						<td><%=slip.getSfee() %></td>						<!-- 실입금액 -->
-						<td><%=slip.getScardfee() %></td>					<!-- 신용카드 -->
-						<td><%=slip.getSdaysale() %></td>					<!-- 일 매출-->
-						<td><%=slip.getSnote() %></td> 						<!-- 비고  -->
-						<td><%=sdate%></td> 								<!-- 날짜 -->
-				</tr>
+							<tr>
+								<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
+								<td><%=df.format(slip.getSflux()) %></td>			<!-- 유량 -->
+								<td><%=df.format(slip.getSfee()) %></td>			<!-- 실입금액 -->
+								<td><%=df.format(slip.getScardfee()) %></td>		<!-- 신용카드 -->
+								<td><%=df.format(slip.getSdaysale()) %></td>		<!-- 일 매출-->
+								<td><%=slip.getSnote() %></td> 						<!-- 비고  -->
+								<td><%=sdate%></td> 								<!-- 날짜 -->
+							</tr>
 				<%
+					 		}
 						} 
 					}
 				%>
@@ -138,34 +137,31 @@
 				<h3>운송 일보 (오후)</h3>
 			<table class="table table-center table-bordered">
 					<tr class="table-info"><th>차 번호</th><th>유량</th><th>실입금액</th><th>신용카드</th><th>일 매출</th><th>비고</th><th>날짜</th></tr>
-
 				<%
-				
 					for(Slip slip : sliplist){ 
 
 						String ssplit= slip.getSdate();	
 					 	String sdate=ssplit.split(" ")[0];
 					 	String stime=ssplit.split(" ")[1];
+					 	int hour=Integer.parseInt(stime.split(":")[0]);
 					 	
 					 	if(sdate.equals(today)){
-					 		
+					 		if(12<hour){
 				%>
-				<tr>
-					
-						<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
-						<td><%=slip.getSflux() %></td>						<!-- 유량 -->
-						<td><%=slip.getSfee() %></td>						<!-- 실입금액 -->
-						<td><%=slip.getScardfee() %></td>					<!-- 신용카드 -->
-						<td><%=slip.getSdaysale() %></td>					<!-- 일 매출-->
-						<td><%=slip.getSnote() %></td> 						<!-- 비고  -->
-						<td><%=sdate%></td> 								<!-- 날짜 -->
-				</tr>
+								<tr>
+									<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
+									<td><%=df.format(slip.getSflux()) %></td>			<!-- 유량 -->
+									<td><%=df.format(slip.getSfee()) %></td>			<!-- 실입금액 -->
+									<td><%=df.format(slip.getScardfee()) %></td>		<!-- 신용카드 -->
+									<td><%=df.format(slip.getSdaysale()) %></td>		<!-- 일 매출-->
+									<td><%=slip.getSnote() %></td> 						<!-- 비고  -->
+									<td><%=sdate%></td> 								<!-- 날짜 -->
+								</tr>
 				<%
+					 		}
 						} 
 					}
-				%>
-					
-					
+				%>	
 			</table>
 		</div>
 	</div>
