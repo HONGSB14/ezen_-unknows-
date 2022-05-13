@@ -1,4 +1,7 @@
 
+<%@page import="dto.Slip"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.SlipDao"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Date"%>
@@ -14,13 +17,20 @@
 	<%@include file = "../header.jsp" %>
 	<%
 		//세션 값
-		session.getAttribute("cnum");	
+	   session.getAttribute("cnum");
 		//날짜 계산
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(date);
+		String result=request.getParameter("result");
+		ArrayList<Slip> sliplist= SlipDao.getSlipDao().sliplist(cnum);
+		
+		for(Slip slip : sliplist){
+				
+		}
 		
 	%>
+	
 	<div class="container">
 		<!----------------------------------------------------- 매출등록 란 ------------------------------------------>
 		<div class="col-md-12 text-center">
@@ -39,6 +49,7 @@
 					<form action="../slip/SalesRegistration" id="saleform" method="get">
 						<!-- 회사 번호 넘기기 (hidden) -->
 						<input type="hidden" name="cnum" value="<%=cnum%>">
+						<!-- 매출정보 뷰 -->
 						<div class="row">
 							<table class="table">
 								<tr class="table-info"><th>차 번호</th><th>유량</th><th>실입금액</th><th>신용카드</th><th>일 매출</th><th>비고</th></tr>
@@ -52,17 +63,34 @@
 								</tr>
 							</table>
 						</div>
+						<div class="col-md-12">
+							<% 
+								if(result !=null){	
+							%>
+								<span class="check">기입하신 정보는 등록 할 수 없습니다. 다시한번 확인해 주십시오.</span>
+							<%
+								}else{
+							%>
+								<span>　</span>
+							<%
+								}
+							%>
+						</div>
 						<!-- 등록/취소 (버튼) -->
 						<div class="offset-4 col-md-4 row">
+							<!-- 등록버튼 -->
 							<div class="offset-3 col-md-3">
 							 <input class="form-control" onclick="salecheck()" type="submit" value="등록">
 							</div>
+							<!-- 취소버튼 -->
 							<div class="col-md-3">
 								<input class="form-control" type="reset" value="취소">
 							</div>
 						</div>	
 					</form>
 				</div>
+				
+				
 		</div>
 		
 		
@@ -72,16 +100,32 @@
 				<h3>운송 일보</h3>
 			<table class="table table-center table-bordered">
 					<tr class="table-info"><th>차 번호</th><th>유량</th><th>실입금액</th><th>신용카드</th><th>일 매출</th><th>비고</th><th>날짜</th></tr>
-					<!-- for 문으로 등록  -->
-					<tr>
-						<td>1598</td>		<!-- 차 번호 -->
-						<td>29.270</td>		<!-- 유량 -->
-						<td>131,000원</td>	<!-- 실입금액 -->
-						<td>6,900원</td>		<!-- 신용카드 -->
-						<td>137,900원</td>	<!-- 일 매출-->
-						<td>밥먹다 체함</td> 	<!-- 비고  -->
-						<td>2022-05-12</td> <!-- 날짜 -->
-					</tr>
+
+				<%
+				
+					for(Slip slip : sliplist){ 
+
+						String ssplit= slip.getSdate();	
+					 	String sdate=ssplit.split(" ")[0];
+					 	String stime=ssplit.split(" ")[1];
+					 	
+					 	
+				%>
+				<tr>
+				
+						<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
+						<td><%=slip.getSflux() %></td>						<!-- 유량 -->
+						<td><%=slip.getSfee() %></td>						<!-- 실입금액 -->
+						<td><%=slip.getScardfee() %></td>					<!-- 신용카드 -->
+						<td><%=slip.getSdaysale() %></td>					<!-- 일 매출-->
+						<td><%=slip.getSnote() %></td> 						<!-- 비고  -->
+						<td><%=sdate%></td> 								<!-- 날짜 -->
+				</tr>
+				<%
+					} 
+				%>
+					
+					
 			</table>
 		</div>
 	</div>

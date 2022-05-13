@@ -46,7 +46,7 @@ public class SalesRegistration extends HttpServlet {
 			//일단 새로고침으로 . 나중에 ajax 써야할 수도 ?
 			response.sendRedirect("/taxicompany_data_system/sale/sales_registration.jsp");
 		}else {
-			System.out.println("실패");
+			response.sendRedirect("/taxicompany_data_system/sale/sales_registration.jsp?result=false");	
 		}
 	}
 

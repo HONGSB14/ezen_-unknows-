@@ -102,6 +102,6 @@ function salecheck(){
 	if(check){
 		document.getElementById("saleform").submit();
 	}else{
-		alert("등록 할 수 없는 형식입니다.")
+		alert("등록 할 수 없는 형식입니다.");
 	}
 }

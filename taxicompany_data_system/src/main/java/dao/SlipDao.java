@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.ArrayList;
+
 import dto.Slip;
 
 public class SlipDao extends Dao{
@@ -30,8 +32,26 @@ public class SlipDao extends Dao{
 			ps.executeUpdate();
 			return true;
 		} catch (Exception e) {
-			System.out.println("addslip err!!"   +e);
+			System.out.println("addSlip err!!   "+e);
 		}
 		return false;
+	}
+	
+	public ArrayList<Slip> sliplist(int cnum){
+		 ArrayList<Slip> sliplist = new ArrayList<Slip>();
+		String sql="SELECT * from taxisaledata.slip where cnum=?";
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, cnum);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				Slip slip = new Slip(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7),rs.getString(8),rs.getString(9));
+				sliplist.add(slip);
+			}
+			return sliplist;
+		} catch (Exception e) {
+			System.out.println("리스트 호출 실패 !!   " +e);
+		}
+		return null;
 	}
 }
