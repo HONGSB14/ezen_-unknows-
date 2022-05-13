@@ -22,16 +22,21 @@ $(function(){
 	$("#flux").keyup(function(){
 		
 		let flux =$("#flux").val();
-		
+		// 천단위쉼표 제거 
+		flux = flux.replace(/,/g, "");
+		$("#flux").val(flux3);
 		let fluxc=/^([1-9]{1,1})([0-9]*)$/;
 		let fluxc2="0";
-		
-		
+		let flux3 =flux.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+			
 		if(fluxc.test(flux)||fluxc2==flux){
+			
 			pass[1]=true;
 		}else{
+			
 			pass[1]=false;
 		}
+	
 		
 	});
 	
@@ -92,7 +97,6 @@ $(function(){
 
 function salecheck(){
 	let check = true;
-	
 	for(let i = 0; i<pass.length; i++){
 		
 		if(pass[i] == false){
