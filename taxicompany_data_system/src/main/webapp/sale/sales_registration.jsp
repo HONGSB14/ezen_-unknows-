@@ -1,4 +1,5 @@
 
+<%@page import="java.time.LocalDate"%>
 <%@page import="dto.Slip"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.SlipDao"%>
@@ -25,9 +26,6 @@
 		String result=request.getParameter("result");
 		ArrayList<Slip> sliplist= SlipDao.getSlipDao().sliplist(cnum);
 		
-		for(Slip slip : sliplist){
-				
-		}
 		
 	%>
 	
@@ -95,21 +93,27 @@
 		
 		
 		
-		<!------------------------------------------- 운송일보 표 (날짜별로 보는게 가능할까?) ------------------------------------------>
+		<!------------------------------------------- 운송일보 표  ------------------------------------------>
+		
+		<!--------------------------------------------------운송일보 오전 ---------------------------------->
 		<div class="col-md-12 text-center py-3">
-				<h3>운송 일보</h3>
+				<h3>운송 일보 (오전)</h3>
 			<table class="table table-center table-bordered">
 					<tr class="table-info"><th>차 번호</th><th>유량</th><th>실입금액</th><th>신용카드</th><th>일 매출</th><th>비고</th><th>날짜</th></tr>
 
 				<%
 				
 					for(Slip slip : sliplist){ 
-
+						
 						String ssplit= slip.getSdate();	
 					 	String sdate=ssplit.split(" ")[0];
 					 	String stime=ssplit.split(" ")[1];
+					 	System.out.print(sdate);
 					 	
 					 	
+					 		
+					 	if(sdate.equals(today)){
+					 		
 				%>
 				<tr>
 				
@@ -122,7 +126,43 @@
 						<td><%=sdate%></td> 								<!-- 날짜 -->
 				</tr>
 				<%
-					} 
+						} 
+					}
+				%>
+					
+					
+			</table>
+		</div>
+		<!--------------------------------------------------운송일보 오후 ---------------------------------->
+		<div class="col-md-12 text-center py-3">
+				<h3>운송 일보 (오후)</h3>
+			<table class="table table-center table-bordered">
+					<tr class="table-info"><th>차 번호</th><th>유량</th><th>실입금액</th><th>신용카드</th><th>일 매출</th><th>비고</th><th>날짜</th></tr>
+
+				<%
+				
+					for(Slip slip : sliplist){ 
+
+						String ssplit= slip.getSdate();	
+					 	String sdate=ssplit.split(" ")[0];
+					 	String stime=ssplit.split(" ")[1];
+					 	
+					 	if(sdate.equals(today)){
+					 		
+				%>
+				<tr>
+					
+						<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
+						<td><%=slip.getSflux() %></td>						<!-- 유량 -->
+						<td><%=slip.getSfee() %></td>						<!-- 실입금액 -->
+						<td><%=slip.getScardfee() %></td>					<!-- 신용카드 -->
+						<td><%=slip.getSdaysale() %></td>					<!-- 일 매출-->
+						<td><%=slip.getSnote() %></td> 						<!-- 비고  -->
+						<td><%=sdate%></td> 								<!-- 날짜 -->
+				</tr>
+				<%
+						} 
+					}
 				%>
 					
 					
