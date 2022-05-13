@@ -30,7 +30,7 @@
 		//테이블 뷰 리스트 생성 
 		ArrayList<Slip> sliplist= SlipDao.getSlipDao().sliplist(cnum);
 		//천 자리 표현식
-		DecimalFormat df = new DecimalFormat("#,###원");
+		DecimalFormat df = new DecimalFormat("#,###");
 		LocalDateTime now = LocalDateTime.now();
 		
 		int time=now.getHour();
@@ -39,6 +39,7 @@
 	<div class="container">
 		<!----------------------------------------------------- 매출등록 란 ------------------------------------------>
 		<div class="col-md-12 text-center">
+			<a href="/taxicompany_data_system/main_sale.jsp"><h1>SALES</h1></a>
 				<!-- 매출등록 헤더 -->
 				<div class="row">
 					<div class="col-md-2">
@@ -57,7 +58,7 @@
 						<!-- 매출정보 뷰 -->
 						<div class="row">
 							<table class="table">
-								<tr class="table-info"><th>차 번호</th><th>유량</th><th>실입금액</th><th>신용카드</th><th>일 매출</th><th>비고</th></tr>
+								<tr class="table-info"><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th></tr>
 								<tr>  	
 									<td><input type="text" name="carnum" id="carnum" class="form-control"></td> 
 									<td> <input type="text" name="flux" id="flux"  class="form-control" autofocus="autofocus"></td> 
@@ -101,7 +102,7 @@
 		<div class="col-md-12 text-center py-3">
 				<h3>운송 일보 (오전)</h3>
 			<table class="table table-center table-bordered">
-					<tr class="table-info"><th>차 번호</th><th>유량</th><th>실입금액</th><th>신용카드</th><th>일 매출</th><th>비고</th><th>날짜</th></tr>
+					<tr class="table-info"><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
 
 				<%
 				
@@ -115,13 +116,13 @@
 					 		if(hour<12){
 				%>
 							<tr>
-								<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
-								<td><%=df.format(slip.getSflux()) %></td>			<!-- 유량 -->
-								<td><%=df.format(slip.getSfee()) %></td>			<!-- 실입금액 -->
-								<td><%=df.format(slip.getScardfee()) %></td>		<!-- 신용카드 -->
-								<td><%=df.format(slip.getSdaysale()) %></td>		<!-- 일 매출-->
-								<td><%=slip.getSnote() %></td> 						<!-- 비고  -->
-								<td><%=sdate%></td> 								<!-- 날짜 -->
+									<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
+									<td><%=df.format(slip.getSflux()) %></td>			<!-- 유량 -->
+									<td><%=df.format(slip.getSfee()) %></td>			<!-- 실입금액 -->
+									<td><%=df.format(slip.getScardfee()) %></td>		<!-- 신용카드 -->
+									<td><%=df.format(slip.getSdaysale()) %></td>		<!-- 일 매출-->
+									<td><%=slip.getSnote() %></td> 						<!-- 비고  -->
+									<td><%=sdate%></td> 								<!-- 날짜 -->
 							</tr>
 				<%
 					 		}
@@ -136,7 +137,7 @@
 		<div class="col-md-12 text-center py-3">
 				<h3>운송 일보 (오후)</h3>
 			<table class="table table-center table-bordered">
-					<tr class="table-info"><th>차 번호</th><th>유량</th><th>실입금액</th><th>신용카드</th><th>일 매출</th><th>비고</th><th>날짜</th></tr>
+					<tr class="table-info"><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
 				<%
 					for(Slip slip : sliplist){ 
 

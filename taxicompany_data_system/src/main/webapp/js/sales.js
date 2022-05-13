@@ -1,4 +1,4 @@
-let pass=[false,false,false,false,false]
+let pass=[false,false,false,false]
 $(function(){
 	
 
@@ -36,7 +36,6 @@ $(function(){
 			pass[1]=true;
 			
 		}else{
-			
 			pass[1]=false;
 		}
 	
@@ -85,22 +84,29 @@ $(function(){
 	});
 	
 	//총 매출
-	$("#daysale").keyup(function(){
+	$("#daysale").focus(function(){
 		
-		let daysale=$("#daysale").val();
+		//실입요금 컴마제거
+		let fee=$("#fee").val();
+		feecheck= fee.replace(/,/g, "");
 		
-		daysale=daysale.replace(/,/g, "");
-		let daysalecomma=daysale.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-		$("#daysale").val(daysalecomma);
-		let daysalec=/^([1-9]{1,1})([0-9]*)$/;
-		let daysalec2="0";
+		//카드요금 컴마제거
+		let cardfee=$("#cardfee").val();
+		cardfeecheck=cardfee.replace(/,/g, "");
+
+		//더하기 연산을 하기 위해 숫자로 변환
+		let feesum=parseInt(feecheck);
+		let cardsum=parseInt(cardfeecheck);
+		let sum=feesum+cardsum;
 		
+		//연산한 값을 다시 문자열로 변환
+		let sumsum=String(sum);
 		
-		if(daysalec.test(daysale)||daysalec2==daysale){
-			pass[4]=true;
-		}else{
-			pass[4]=false;
-		}
+		//천단위컴마 실행
+		let sumcomma=sumsum.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+		
+		//컴마를 daysale에 삽입
+		$("#daysale").val(sumcomma);
 		
 	});
 
@@ -109,11 +115,7 @@ $(function(){
 });//문서종료
 
 function salecheck(){
-	//기본 체크값 true 로 설정
-	let check = true;
-	
-	
-	
+
 	//유량 컴마제거
 	let flux=$("#flux").val();
 	fluxcheck=flux.replace(/,/g, "");
@@ -124,22 +126,24 @@ function salecheck(){
 	 feecheck= fee.replace(/,/g, "");
 	$("#fee").val(feecheck);
 	
-	//카드요금 컴마제거
+	//카드요금 제거
 	let cardfee=$("#cardfee").val();
-	cardfeecheck=flux.replace(/,/g, "");
+	cardfeecheck=cardfee.replace(/,/g, "");
 	$("#cardfee").val(cardfeecheck);
 	
 	//총 매출 컴마제거
 	let daysale=$("#daysale").val();
-	daysalecheck=flux.replace(/,/g, "");
+	daysalecheck=daysale.replace(/,/g, "");
 	$("#daysale").val(daysalecheck);
 	
-	
+
+	//기본 체크값 true 로 설정
+	let check = true;
 	
 	for(let i = 0; i<pass.length; i++){
 		
 		if(pass[i] == false){
-			check =false;
+			check = false;
 		}
 	}
 	if(check){
