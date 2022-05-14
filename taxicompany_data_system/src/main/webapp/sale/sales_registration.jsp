@@ -31,9 +31,6 @@
 		ArrayList<Slip> sliplist= SlipDao.getSlipDao().sliplist(cnum);
 		//천 자리 표현식
 		DecimalFormat df = new DecimalFormat("#,###");
-		LocalDateTime now = LocalDateTime.now();
-		
-		int time=now.getHour();
 	%>
 	
 	<div class="container">

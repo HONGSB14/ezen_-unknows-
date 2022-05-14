@@ -26,9 +26,7 @@
 			<div class="text-center">
 				광고 (캐러셀)
 			</div>	
-			
 		</div>
-
 	</div>
 	
 	<%@include file ="footer.jsp" %>
