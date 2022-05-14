@@ -34,7 +34,11 @@
 	%>
 	
 	<div class="container text-center">
-		 
+		 	<div class="col-md-12">
+		 		<div class="offset-4 col-md-4">
+		 			<h2>월 보 (<%=month%>월)</h2>
+		 		</div>
+		 	</div>
 		 <!-- 등록 버튼-->
 		 <div class="row">	
 			<div class="col-md-2">
@@ -53,7 +57,7 @@
 			<table class="table table-center table-bordered" id="mainsale">
 				
 				<!-- 총 수입 (일) -->
-				<tr class="table-info"><th>유량 사용량</th><th>실입수입</th><th>카드 수입 합계</th><th>총 매출 (원)</th><th>실 매출 (원)</th><th>날짜</th></tr>
+				<tr class="table-info"><th>유량 사용량 (L)</th><th>실입수입 (원)</th><th>카드 수입 (원)</th><th>총 매출 (원)</th><th>실 매출 (원)</th><th>날짜</th></tr>
 				<%
 					for(Slip slip :daySaleList){
 						
@@ -81,9 +85,9 @@
 				%>
 					<!-- 총 수입 (월)-->
 					<tr class="table-info">
-					<th class="text-center" colspan="6">합계<th>
+					<th class="text-center" colspan="6">합계</th>
 					</tr>
-				<tr class="table-info"><th>유량 총 사용량</th><th>실입 총 수입</th><th>카드 총 수입</th><th>총 매출 </th><th>총 실매출</th><th><%=month %>월</th></tr>
+				<tr class="table-info"><th>유량 총 사용량</th><th>실입 총 수입</th><th>카드 총 수입</th><th>총 매출 </th><th colspan="2">총 실매출</th></tr>
 					
 					<%
 						for (Slip slip : monthSaleList){
@@ -100,8 +104,7 @@
 									<td><%=df.format(slip.getSfee()) %></td>   		<!-- 실입수입	월 합계 -->
 									<td><%=df.format(slip.getScardfee()) %></td>   	<!-- 카드 수입	월 합계 -->
 									<td><%=df.format(slip.getSdaysale()) %></td>	<!-- 총 매출 -->
-									<td><%=df.format(pay)%></td>					<!-- 실 매출 -->
-									<td><%=slip.getSdate() %></td>					<!-- 날짜 -->
+									<td colspan="2"><%=df.format(pay)%></td>		<!-- 실 매출 -->
 								</tr>
 					<%
 							}
