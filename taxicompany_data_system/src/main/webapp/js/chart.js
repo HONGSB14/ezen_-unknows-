@@ -49,16 +49,16 @@ $(function(){	//문서 시작
 	     data.addColumn('string', 'month');
 	     data.addColumn('number', 'sale');
 	    
-	 	 let dateRow=[];
+	 	 let dataRow=[];
 	   	
 	    
 	    for(let i=0; i<32; i++){
 		
-			let daySale=$("#sale"+i).val();
+			let daySale=$("#daySale"+i).val();
 			let sale =parseInt(daySale);
-			let dayDate=$("#date"+i).val();
-			dateRow=[dayDate,sale];
-			data.addRow(dateRow);
+			let dayDate=$("#dayDate"+i).val();
+			dataRow=[dayDate,sale];
+			data.addRow(dataRow);
 			
 		}
 		
@@ -83,12 +83,18 @@ $(function(){	//문서 시작
 	     data.addColumn('string', 'Topping');
 	     data.addColumn('number', '2021');
 	   	 data.addColumn('number' , '2022');
-	     data.addRows([
-	        ['1월', 3,3],
-	        ['2월', 1,6],
-	        ['3월', 1,7]
-	      
-	      ]);
+	     
+	     let dataRow=[];
+	     
+	     for(let i=0; i<12; i++){
+			
+			let monthSale=$("#monthSale"+i).val();
+			let sale=parseInt(monthSale);
+			let monthDate=$("#monthDate"+i).val();
+			
+			dataRow=[monthDate,56653466,sale];
+			data.addRow(dataRow);
+		 }
 	
 	      // Set chart options
 	      var options = {'title':'yearchart',

@@ -49,7 +49,7 @@
 	
 				<!-- 매출정보 기입 란 -->
 				<div class="col-md-12">
-					<form action="../slip/SalesRegistration" id="saleform" method="get">
+					<form action="../slip/SlipRegistration" id="saleform" method="get">
 						<!-- 회사 번호 넘기기 (hidden) -->
 						<input type="hidden" name="cnum" value="<%=cnum%>">
 						<!-- 매출정보 뷰 -->
@@ -165,6 +165,6 @@
 	</div>
 	
 	<%@include file ="../footer.jsp" %>
-	<script src="../js/sales.js" type="text/javascript"></script>
+	<script src="../js/slip.js" type="text/javascript"></script>
 </body>
 </html>

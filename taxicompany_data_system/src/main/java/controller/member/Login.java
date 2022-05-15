@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
 			response.sendRedirect("/taxicompany_data_system/member/login.jsp?result=2");
 		
 		}else {
-			response.sendRedirect("/taxicompany_data_system/errpage.jsp");
+			response.sendRedirect("/taxicompany_data_system/errorpage.jsp");
 			
 		}
 	}

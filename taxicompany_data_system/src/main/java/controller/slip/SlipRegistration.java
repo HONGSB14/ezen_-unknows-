@@ -13,14 +13,14 @@ import dto.Slip;
 /**
  * Servlet implementation class SalesRegistration
  */
-@WebServlet("/slip/SalesRegistration")
-public class SalesRegistration extends HttpServlet {
+@WebServlet("/slip/SlipRegistration")
+public class SlipRegistration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SalesRegistration() {
+    public SlipRegistration() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,9 +44,9 @@ public class SalesRegistration extends HttpServlet {
 		
 		if(result) {
 			//일단 새로고침으로 . 나중에 ajax 써야할 수도 ?
-			response.sendRedirect("/taxicompany_data_system/sale/sales_registration.jsp");
+			response.sendRedirect("/taxicompany_data_system/sale/slip_registration.jsp");
 		}else {
-			response.sendRedirect("/taxicompany_data_system/sale/sales_registration.jsp?result=false");	
+			response.sendRedirect("/taxicompany_data_system/sale/slip_registration.jsp?result=false");	
 		}
 	}
 

@@ -1,3 +1,4 @@
+<%@page import="dao.SaleDao"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.time.LocalDate"%>
@@ -20,9 +21,9 @@
 		//세션 값 (회사번호)
 		session.getAttribute("cnum");
 	 	//매출 리스트 호출
-	 	ArrayList<Slip> daySaleList= SlipDao.getSlipDao().daysaleadd(cnum);
-		ArrayList<Slip> monthSaleList= SlipDao.getSlipDao().monthsaleadd(cnum);
-		ArrayList<Slip> yearSaleList= SlipDao.getSlipDao().yearsaleadd(cnum);
+	 	ArrayList<Slip> daySaleList= SaleDao.getsaleDao().daysaleadd(cnum);
+		ArrayList<Slip> monthSaleList= SaleDao.getsaleDao().monthsaleadd(cnum);
+		ArrayList<Slip> yearSaleList= SaleDao.getsaleDao().yearsaleadd(cnum);
 	 	DecimalFormat df = new DecimalFormat("#,###");
 	 	LocalDateTime now = LocalDateTime.now();
 		//현재 시간 가져오기
@@ -32,12 +33,10 @@
 	 	String day=wedate.split("-")[2];	//일
 		
 	 %>
-	 <!-- 월 매출 값 JS로 넘기 -->	
+	 <!-- 월 매출 (일별)값 JS로 넘기 -->	
 	 <% 
 	 	//월 매출 리스트담기용 리스트 생성
-	 	ArrayList<Integer> saleListDay = new ArrayList<>();
-		//년 매출 리스트 담기용 리스트 생성
-		ArrayList<Integer> saleListYear= new ArrayList<>();
+	 	ArrayList<Integer> saleList = new ArrayList<>();
 		//날짜 가져오기용 리스트 생성
 		ArrayList<String> saleDate = new ArrayList<>();
 		
@@ -46,35 +45,48 @@
 			//비교를 위한 날짜값 가져오기
 			String dayYear=slip.getSdate().split("-")[0]; 	//년도
 			String dayMonth=slip.getSdate().split("-")[1];	//달
-			String dayDay=slip.getSdate().split("-")[2];	//일
+			
 			
 			//현재 날짜와 전송할려는 날짜가 일치하는지 판단여부
 			if(year.equals(dayYear) && month.equals(dayMonth)){
-				saleListDay.add(slip.getSdaysale());
+				saleList.add(slip.getSdaysale());
 				saleDate.add(slip.getSdate());	
-			}
-			
-			for(int i=0; i<saleListDay.size(); i++){
+				for(int i=0; i<saleList.size(); i++){
 	%>
-			<!-- 총 매출 전송 -->
-			<input type="hidden" id="<%="sale"+i%>" value="<%=saleListDay.get(i)%>">
-			<!-- 총 매출의 날짜 전송 -->
-			<input type="hidden" id="<%="date"+i%>" value="<%=saleDate.get(i)%>">
+					<!-- 총 매출 전송 -->
+					<input type="hidden" id="<%="daySale"+i%>" value="<%=saleList.get(i)%>">
+					<!-- 총 매출의 날짜 전송 -->
+					<input type="hidden" id="<%="dayDate"+i%>" value="<%=saleDate.get(i)%>">
 	<%			
+				}
 			}
 		}
 		//데이터 관리와 리스트 재사용을위해 클리어
-		saleListDay.clear();
+		saleList.clear();
 		saleDate.clear();
 	%>
 	
-	<!-- 년 매출 값 JS로 넘기기 -->
+	<!-- 년 매출(월별) 값 JS로 넘기기 -->
 	<%
-		for(Slip slip : yearSaleList){
+		for(Slip slip : monthSaleList){
 			
-			System.out.print(" "+slip.getSdate());
-			System.out.print(" "+slip.getSdaysale());
+			String monthYear=slip.getSdate().split("-")[0]; 	//년도
+			String monthMonth=slip.getSdate().split("-")[1];	//달
+			
+			
+			if(year.equals(monthYear)){
+				saleList.add(slip.getSdaysale());
+				saleDate.add(slip.getSdate().split("-")[1]);
+				for(int i=0; i<saleList.size(); i++){
+	%>
+			<input type="hidden" id="<%="monthSale"+i%>" value="<%=saleList.get(i)%>"> 
+			<input type="hidden" id="<%="monthDate"+i%>" value="<%=saleDate.get(i)%>"> 
+	<% 					
+				}
+			}
 		}
+		saleList.clear();
+		saleDate.clear();
 	
 	%>
 	
@@ -92,7 +104,7 @@
 				<span>company. <%=cnum %></span>
 				</div>
 				<div class=" offset-8 col-md-1">
-				<a href="sale/sales_registration.jsp"><button class="form-control">매출 등록</button></a>	
+				<a href="sale/slip_registration.jsp"><button class="form-control">매출 등록</button></a>	
 				</div>
 				<div class="col-md-1">
 				<a href="sale/driver_registration.jsp"><button class="form-control">기사 등록</button></a>	
@@ -112,7 +124,7 @@
 							int pay=(slip.getSdaysale())-(slip.getSdaysale()/10);
 							//날짜 가져오기 (월)
 							String date= slip.getSdate().split(" ")[0]; //date 자르고 0번째 인덱스 ex))0000-11-22 
-							String dateMonth=date.split("-")[1];	//월 자르기	짜른 인덱스 에서 "11" 가져오기
+							String dateMonth=date.split("-")[1];	//월 자르기	짜른 인덱스 에서 11 가져오기
 							
 							
 							
