@@ -42,7 +42,7 @@
 					<div class="col-md-2">
 					<h6> <%=today %></h6>
 					</div>
-					<div class="offset-2 col-md-4">
+					<div class="text-center">
 					<h3>일보 등록</h3>
 					</div>
 				</div>
@@ -79,25 +79,21 @@
 								}
 							%>
 						</div>
-						<!-- 등록/취소 (버튼) -->
-						<div class="offset-4 col-md-4 row">
+					</form>
+					<!-- 등록/취소 (버튼) -->
+						<div class="offset-5 col-md-2">
 							<!-- 등록버튼 -->
-							<div class="offset-3 col-md-3">
+							<div class="text-center">
 							 <input class="form-control" onclick="salecheck()" type="submit" value="등록">
 							</div>
-							<!-- 취소버튼 -->
-							<div class="col-md-3">
-								<input class="form-control" type="reset" value="취소">
-							</div>
 						</div>	
-					</form>
 				</div>
 		</div>
-		<!------------------------------------------- 운송일보 표  ------------------------------------------>
+		<!------------------------------------------- 운송일보 표-------------------------------------------->
 		
 		<!--------------------------------------------------운송일보 오전 ---------------------------------->
 		<div class="col-md-12 text-center py-3">
-				<h3>운송 일보 (오전)</h3>
+				<h3 class="text-center">운송 일보 (오전)</h3>
 			<table class="table table-center table-bordered">
 					<tr class="table-info"><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
 
@@ -132,7 +128,7 @@
 		</div>
 		<!--------------------------------------------------운송일보 오후 ---------------------------------->
 		<div class="col-md-12 text-center py-3">
-				<h3>운송 일보 (오후)</h3>
+				<h3 class="text-center">운송 일보 (오후)</h3>
 			<table class="table table-center table-bordered">
 					<tr class="table-info"><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
 				<%

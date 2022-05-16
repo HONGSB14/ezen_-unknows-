@@ -1,7 +1,6 @@
 package dao;
 
 import java.util.ArrayList;
-
 import dto.Slip;
 
 public class SaleDao extends Dao {
@@ -20,13 +19,9 @@ public class SaleDao extends Dao {
 	
 		//일 매출 구하기 메소드
 		public ArrayList<Slip> daysaleadd(int cnum) {
-			System.out.println(cnum);
-			 ArrayList<Slip> saleDayList = new ArrayList<Slip>();
-			String sql="SELECT DISTINCT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y-%m-%d') "
-						+ "FROM taxisaledata.slip "
-						+ "where cnum=? "
-						+ "GROUP BY date_format(sdate, '%Y-%m-%d') "
-						+ "ORDER BY date_format(sdate,'%Y-%m-%d') ASC";
+	
+			ArrayList<Slip> saleDayList = new ArrayList<Slip>();
+			String sql="SELECT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y-%m-%d') FROM taxisaledata.slip where cnum='"+cnum+"' GROUP BY date_format(sdate,'%Y-%m-%d') ORDER BY date_format(sdate,'%Y-%m-%d') ASC";
 			try {
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, cnum);
@@ -36,6 +31,7 @@ public class SaleDao extends Dao {
 					saleDayList.add(slip);
 				}
 				return saleDayList;
+				
 			} catch (Exception e) {
 				System.out.println("일 매출 리스트 호출 실패 !!   "+e);
 			}
@@ -44,12 +40,13 @@ public class SaleDao extends Dao {
 		
 		//월 매출 구하기 메소드
 		public ArrayList<Slip> monthsaleadd(int cnum){
-			
+
 			ArrayList<Slip> monthSaleList = new ArrayList<Slip>();
-			String sql="SELECT DISTINCT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y-%m') "
+		
+			String sql="SELECT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y-%m') "
 					+ "FROM taxisaledata.slip "
-					+ "where cnum=? "
-					+ "GROUP BY date_format(sdate, '%Y-%m') "
+					+ "WHERE cnum=? "
+					+ "GROUP BY date_format(sdate,'%Y-%m') "
 					+ "ORDER BY date_format(sdate,'%Y-%m') ASC";
 			try {
 				ps=conn.prepareStatement(sql);
@@ -58,8 +55,10 @@ public class SaleDao extends Dao {
 				while(rs.next()) {
 					Slip slip = new Slip(rs.getInt(1),0, null, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), null, rs.getString(6));
 					monthSaleList.add(slip);
+					return monthSaleList;
 				}
-				return monthSaleList;
+				System.out.println(monthSaleList);
+				
 			} catch (Exception e) {
 				System.out.println("월 매출 리스트 호출 실패 !!   "+e);
 			}
@@ -68,11 +67,12 @@ public class SaleDao extends Dao {
 		
 		//년 매출 구하기 메소드
 		public ArrayList<Slip> yearsaleadd(int cnum){
+			
 			ArrayList<Slip> yearSaleList = new ArrayList<Slip>();
-			String sql="SELECT DISTINCT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y') "
+			String sql="SELECT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y') "
 					+ "FROM taxisaledata.slip "
-					+ "where cnum=? "
-					+ "GROUP BY date_format(sdate, '%Y') "
+					+ "WHERE cnum=? "
+					+ "GROUP BY date_format(sdate,'%Y') "
 					+ "ORDER BY date_format(sdate,'%Y') ASC";
 			
 			try {
@@ -82,10 +82,10 @@ public class SaleDao extends Dao {
 				while(rs.next()) {
 					Slip slip = new Slip(rs.getInt(1),0, null, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), null, rs.getString(6));
 					yearSaleList.add(slip);
-				}
-				return yearSaleList;
+					return yearSaleList;
+				}	
 			} catch (Exception e) {
-				System.out.println("월 매출 리스트 호출 실패 !!   "+e);
+				System.out.println("년 매출 리스트 호출 실패 !!   "+e);
 			}
 			return null;
 		}

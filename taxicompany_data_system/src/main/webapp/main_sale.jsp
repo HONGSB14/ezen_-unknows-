@@ -18,23 +18,31 @@
 <body>
 
 	<%@include file = "../header.jsp" %>
+	
 	<%
 		//세션 값 (회사번호)
 		session.getAttribute("cnum");
-	 	//매출 리스트 호출
+	 	
+		//매출 리스트 호출
 	 	ArrayList<Slip> daySaleList= SaleDao.getsaleDao().daysaleadd(cnum);
 		ArrayList<Slip> monthSaleList= SaleDao.getsaleDao().monthsaleadd(cnum);
 		ArrayList<Slip> yearSaleList= SaleDao.getsaleDao().yearsaleadd(cnum);
-	 	DecimalFormat df = new DecimalFormat("#,###");
-	 	LocalDateTime now = LocalDateTime.now();
+	 	
+		System.out.println(cnum+"  난 회사번호");
+		System.out.println(daySaleList+"  난 일매출");
+		System.out.println(monthSaleList+"  난  월매출");
+		System.out.println(yearSaleList+"  난  년매출");
+		// 숫자 꾸미기
+		DecimalFormat df = new DecimalFormat("#,###");
+	 	
 		//현재 시간 가져오기
+		LocalDateTime now = LocalDateTime.now();
 	 	String wedate=now.format(DateTimeFormatter.ISO_LOCAL_DATE);
 		String year=wedate.split("-")[0];	//년도
 		String month=wedate.split("-")[1];	//달
 	 	String day=wedate.split("-")[2];	//일
-	 
-	 
-	 	//월 매출 리스트담기용 리스트 생성
+		
+	 	//매출 리스트담기용 리스트 생성
 	 	ArrayList<Integer> saleList = new ArrayList<>();
 		//날짜 가져오기용 리스트 생성
 		ArrayList<String> saleDate = new ArrayList<>();
@@ -42,7 +50,7 @@
 	<div class="container text-center">
 		 	<!-- 일보 리스트 부분 -->
 		 	<div class="col-md-12">
-		 		<div class="offset-4 col-md-4">
+		 		<div class="text-center">
 		 			<h2>월 보 (<%=month%>월)</h2>
 		 		</div>
 		 	</div>
@@ -74,12 +82,9 @@
 							//날짜 가져오기 (월)
 							String date= slip.getSdate().split(" ")[0]; //date 자르고 0번째 인덱스 ex))0000-11-22 
 							String dateMonth=date.split("-")[1];	//월 자르기	짜른 인덱스 에서 11 가져오기
-							
-							
-							
+			
 							if(month.equals(dateMonth)){
 					%>			
-					
 								<tr>
 									<td><%=df.format(slip.getSflux()) %></td>		<!-- 총 유량 일 사용량 -->
 									<td><%=df.format(slip.getSfee()) %></td>   		<!-- 실입수입  일 합계 -->
@@ -103,9 +108,10 @@
 								//급여계산
 								int pay=(slip.getSdaysale())-(slip.getSdaysale()/10);
 								//날짜 가져오기 (월)
-								String date= slip.getSdate().split(" ")[0]; //date 자르고 0번째 인덱스 ex))0000-11-22 
-								String dateMonth=date.split("-")[1];	//월 자르기	짜른 인덱스 에서 "11" 가져오기
+								String date=slip.getSdate().split(" ")[0]; //date 자르고 0번째 인덱스 ex))0000-11-22 
+								String dateMonth=date.split("-")[1];		//월 자르기	짜른 인덱스 에서 "11" 가져오기
 								
+							
 								if(month.equals(dateMonth)){
 						%>
 									<tr>
@@ -127,7 +133,7 @@
 	<div class="col-md-12 py-5">
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<!--weekchart (pieChart) -->
-		<div class="offset-6">주 매출비교</div>		
+		<div class="text-center"><h3>주 매출비교</h3></div>		
 		
 		<div id="pie_chart" class="offset-2 col-md-4">
 		 <%
@@ -143,7 +149,7 @@
 		 		int dayDay2=Integer.parseInt(weekDay);
 		 		int realDay=(today-dayDay2);
 		 		
-		 		if(realDay>0 && realDay<=7 && year.equals(weekYear) && month.equals(weekMonth)){
+		 		if(realDay>=0 && realDay<7 && year.equals(weekYear) && month.equals(weekMonth)){
 		 			saleList.add(slip.getSdaysale());
 		 			saleDate.add(slip.getSdate());
 		 			for(int i=0; i<saleDate.size(); i++){
@@ -162,7 +168,7 @@
 		</div>
 		
 		<!-- monthchart (column) -->
-		<div class="offset-6"><%=month %>월 매출비교</div>	
+		<div class="text-center"><h3><%=month %>월 매출비교</h3></div>	
 		<div id="bar_chart" class="col-md-12" >
 				 <!-- 월 매출 (일별)값 JS로 넘기 -->	
 		 <% 
@@ -193,7 +199,7 @@
 		</div>
 		
 		<!-- yearchart (line) -->
-		<div class="offset-6"><%=year %>년 매출비교</div>		
+		<div class="text-center"><h3><%=year %>년 매출비교</h3></div>		
 		<div id="line_chart" class="col-md-12">
 			<!-- 년 매출(월별) 값 JS로 넘기기 -->
 		<%
@@ -213,9 +219,9 @@
 					}
 				}
 			}
+			//데이터 관리와 리스트 재사용을위해 클리어
 			saleList.clear();
 			saleDate.clear();
-		
 		%>
 		</div>
 	</div>
