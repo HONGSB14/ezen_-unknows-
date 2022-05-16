@@ -30,7 +30,6 @@
 	 	
 		System.out.println(cnum+"  난 회사번호");
 		System.out.println(daySaleList+"  난 일매출");
-		System.out.println(monthSaleList+"  난  월매출");
 		System.out.println(yearSaleList+"  난  년매출");
 		// 숫자 꾸미기
 		DecimalFormat df = new DecimalFormat("#,###");
@@ -104,24 +103,26 @@
 					<tr class="table-info"><th>유량 총 사용량</th><th>실입 총 수입</th><th>카드 총 수입</th><th>총 매출 </th><th colspan="2">총 실매출</th></tr>
 						
 						<%
-							for (Slip slip : monthSaleList){
-								//급여계산
-								int pay=(slip.getSdaysale())-(slip.getSdaysale()/10);
-								//날짜 가져오기 (월)
-								String date=slip.getSdate().split(" ")[0]; //date 자르고 0번째 인덱스 ex))0000-11-22 
-								String dateMonth=date.split("-")[1];		//월 자르기	짜른 인덱스 에서 "11" 가져오기
+							if(monthSaleList !=null){	
+								for (Slip slip : monthSaleList){
 								
-							
-								if(month.equals(dateMonth)){
-						%>
-									<tr>
-										<td><%=df.format(slip.getSflux()) %></td>		<!-- 총 유량 	월 사용량 -->
-										<td><%=df.format(slip.getSfee()) %></td>   		<!-- 실입수입	월 합계 -->
-										<td><%=df.format(slip.getScardfee()) %></td>   	<!-- 카드 수입	월 합계 -->
-										<td><%=df.format(slip.getSdaysale())%></td>	    <!-- 총 매출 -->
-										<td colspan="2"><%=df.format(pay)%></td>		<!-- 실 매출 -->
-									</tr>
-						<%
+									//급여계산
+									int pay=(slip.getSdaysale())-(slip.getSdaysale()/10);
+									//날짜 가져오기 (월)
+									String date=slip.getSdate().split(" ")[0]; //date 자르고 0번째 인덱스 ex))0000-11-22 
+									String dateMonth=date.split("-")[1];		//월 자르기	짜른 인덱스 에서 "11" 가져오기
+					
+									if(month.equals(dateMonth)){
+							%>
+										<tr>
+											<td><%=df.format(slip.getSflux()) %></td>		<!-- 총 유량 	월 사용량 -->
+											<td><%=df.format(slip.getSfee()) %></td>   		<!-- 실입수입	월 합계 -->
+											<td><%=df.format(slip.getScardfee()) %></td>   	<!-- 카드 수입	월 합계 -->
+											<td><%=df.format(slip.getSdaysale())%></td>	    <!-- 총 매출 -->
+											<td colspan="2"><%=df.format(pay)%></td>		<!-- 실 매출 -->
+										</tr>
+							<%
+									}
 								}
 							}
 						%>
@@ -203,6 +204,8 @@
 		<div id="line_chart" class="col-md-12">
 			<!-- 년 매출(월별) 값 JS로 넘기기 -->
 		<%
+			
+		if(monthSaleList !=null){
 			for(Slip slip : monthSaleList){
 				
 				String monthYear=slip.getSdate().split("-")[0]; 	//년도
@@ -219,6 +222,7 @@
 					}
 				}
 			}
+		}
 			//데이터 관리와 리스트 재사용을위해 클리어
 			saleList.clear();
 			saleDate.clear();

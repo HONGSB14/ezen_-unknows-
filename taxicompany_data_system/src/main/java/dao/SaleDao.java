@@ -21,7 +21,11 @@ public class SaleDao extends Dao {
 		public ArrayList<Slip> daysaleadd(int cnum) {
 	
 			ArrayList<Slip> saleDayList = new ArrayList<Slip>();
-			String sql="SELECT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y-%m-%d') FROM taxisaledata.slip where cnum='"+cnum+"' GROUP BY date_format(sdate,'%Y-%m-%d') ORDER BY date_format(sdate,'%Y-%m-%d') ASC";
+			String sql="SELECT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y-%m-%d') "
+					+ "FROM taxisaledata.slip "
+					+ "WHERE cnum=? "
+					+ "GROUP BY date_format(sdate,'%Y-%m-%d') "
+					+ "ORDER BY date_format(sdate,'%Y-%m-%d') ASC";
 			try {
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, cnum);
