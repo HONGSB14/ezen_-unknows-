@@ -1,3 +1,4 @@
+<%@page import="javax.print.DocFlavor.INPUT_STREAM"%>
 <%@page import="dao.SaleDao"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDateTime"%>
@@ -31,92 +32,13 @@
 		String year=wedate.split("-")[0];	//년도
 		String month=wedate.split("-")[1];	//달
 	 	String day=wedate.split("-")[2];	//일
-	 	//주 계산을 위한 인트 변환
-	 	int today=Integer.parseInt(day);
+	 
+	 
 	 	//월 매출 리스트담기용 리스트 생성
 	 	ArrayList<Integer> saleList = new ArrayList<>();
 		//날짜 가져오기용 리스트 생성
 		ArrayList<String> saleDate = new ArrayList<>();
-
 	 %>
-	 <!-- 주 단위 (일별)값 JS로 넘기기 -->
-	 <%
-	 	for(Slip slip : daySaleList){
-	 		
-	 		String weekYear=slip.getSdate().split("-")[0]; 	//년도
-			String weekMonth=slip.getSdate().split("-")[1];	//달
-	 		String weekDay=slip.getSdate().split("-")[2];		//일
-	 		
-	 		int dayDay2=Integer.parseInt(weekDay);
-	 		int realDay=(today-dayDay2);
-	 		
-	 		if(realDay>0 && realDay<=7 && year.equals(weekYear) && month.equals(weekMonth)){
-	 			saleList.add(slip.getSdaysale());
-	 			saleDate.add(slip.getSdate());
-	 			for(int i=0; i<saleDate.size(); i++){
-	 %>
-	 		<input type="hidden" id="<%="weekDate"+i%>" value="<%=saleDate.get(i)%>">
-			<input type="hidden" id="<%="weekSale"+i%>" value="<%=saleList.get(i)%>">
-	 <%					
-	 			}
-	 		}
-	 	}
-
-	 
-	 %>
-	 
-	 <!-- 월 매출 (일별)값 JS로 넘기 -->	
-	 <% 
-		for(Slip slip : daySaleList){
-			
-			//비교를 위한 날짜값 가져오기
-			String dayYear=slip.getSdate().split("-")[0]; 	//년도
-			String dayMonth=slip.getSdate().split("-")[1];	//달
-			
-			
-			//현재 날짜와 전송할려는 날짜가 일치하는지 판단여부
-			if(year.equals(dayYear) && month.equals(dayMonth)){
-				saleList.add(slip.getSdaysale());
-				saleDate.add(slip.getSdate());	
-				for(int i=0; i<saleList.size(); i++){
-	%>
-					<!-- 총 매출 전송 -->
-					<input type="hidden" id="<%="daySale"+i%>" value="<%=saleList.get(i)%>">
-					<!-- 총 매출의 날짜 전송 -->
-					<input type="hidden" id="<%="dayDate"+i%>" value="<%=saleDate.get(i)%>">
-	<%			
-				}
-			}
-		}
-		//데이터 관리와 리스트 재사용을위해 클리어
-		saleList.clear();
-		saleDate.clear();
-	%>
-	
-	<!-- 년 매출(월별) 값 JS로 넘기기 -->
-	<%
-		for(Slip slip : monthSaleList){
-			
-			String monthYear=slip.getSdate().split("-")[0]; 	//년도
-			String monthMonth=slip.getSdate().split("-")[1];	//달
-			
-			
-			if(year.equals(monthYear)){
-				saleList.add(slip.getSdaysale());
-				saleDate.add(slip.getSdate().split("-")[1]);
-				for(int i=0; i<saleList.size(); i++){
-	%>
-			<input type="hidden" id="<%="monthSale"+i%>" value="<%=saleList.get(i)%>"> 
-			<input type="hidden" id="<%="monthDate"+i%>" value="<%=saleDate.get(i)%>"> 
-	<% 					
-				}
-			}
-		}
-		saleList.clear();
-		saleDate.clear();
-	
-	%>
-	
 	<div class="container text-center">
 		 	<!-- 일보 리스트 부분 -->
 		 	<div class="col-md-12">
@@ -206,20 +128,95 @@
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<!--weekchart (pieChart) -->
 		<div class="offset-6">주 매출비교</div>		
+		
 		<div id="pie_chart" class="offset-2 col-md-4">
-					
+		 <%
+			//주 계산을 위한 인트 변환
+		 	int today=Integer.parseInt(day);
+		 	
+		 	for(Slip slip : daySaleList){
+		 		
+		 		String weekYear=slip.getSdate().split("-")[0]; 	//년도
+				String weekMonth=slip.getSdate().split("-")[1];	//달
+		 		String weekDay=slip.getSdate().split("-")[2];	//일
+		 		
+		 		int dayDay2=Integer.parseInt(weekDay);
+		 		int realDay=(today-dayDay2);
+		 		
+		 		if(realDay>0 && realDay<=7 && year.equals(weekYear) && month.equals(weekMonth)){
+		 			saleList.add(slip.getSdaysale());
+		 			saleDate.add(slip.getSdate());
+		 			for(int i=0; i<saleDate.size(); i++){
+		 %>		
+		 		<input type="hidden" id="<%="weekDate"+i%>" value="<%=saleDate.get(i)%>">
+				<input type="hidden" id="<%="weekSale"+i%>" value="<%=saleList.get(i)%>">
+		 <%					
+		 			}
+		 		}
+		 	}
+			//데이터 관리와 리스트 재사용을위해 클리어
+			saleList.clear();
+			saleDate.clear();
+		 %>
+	 		
 		</div>
 		
 		<!-- monthchart (column) -->
 		<div class="offset-6"><%=month %>월 매출비교</div>	
-		<div class="col-md-12" id="bar_chart">
-					
+		<div id="bar_chart" class="col-md-12" >
+				 <!-- 월 매출 (일별)값 JS로 넘기 -->	
+		 <% 
+			for(Slip slip : daySaleList){
+				
+				//비교를 위한 날짜값 가져오기
+				String dayYear=slip.getSdate().split("-")[0]; 	//년도
+				String dayMonth=slip.getSdate().split("-")[1];	//달
+	
+				//현재 날짜와 전송할려는 날짜가 일치하는지 판단여부
+				if(year.equals(dayYear) && month.equals(dayMonth)){
+					saleList.add(slip.getSdaysale());
+					saleDate.add(slip.getSdate());	
+					for(int i=0; i<saleList.size(); i++){
+		%>
+						<!-- 총 매출 전송 -->
+						<input type="hidden" id="<%="daySale"+i%>" value="<%=saleList.get(i)%>">
+						<!-- 총 매출의 날짜 전송 -->
+						<input type="hidden" id="<%="dayDate"+i%>" value="<%=saleDate.get(i)%>">
+		<%			
+					}
+				}
+			}
+			//데이터 관리와 리스트 재사용을위해 클리어
+			saleList.clear();
+			saleDate.clear();
+		%>		
 		</div>
 		
 		<!-- yearchart (line) -->
 		<div class="offset-6"><%=year %>년 매출비교</div>		
 		<div id="line_chart" class="col-md-12">
-					
+			<!-- 년 매출(월별) 값 JS로 넘기기 -->
+		<%
+			for(Slip slip : monthSaleList){
+				
+				String monthYear=slip.getSdate().split("-")[0]; 	//년도
+				String monthMonth=slip.getSdate().split("-")[1];	//달		
+				
+				if(year.equals(monthYear)){
+					saleList.add(slip.getSdaysale());
+					saleDate.add(slip.getSdate().split("-")[1]);
+					for(int i=0; i<saleList.size(); i++){
+		%>
+				<input type="hidden" id="<%="monthSale"+i%>" value="<%=saleList.get(i)%>"> 
+				<input type="hidden" id="<%="monthDate"+i%>" value="<%=saleDate.get(i)%>"> 
+		<% 					
+					}
+				}
+			}
+			saleList.clear();
+			saleDate.clear();
+		
+		%>
 		</div>
 	</div>
 	

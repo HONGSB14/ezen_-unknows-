@@ -78,14 +78,13 @@ $(function(){	//문서 시작
 	
 	//yearchart (line)
 	function yearChart() {
-
+		
 	     // Create the data table.
 	     var data = new google.visualization.DataTable();
 	    
-	     data.addColumn('string', 'Topping');
-	    
+	     data.addColumn('string', 'yearDate');
 	   	 data.addColumn('number' , '2022');
-	     
+	   
 	     let dataRow=[];
 	     
 	     for(let i=0; i<12; i++){
@@ -93,6 +92,9 @@ $(function(){	//문서 시작
 			let monthSale=$("#monthSale"+i).val();
 			let sale=parseInt(monthSale);
 			let monthDate=$("#monthDate"+i).val();
+			
+		
+		
 			
 			dataRow=[monthDate,sale];
 			data.addRow(dataRow);

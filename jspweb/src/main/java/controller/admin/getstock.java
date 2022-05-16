@@ -1,5 +1,4 @@
 package controller.admin;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -50,17 +49,21 @@ public class getstock extends HttpServlet {
 			for( Stock temp : list ) {
 				if( temp.getScolor().equals(scolor) && 
 						temp.getSsize().equals(ssize) ) {
-					out.print( temp.getSamount() );
+					out.print( temp.getSamount()+","+temp.getUpdatedate() );
+										//  재고량 , 수정날짜
 				}
 			}
 		}else { // 제품재고 페이지에서 사용되는 제품별 재고정보 출력 구역 
 			for( Stock temp : list ) {
 				html += 
 					"<tr>" +
-						"<td> "+temp.getScolor()+" <td>" +
-						"<td> "+temp.getSsize()+" <td>" +
-						"<td> "+temp.getSamount()+" <td>" +
-						"<td> 비고 <td>" +
+						"<td> "+temp.getScolor()+" </td>" +
+						"<td> "+temp.getSsize()+" </td>" +
+						"<td> "+temp.getSamount()+" </td>" +
+						"<td>"
+						+ "<button onclick=\'showupdate("+temp.getSno()+")\'>수정</button>"
+						+ "<button>삭제</button>"
+						+ "</td>" +
 					"</tr>";
 			}
 			out.print(html);
