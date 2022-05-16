@@ -144,7 +144,7 @@
 					 	int hour=Integer.parseInt(stime.split(":")[0]);
 					 	
 					 	if(sdate.equals(today)){
-					 		if(12<hour){
+					 		if(12<=hour){
 				%>
 								<tr>
 									<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->

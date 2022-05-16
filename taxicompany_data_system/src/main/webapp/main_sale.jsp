@@ -31,15 +31,42 @@
 		String year=wedate.split("-")[0];	//년도
 		String month=wedate.split("-")[1];	//달
 	 	String day=wedate.split("-")[2];	//일
-		
-	 %>
-	 <!-- 월 매출 (일별)값 JS로 넘기 -->	
-	 <% 
+	 	//주 계산을 위한 인트 변환
+	 	int today=Integer.parseInt(day);
 	 	//월 매출 리스트담기용 리스트 생성
 	 	ArrayList<Integer> saleList = new ArrayList<>();
 		//날짜 가져오기용 리스트 생성
 		ArrayList<String> saleDate = new ArrayList<>();
-		
+
+	 %>
+	 <!-- 주 단위 (일별)값 JS로 넘기기 -->
+	 <%
+	 	for(Slip slip : daySaleList){
+	 		
+	 		String weekYear=slip.getSdate().split("-")[0]; 	//년도
+			String weekMonth=slip.getSdate().split("-")[1];	//달
+	 		String weekDay=slip.getSdate().split("-")[2];		//일
+	 		
+	 		int dayDay2=Integer.parseInt(weekDay);
+	 		int realDay=(today-dayDay2);
+	 		
+	 		if(realDay>0 && realDay<=7 && year.equals(weekYear) && month.equals(weekMonth)){
+	 			saleList.add(slip.getSdaysale());
+	 			saleDate.add(slip.getSdate());
+	 			for(int i=0; i<saleDate.size(); i++){
+	 %>
+	 		<input type="hidden" id="<%="weekDate"+i%>" value="<%=saleDate.get(i)%>">
+			<input type="hidden" id="<%="weekSale"+i%>" value="<%=saleList.get(i)%>">
+	 <%					
+	 			}
+	 		}
+	 	}
+
+	 
+	 %>
+	 
+	 <!-- 월 매출 (일별)값 JS로 넘기 -->	
+	 <% 
 		for(Slip slip : daySaleList){
 			
 			//비교를 위한 날짜값 가져오기
@@ -101,7 +128,7 @@
 			 <!-- 등록 버튼-->
 			 <div class="row">	
 				<div class="col-md-2">
-				<span>company. <%=cnum %></span>
+				<span>company. <%=cnum%></span>
 				</div>
 				<div class=" offset-8 col-md-1">
 				<a href="sale/slip_registration.jsp"><button class="form-control">매출 등록</button></a>	

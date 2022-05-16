@@ -17,18 +17,20 @@ $(function(){	//문서 시작
 	     var data = new google.visualization.DataTable();
 	     data.addColumn('string', 'Topping');
 	     data.addColumn('number', 'Slices');
-	     data.addRows([
-	        ['일요일', 3],
-	        ['월요일', 1],
-	        ['화요일', 1],
-	        ['수요일', 1],
-	        ['목요일', 2],
-	        ['금요일', 2],
-	        ['토요일', 2]
-	      ]);
+	     
+	     let dataRow= [];
+	     
+	     for(let i=0; i<7; i++){
+		
+			let weekSale=$("#weekSale"+i).val();
+			let sale=parseInt(weekSale);
+			let weekDate=$("#weekDate"+i).val();
+			dataRow=[weekDate,sale];
+			data.addRow(dataRow);
+		}
 	
 	      // Set chart options
-	      var options = {'title':'weekchart',
+	      var options = {'title':'',
 	                       'width':1800,
 	                       'height':900};
 	
@@ -63,7 +65,7 @@ $(function(){	//문서 시작
 		}
 		
 	      // Set chart options
-	      var options = {'title':'monthchart',
+	      var options = {'title':'',
 	                       'width':1900,
 	                       'height':900};
 	
@@ -81,7 +83,7 @@ $(function(){	//문서 시작
 	     var data = new google.visualization.DataTable();
 	    
 	     data.addColumn('string', 'Topping');
-	     data.addColumn('number', '2021');
+	    
 	   	 data.addColumn('number' , '2022');
 	     
 	     let dataRow=[];
@@ -92,12 +94,12 @@ $(function(){	//문서 시작
 			let sale=parseInt(monthSale);
 			let monthDate=$("#monthDate"+i).val();
 			
-			dataRow=[monthDate,56653466,sale];
+			dataRow=[monthDate,sale];
 			data.addRow(dataRow);
 		 }
 	
 	      // Set chart options
-	      var options = {'title':'yearchart',
+	      var options = {'title':'',
 	                       'width':1900,
 	                       'height':900};
 	

@@ -1,4 +1,4 @@
-package controller.slip;
+package controller.admin;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.SlipDao;
-import dto.Slip;
+import dao.ProductDao;
+import dto.Stock;
 
 /**
- * Servlet implementation class SalesRegistration
+ * Servlet implementation class stockadd
  */
-@WebServlet("/slip/SlipRegistration")
-public class SlipRegistration extends HttpServlet {
+@WebServlet("/admin/stockadd")
+public class stockadd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SlipRegistration() {
+    public stockadd() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +32,17 @@ public class SlipRegistration extends HttpServlet {
 		
 		request.setCharacterEncoding("UTF-8");
 		
-		int cnum =Integer.parseInt(request.getParameter("cnum"));
-		String carnum=request.getParameter("carnum");
-		int sflux=Integer.parseInt(request.getParameter("flux"));
-		int sfee=Integer.parseInt(request.getParameter("fee"));
-		int scardfee=Integer.parseInt(request.getParameter("cardfee"));
-		int sdaysale=Integer.parseInt(request.getParameter("daysale"));
-		String snote=request.getParameter("note");
-		Slip slip = new Slip(cnum,0,carnum,sflux,sfee,scardfee,sdaysale,snote,null);
-		boolean result=SlipDao.getSlipDao().addSlip(slip);
+		int pno = Integer.parseInt( request.getParameter("pno") );
+		String scolor = request.getParameter("scolor");
+		String ssize = request.getParameter("ssize") ;
+		int samount = Integer.parseInt(request.getParameter("samount") );
 		
-		if(result) {
-			response.sendRedirect("/taxicompany_data_system/sale/slip_registration.jsp");
-		}else {
-			response.sendRedirect("/taxicompany_data_system/sale/slip_registration.jsp?result=false");	
-		}
+		Stock stock = new Stock(0, scolor, ssize, samount, null, null, pno);
+		
+		boolean result = ProductDao.getProductDao().ssvae( stock );
+		if( result ) { response.getWriter().print(1); }
+		else { response.getWriter().print(2); }
+		
 	}
 
 	/**

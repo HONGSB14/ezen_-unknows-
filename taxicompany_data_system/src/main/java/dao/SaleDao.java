@@ -20,6 +20,7 @@ public class SaleDao extends Dao {
 	
 		//일 매출 구하기 메소드
 		public ArrayList<Slip> daysaleadd(int cnum) {
+			
 			 ArrayList<Slip> saleDayList = new ArrayList<Slip>();
 			String sql="SELECT DISTINCT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y-%m-%d') "
 						+ "FROM taxisaledata.slip "
@@ -43,6 +44,7 @@ public class SaleDao extends Dao {
 		
 		//월 매출 구하기 메소드
 		public ArrayList<Slip> monthsaleadd(int cnum){
+			
 			ArrayList<Slip> monthSaleList = new ArrayList<Slip>();
 			String sql="SELECT DISTINCT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y-%m') "
 					+ "FROM taxisaledata.slip "
@@ -72,6 +74,7 @@ public class SaleDao extends Dao {
 					+ "GROUP BY date_format(sdate, '%Y') "
 					+ "HAVING cnum =? "
 					+ "ORDER BY date_format(sdate,'%Y') ASC";
+			
 			try {
 				ps=conn.prepareStatement(sql);
 				ps.setInt(1, cnum);

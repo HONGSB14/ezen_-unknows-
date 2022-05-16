@@ -1,8 +1,6 @@
 package dao;
 
 import java.util.ArrayList;
-
-
 import dto.Category;
 import dto.Product;
 import dto.Stock;
@@ -82,11 +80,37 @@ public class ProductDao extends Dao {
 	// 5. 제품 삭제 
 ///////////////////////////////////  재고 ////////////////////////////////	
 	// 1. 제품의 재고 등록 
-	public boolean ssvae() { return false; }
+	public boolean ssvae( Stock stock) { 
+		try {
+			String sql = "insert into stock( scolor , ssize , samount , pno )values(?,?,?,?)";
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , stock.getScolor() ); 	ps.setString( 2 , stock.getSsize() );
+			ps.setInt( 3 , stock.getSamount() );	ps.setInt( 4 , stock.getPno() ); 
+			ps.executeUpdate(); return true;
+		}catch (Exception e) { System.out.println( e ); }return false; 
+	}
 	// 2. 제품의 재고 호출 
-	public Stock getStock() { return null; }
+	public ArrayList< Stock >  getStock( int pno) { 
+		ArrayList<Stock> list = new ArrayList<Stock>();
+		try {
+			String sql = "select * from stock where pno = "+pno;
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while( rs.next() ) {
+				Stock stock = new Stock( 
+						rs.getInt(1), rs.getString(2),
+						rs.getString(3), rs.getInt(4),
+						rs.getString(5), rs.getString(6),
+						rs.getInt(7));
+				list.add(stock);
+			}
+			return list;
+		}catch (Exception e) { System.out.println( e ); }return null; 
+	}
+
 	// 3. 제품의 재고 수정 
 	// 4. 제품의 재고 삭제
 //////////////////////////////////////////////////////////////////////////
 	
 }
+
