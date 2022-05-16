@@ -28,9 +28,6 @@
 		ArrayList<Slip> monthSaleList= SaleDao.getsaleDao().monthsaleadd(cnum);
 		ArrayList<Slip> yearSaleList= SaleDao.getsaleDao().yearsaleadd(cnum);
 	 	
-		System.out.println(cnum+"  난 회사번호");
-		System.out.println(daySaleList+"  난 일매출");
-		System.out.println(yearSaleList+"  난  년매출");
 		// 숫자 꾸미기
 		DecimalFormat df = new DecimalFormat("#,###");
 	 	
