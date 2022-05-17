@@ -12,4 +12,11 @@ a{text-decoration: none; color: black }
     font-style: normal;
 }
 
-.must_do{color: red;}
+#must_do{color: red;}
+
+#mainp{font-size: 75px;}
+
+#mainp2{font-size: 40px;}
+
+#mainlogo{width: 100%;}
+

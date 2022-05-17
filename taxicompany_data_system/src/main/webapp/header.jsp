@@ -25,7 +25,7 @@
 				<div class="col-md-3">
 					
 					<a href="/taxicompany_data_system/main.jsp">HOME |</a>
-					<a href="#">회사소개 |</a>
+					<a href="/taxicompany_data_system/product_info.jsp">제품소개 |</a>
 					<a href="#">요구사항접수 |</a>
 					<a href="#">상담요청</a>
 					

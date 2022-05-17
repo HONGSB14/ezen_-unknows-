@@ -56,11 +56,8 @@
 				<div class="col-md-2">
 				<span>company. <%=cnum%></span>
 				</div>
-				<div class=" offset-8 col-md-1">
+				<div class=" offset-8 col-md-2 py-2">
 				<a href="sale/slip_registration.jsp"><button class="form-control">매출 등록</button></a>	
-				</div>
-				<div class="col-md-1">
-				<a href="sale/driver_registration.jsp"><button class="form-control">기사 등록</button></a>	
 				</div>
 			</div>
 			
