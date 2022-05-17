@@ -1,5 +1,7 @@
 package dao;
 
+import dto.Company;
+
 public class CompanyDao extends Dao {
 	
 	public CompanyDao() {
@@ -12,6 +14,26 @@ public class CompanyDao extends Dao {
 		
 		return companyDao;
 	
+	}
+	
+	//회사 등록
+	public boolean companysignup(Company company) {
+		String sql="insert into company (cnum,crn,cprice,cname,cbank,caccout) values(?,?,?,?,?,?)";
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, company.getCnum());
+			ps.setInt(2, company.getCrn());
+			ps.setString(3, company.getCprice());
+			ps.setString(4, company.getCname());
+			ps.setString(5, company.getCbank());
+			ps.setString(6, company.getCaccout());
+			ps.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			System.out.println("companysignup err!!" +e);
+		}
+		
+		return false;
 	}
 	
 	//회사 유효성 체크
@@ -50,5 +72,23 @@ public class CompanyDao extends Dao {
 			System.out.println("회사 고유번호 찾기 실패 ! " +e);
 		}
 		return null;
+	}
+	
+	//회사 번호 중복 체크
+	public boolean cnumcheck(int cnum) {
+		String sql ="SELECT cnum FROM company WHERE cnum=?";
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, cnum);
+			rs=ps.executeQuery(sql);
+			if(rs.next()) {
+				return true;
+			}
+		} catch (Exception e) {
+			System.out.println("회사번호 중복체크 실패  "+e);
+		}
+		
+		return false;
 	}
 }

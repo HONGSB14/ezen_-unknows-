@@ -213,11 +213,11 @@ $(function(){ //문서시작 시 함수시작
                     let emailc2 = /^([a-z0-9]{4,10}).([a-z]{2,2}).([a-z]{2,2})$/;
                     
                     if(emailc.test(memail) || emailc2.test(memail)){
-                      console.log(2);
+                  
                         $("#emailcheck2").html("");
                         $("#emailcheck").html("사용가능한 이메일주소입니다."); pass[5] = true;
                     }else{ 
-                        console.log(3);
+                       
                         $("#emailcheck").html("");
                         $("#emailcheck2").html("사용할 수 없는 이메일 주소입니다.");	pass[5] = false;
                     }

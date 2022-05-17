@@ -59,10 +59,8 @@ public class SaleDao extends Dao {
 				while(rs.next()) {
 					Slip slip = new Slip(rs.getInt(1),0, null, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), null, rs.getString(6));
 					monthSaleList.add(slip);
-					return monthSaleList;
 				}
-				System.out.println(monthSaleList);
-				
+				return monthSaleList;
 			} catch (Exception e) {
 				System.out.println("월 매출 리스트 호출 실패 !!   "+e);
 			}
@@ -86,12 +84,32 @@ public class SaleDao extends Dao {
 				while(rs.next()) {
 					Slip slip = new Slip(rs.getInt(1),0, null, rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5), null, rs.getString(6));
 					yearSaleList.add(slip);
-					return yearSaleList;
 				}	
+				return yearSaleList;
 			} catch (Exception e) {
 				System.out.println("년 매출 리스트 호출 실패 !!   "+e);
 			}
 			return null;
 		}
+		
+		//가격체크
+		public String pricecheck(int cnum) {
+			String sql ="select cprice from taxisaledata.company right join taxisaledata.member on (company.cnum=member.cnum) where member.cnum=?";
+			
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.setInt(1, cnum);
+				rs=ps.executeQuery();
+				if(rs.next()) {
+					return rs.getString(1);
+				}
+			} catch (Exception e) {
+				System.out.println("가격체크 실패 !!  "+e);
+			}
+			
+			return null;
+		}
+		
+
 	
 }
