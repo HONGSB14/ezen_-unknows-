@@ -83,16 +83,11 @@
 						</tr>
 					</table>
 					<table id="select_table" class="table my-5">
-						<tr>
-							<td width="60%"> 상품명 </td>
-							<td width="25%"> 상품수 </td>
-							<td width="15%"> 가격 </td>
-						</tr>
 					</table>
 					
 					<div class="row my-5">
 						<div class="col-md-6"> 총 상품금액  </div>
-						<div class="col-md-6 total_price" > 54,900원(1개)  </div>
+						<div id="total_price" class="col-md-6 total_price" ></div>
 					</div>
 					<div class="row my-5">
 						<div class="col-md-4"><button class="form-control p-4" style="background-color: black; color: white;">바로 구매하기</button></div>

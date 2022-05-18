@@ -58,11 +58,11 @@
 								<tr class="table-info"><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th></tr>
 								<tr>  	
 									<td><input type="text" name="carnum" id="carnum" class="form-control"></td> 
-									<td> <input type="text" name="flux" id="flux"  class="form-control" autofocus="autofocus"></td> 
+									<td><input type="text" name="flux" id="flux"  class="form-control" autofocus="autofocus"></td> 
 									<td><input type="text" name="fee" id="fee"  class="form-control"></td >
 									<td><input type="text" name="cardfee" id="cardfee"   class="form-control"></td> 
-									<td> <input type="text" name="daysale" id="daysale"  class="form-control"></td> 
-									<td> <input type="text" name="note" id="note"  class="form-control"></td> 
+									<td><input type="text" name="daysale" id="daysale"  class="form-control"></td> 
+									<td><input type="text" name="note" id="note"  class="form-control"></td> 
 								</tr>
 							</table>
 						</div>

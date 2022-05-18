@@ -16,36 +16,75 @@
 	<%@include file = "../header.jsp" %>
 	
 	<div class="container text-center">
+	
 		
 		<div class="col-md-12">
-			<div class="col-md-2">
-			<span>welcome company. <%=cnum %></span>
-			</div>
+				
+				<!-- ---------------------------------------------------회사 안내----------------------------------------------------- -->
+				<div class="col-md-3">
+					<span><strong id="welcome">welcome!!</strong>　company. <%=cnum%></span>
+				</div>
+				<!-- -------------------------------------------------------기사 등록----------------------------------------------------->
+				<div class="offset-10 col-md-2 py-2 text-left">
+					<a href="/taxicompany_data_system/driver/driver_registration.jsp"><button class="form-control">기사등록</button></a>
+				</div>
+			
+		
 			<!-- 지도 -->
 			<div id="map" style="width:100%;height:350px;">
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77754e23f7d3787ff007ce519a9c1d86"> </script>
 				<!-- 오버레이 -->
 				<div class="customoverlay" id="customoverlay">
 					<a href="https://map.kakao.com/link/map/11394059" target="_blank">
-					<span class="title">3159</span>
+					<!--인포인터 (나중에 차량 번호 가져오기) -->
+					<span id="carnum">123가1234</span>
 					</a>
 				</div>
 			</div>
-			<!-- 운전자 정보 -->
+			<!------------------------------------------------ 운전자 정보---------------------------------------------------------------->
 				<div class="col-md-12 row">
+					
 					<!-- 운전자 상세정보 -->
 					<div class="col-md-5" >
-						Driver Info 
+						Driver info
+						<!--  드라이버 정보 가져오기  -->
+						<div id="driverinfo">
+							
+						</div>
 					</div>
-					<div class="col-md-2"></div>
+					
+					
 					<!-- 운전자 일 매출 차트 -->
-					<div class="col-md-5">
+					<div class="offset-2 col-md-5">
 						Driver Day Sales graph
+						<!--  드라이버 매출정보 가져오기  -->
+						<div id="driversaleinfo"></div>
 					</div>
 					
 				</div>
+				
+				<!---------------------------------------------------------------- 현재 운행 리스트----------------------------------------------  -->
+				<div class="col-md-12 row">
+					<div class="offset-4 col-md-4 text-center py-5 row">
+						<h1>현재 운행중인 차량 리스트</h1><img src="/taxicompany_data_system/img/taxidriving.gif">
+					</div>
+				</div>
+				
+						
+				<div class="col-md-12">
+					<table class="table table-bordered">
+						<tr class="table-secondary"><th>ID</th><th>이름</th><th>차량번호</th><th>기타사항</th><th>출차 시간</th></tr>
+						<tr>
+							<td>543534</td>
+							<td>홍길동</td>
+							<td>123가1234</td>
+							<td>기타사항</td>
+							<td>12:00~</td>
+						</tr>
+					</table>
+				</div>
 		
-	   <script src="js/maininfo.js" type="text/javascript"></script>
+	  	<script src="js/maininfo.js" type="text/javascript"></script>
 		<%@include file ="footer.jsp" %>
 		
 		

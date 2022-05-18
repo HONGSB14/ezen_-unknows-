@@ -14,9 +14,10 @@ a{text-decoration: none; color: black }
 
 #must_do{color: red;}
 
-#mainp{font-size: 75px;}
+#mainp{font-size: 90px;  color: BLACK;}
 
-#mainp2{font-size: 40px;}
+#mainp2{font-size: 45px; color: BLACK;}
 
 #mainlogo{width: 100%;}
 
+#welcome{font-size: 30px;};
