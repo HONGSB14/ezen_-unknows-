@@ -1,3 +1,6 @@
+<%@page import="dto.Driver"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="dao.DriverDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -5,19 +8,24 @@
 <head>
 <meta charset="UTF-8">
 
-
+<style type="text/css">
+div{border: solid 1px black;}
+</style>
 
 </head>
 <body>
-	<%
-		session.getAttribute("cnum");
-	%>
 	
-	<%@include file = "../header.jsp" %>
+	
+		<%@include file ="header.jsp" %>
+		
+		<%
+			session.getAttribute("cnum");
+			ArrayList<Driver> driverlist=DriverDao.getDriverDao().driverlist(cnum);
+		%>
 	
 	<div class="container text-center">
 	
-		
+
 		<div class="col-md-12">
 				
 				<!-- ---------------------------------------------------회사 안내----------------------------------------------------- -->
@@ -49,24 +57,32 @@
 						Driver info
 						<!--  드라이버 정보 가져오기  -->
 						<div id="driverinfo">
-							
+							<table class="table">
+								<tr class="align-baseline"><th>이름</th> <th>차번호</th> <th>출차시간</th> <th>기타사항</th> </tr>
+								<tr>
+									<td>1</td> 
+									<td>2</td> 
+									<td>3</td> 
+									<td>4</td> 
+								</tr>
+							</table>
 						</div>
 					</div>
-					
 					
 					<!-- 운전자 일 매출 차트 -->
 					<div class="offset-2 col-md-5">
 						Driver Day Sales graph
 						<!--  드라이버 매출정보 가져오기  -->
-						<div id="driversaleinfo"></div>
+						<div id="driversaleinfo">
+						
+						</div>
 					</div>
-					
 				</div>
 				
 				<!---------------------------------------------------------------- 현재 운행 리스트----------------------------------------------  -->
 				<div class="col-md-12 row">
 					<div class="offset-4 col-md-4 text-center py-5 row">
-						<h1>현재 운행중인 차량 리스트</h1><img src="/taxicompany_data_system/img/taxidriving.gif">
+						<h1>현재 운행중인 차량 정보</h1><img src="/taxicompany_data_system/img/taxidriving.gif">
 					</div>
 				</div>
 				
