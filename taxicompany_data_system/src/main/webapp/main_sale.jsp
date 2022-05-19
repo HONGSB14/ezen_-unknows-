@@ -27,7 +27,8 @@
 	 	ArrayList<Slip> daySaleList= SaleDao.getsaleDao().daysaleadd(cnum);
 		ArrayList<Slip> monthSaleList= SaleDao.getsaleDao().monthsaleadd(cnum);
 		ArrayList<Slip> yearSaleList= SaleDao.getsaleDao().yearsaleadd(cnum);
-	 	String priceCheck=SaleDao.getsaleDao().pricecheck(cnum);
+	 	//가격에 따른 서비스 제공 차이 값
+		String priceCheck=SaleDao.getsaleDao().pricecheck(cnum);
 	 	
 		// 숫자 꾸미기
 		DecimalFormat df = new DecimalFormat("#,###");
@@ -131,10 +132,10 @@
 	%>
 	<!----------------------------------차트부분 --------------------------------- -->
 	<div class="col-md-12 py-5">
+		<!-- 구글차트 선언 -->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 		<!--weekchart (pieChart) -->
 		<div class="text-center"><h3>주 매출비교</h3></div>		
-		
 		<div id="pie_chart" class="offset-2 col-md-4">
 		 <%
 			//주 계산을 위한 인트 변환
@@ -203,22 +204,22 @@
 		<div id="line_chart" class="col-md-12">
 			<!-- 년 매출(월별) 값 JS로 넘기기 -->
 			<%
-			for(Slip slip : monthSaleList){
+				for(Slip slip : monthSaleList){
 					
-				String monthYear=slip.getSdate().split("-")[0]; 	//년도
-				String monthMonth=slip.getSdate().split("-")[1];	//달		
+					String monthYear=slip.getSdate().split("-")[0]; 	//년도
+					String monthMonth=slip.getSdate().split("-")[1];	//달		
 					
-				if(year.equals(monthYear)){
-					saleList.add(slip.getSdaysale());
-					saleDate.add(slip.getSdate().split("-")[1]);
+					if(year.equals(monthYear)){
+						saleList.add(slip.getSdaysale());
+						saleDate.add(slip.getSdate().split("-")[1]);
 					for(int i=0; i<saleList.size(); i++){
 			%>
-				<input type="hidden" id="<%="monthSale"+i%>" value="<%=saleList.get(i)%>"> 
-				<input type="hidden" id="<%="monthDate"+i%>" value="<%=saleDate.get(i)%>"> 
+					<input type="hidden" id="<%="monthSale"+i%>" value="<%=saleList.get(i)%>"> 
+					<input type="hidden" id="<%="monthDate"+i%>" value="<%=saleDate.get(i)%>"> 
 			<% 					
+						}
 					}
 				}
-			}
 			
 			//데이터 관리와 리스트 재사용을위해 클리어
 			saleList.clear();
@@ -227,11 +228,11 @@
 		</div>
 	</div>
 	<%
-	}else{
+		}else{
 	%>
 	
 	<%
-	}
+		}
 	%>
 	<%@include file ="footer.jsp" %>
 	<script src="/taxicompany_data_system/js/chart.js" type="text/javascript"></script>

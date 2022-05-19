@@ -1,4 +1,4 @@
-package controller;
+package controller.car;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.CompanyDao;
-import dto.Company;
+import dao.CarDao;
+import dto.Car;
 
 /**
- * Servlet implementation class CompanySignup
+ * Servlet implementation class CarRresistration
  */
-@WebServlet("/CompanySignup")
-public class CompanySignup extends HttpServlet {
+@WebServlet("/car/CarResistration")
+public class CarResistration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CompanySignup() {
+    public CarResistration() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,31 +29,23 @@ public class CompanySignup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(1);
+			
 		request.setCharacterEncoding("UTF-8");
-		int cnum = Integer.parseInt(request.getParameter("cnum"));
-		String price=request.getParameter("price");
-		System.out.println(price);
-		String bn1=request.getParameter("three");
-		String bn2 = request.getParameter("two");
-		String bn3 = request.getParameter("five");
-		String bnSum=(bn1+bn2+bn3);
-		int bn= Integer.parseInt(bnSum);
-		String companyName = request.getParameter("companyname");
-		String bank=request.getParameter("bank");
-		String account=request.getParameter("account");
+		int cnum= Integer.parseInt(request.getParameter("cnum"));
+		String carNum = request.getParameter("carnum");
+		String carType = request.getParameter("selectCarType");
+		String carName = request.getParameter("carname");
+		String fule= request.getParameter("selectFuel");
 		
-		Company company =new Company(cnum, bn, companyName, price, bank, account);
-		
-		boolean result=CompanyDao.getCompanyDao().companysignup(company);
+		Car car =new Car(cnum, carNum, carType, carName, fule);
+		System.out.println(car.toString());
+		boolean result = CarDao.getcarDao().carresistration(car);
 		
 		if(result) {
-			response.sendRedirect("/taxicompany_data_system/company/csignupsuccess.jsp");
+			response.sendRedirect("/taxicompany_data_system/car/carResistration.jsp");
 		}else {
 			response.sendRedirect("/taxicompany_data_system/errorpage.jsp");
 		}
-		
-		
 	}
 
 	/**

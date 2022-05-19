@@ -27,8 +27,8 @@
 				<table class="table table-warning">
 					<tr><th>이름</th> <th>기타사항</th> <tr>
 					<tr>
-					<th><input type="text" class="form-control" id="dname" name="dname"></th>
-					<th><input type="text" class="form-control" id="dnote" name="dnote"></th>
+					<td><input type="text" class="form-control" id="dname" name="dname"></td>
+					<td><input type="text" class="form-control" id="dnote" name="dnote"></td>
 					</tr>
 				</table>
 				<div class="text-center">

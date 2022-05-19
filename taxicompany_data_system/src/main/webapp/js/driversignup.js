@@ -8,10 +8,10 @@ $(function(){
 	
 	    if(dnamec.test(dname)){
 	        $("#namecheck2").html("");
-	        $("#namecheck").html("멋진이름이네요!");  pass=true;
+	        $("#namecheck").html("등록이 가능한 이름입니다.");  pass=true;
 	    }else{
 	        $("#namecheck").html("");
-	        $("#namecheck2").html("아쉽지만 등록할 수 없는 이름입니다."); pass=false;
+	        $("#namecheck2").html("등록할 수 없는 이름입니다."); pass=false;
 	    }
 		
 		

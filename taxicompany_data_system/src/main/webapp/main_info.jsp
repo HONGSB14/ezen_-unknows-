@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 
 <style type="text/css">
-div{border: solid 1px black;}
+
 </style>
 
 </head>
@@ -21,6 +21,7 @@ div{border: solid 1px black;}
 		<%
 			session.getAttribute("cnum");
 			ArrayList<Driver> driverlist=DriverDao.getDriverDao().driverlist(cnum);
+			
 		%>
 	
 	<div class="container text-center">
@@ -33,9 +34,18 @@ div{border: solid 1px black;}
 					<span><strong id="welcome">welcome!!</strong>　company. <%=cnum%></span>
 				</div>
 				<!-- -------------------------------------------------------기사 등록----------------------------------------------------->
-				<div class="offset-10 col-md-2 py-2 text-left">
-					<a href="/taxicompany_data_system/driver/driver_registration.jsp"><button class="form-control">기사등록</button></a>
+				<div class="col-md-12">
+					<div class="row">
+						<div class="offset-8 col-md-2 py-2 text-left">
+							<a href="/taxicompany_data_system/driver/driver_registration.jsp"><button class="form-control">기사등록</button></a>
+						</div>
+						<div class="col-md-2 py-2">
+							<a href="/taxicompany_data_system/car/carResistration.jsp"><button class="form-control">차량등록</button></a>
+						</div>
+					</div>
 				</div>
+				
+				
 			
 		
 			<!-- 지도 -->
@@ -53,24 +63,18 @@ div{border: solid 1px black;}
 				<div class="col-md-12 row">
 					
 					<!-- 운전자 상세정보 -->
-					<div class="col-md-5" >
+					<div class="col-md-4" >
 						Driver info
 						<!--  드라이버 정보 가져오기  -->
 						<div id="driverinfo">
-							<table class="table">
-								<tr class="align-baseline"><th>이름</th> <th>차번호</th> <th>출차시간</th> <th>기타사항</th> </tr>
-								<tr>
-									<td>1</td> 
-									<td>2</td> 
-									<td>3</td> 
-									<td>4</td> 
-								</tr>
-							</table>
+						
 						</div>
 					</div>
-					
+					<div class="col-md-4 text-center py-5 row">
+						<img src="/taxicompany_data_system/img/taxidriving.gif">
+					</div>
 					<!-- 운전자 일 매출 차트 -->
-					<div class="offset-2 col-md-5">
+					<div class=" col-md-4">
 						Driver Day Sales graph
 						<!--  드라이버 매출정보 가져오기  -->
 						<div id="driversaleinfo">
@@ -81,9 +85,7 @@ div{border: solid 1px black;}
 				
 				<!---------------------------------------------------------------- 현재 운행 리스트----------------------------------------------  -->
 				<div class="col-md-12 row">
-					<div class="offset-4 col-md-4 text-center py-5 row">
-						<h1>현재 운행중인 차량 정보</h1><img src="/taxicompany_data_system/img/taxidriving.gif">
-					</div>
+					<h1>현재 운행중인 차량 정보</h1>
 				</div>
 				
 						

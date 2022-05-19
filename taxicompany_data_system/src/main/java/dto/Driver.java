@@ -2,11 +2,11 @@ package dto;
 
 public class Driver {
 
-	private int cnum;
-	private int dnum;
-	private String dname;
-	private String dnote;
-	private String ddate;
+	private int cnum;		//회사고유번호 
+	private int dnum;		//운전자 고유 번호 (ID)
+	private String dname;	//운전자 이름
+	private String dnote;	//운전자 기타 사항
+	private String ddate;	//운전자 등록 날짜
 	
 	
 	public Driver() {
