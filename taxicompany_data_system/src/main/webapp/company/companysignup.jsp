@@ -116,7 +116,7 @@
 				<div class="py-3">
 					<div class="col-md-4 text-left">계좌번호<Strong class="must_do">*</Strong></div>
 					<div>
-					 	<input type="text" class="form-control" name="account" id="account">
+					 	<input type="text" class="form-control" name="account" id="account" placeholder="-를 제외하고 입력하여 주십시오.">
 					</div>
 					<span id="accountcheck"></span>
 					<span class="check" id="accountcheck2"></span>

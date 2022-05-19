@@ -8,7 +8,9 @@
 		
 	
 	<%@include file="header.jsp" %>
-	
+	<%
+		session.getAttribute("login");
+	%>
 	<div class="col-md-12 py-5 px-5 row" style="background: #FFFFCC;"> 
 		
 		<div class="offset-2 col-md-6 text-left py-5">
@@ -24,7 +26,15 @@
 	
 	<div class="container">
 		<div class="text-center py-5">
-			<h1><a href="main.jsp">Taxi Company Data System</a></h1>
+			<%
+				if(login != null){
+			%>
+					<h4>반갑습니다. <%=login%> 님!!</h4>
+					<h1><a href="main_sale.jsp">매출 확인 바로 가기</a></h1> 
+			<%
+				}			
+			%>
+			
 		</div>
 	
 		<div class="col-md-12 py-5">
