@@ -67,7 +67,7 @@
 						Driver info
 						<!--  드라이버 정보 가져오기  -->
 						<div id="driverinfo">
-						
+						 
 						</div>
 					</div>
 					<div class="col-md-4 text-center py-5 row">
@@ -78,7 +78,7 @@
 						Driver Day Sales graph
 						<!--  드라이버 매출정보 가져오기  -->
 						<div id="driversaleinfo">
-						
+							
 						</div>
 					</div>
 				</div>

@@ -38,7 +38,6 @@ public class CarResistration extends HttpServlet {
 		String fule= request.getParameter("selectFuel");
 		
 		Car car =new Car(cnum, carNum, carType, carName, fule);
-		System.out.println(car.toString());
 		boolean result = CarDao.getcarDao().carresistration(car);
 		
 		if(result) {

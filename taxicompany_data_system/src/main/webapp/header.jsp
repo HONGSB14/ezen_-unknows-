@@ -43,8 +43,8 @@
 						}else{
 					%>
 							<span style="color: blue;">Welcome  <%=login%> |</span> 
-							<a href="/taxicompany_data_system/main_sale.jsp?cnum=<%=cnum%>">Sales </a>|
 							<a href="/taxicompany_data_system/main_info.jsp?cnum=<%=cnum%>">Info  </a>|
+							<a href="/taxicompany_data_system/main_sale.jsp?cnum=<%=cnum%>">Sales </a>|
 							<a href="/taxicompany_data_system/member/Logout">Logout </a>	
 					<%
 						}
