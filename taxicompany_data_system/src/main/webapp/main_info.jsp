@@ -1,3 +1,7 @@
+<%@page import="dao.TacometerDao"%>
+<%@page import="dto.Tacometer"%>
+<%@page import="dto.Car"%>
+<%@page import="dao.CarDao"%>
 <%@page import="dto.Driver"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dao.DriverDao"%>
@@ -14,7 +18,7 @@
 
 </head>
 <body>
-	
+		
 	
 		<%@include file ="header.jsp" %>
 		
@@ -22,7 +26,11 @@
 			session.getAttribute("cnum");
 			ArrayList<Driver> driverlist=DriverDao.getDriverDao().driverlist(cnum);
 			
+			ArrayList<Car> carlisList = CarDao.getcarDao().carlist(cnum);
+			
+			
 		%>
+		
 	
 	<div class="container text-center">
 	
@@ -54,8 +62,10 @@
 				<!-- 오버레이 -->
 				<div class="customoverlay" id="customoverlay">
 					<a href="https://map.kakao.com/link/map/11394059" target="_blank">
-					<!--인포인터 (나중에 차량 번호 가져오기) -->
-					<span id="carnum">123가1234</span>
+					<!--인포인터 ( 차량 번호 가져오기) -->
+					<span id="carnum">
+						
+					</span>
 					</a>
 				</div>
 			</div>
@@ -67,7 +77,7 @@
 						Driver info
 						<!--  드라이버 정보 가져오기  -->
 						<div id="driverinfo">
-						 
+							
 						</div>
 					</div>
 					<div class="col-md-4 text-center py-5 row">

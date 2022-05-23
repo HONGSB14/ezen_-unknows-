@@ -51,5 +51,9 @@ $(function(){
 	});
 	
 	
+	let carNumInfo= $("#carNumInfo");
+	
+	
+	
 }); //실행문서코드 끝
 
