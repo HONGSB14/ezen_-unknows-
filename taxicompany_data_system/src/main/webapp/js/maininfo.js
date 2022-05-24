@@ -50,7 +50,7 @@ $(function(){
 	});
 	
 	
-
+ 	//$('#map').load(location.href+' #map');
 	
 	
 	///////////////////////////////////////////////////////////버스 위치 ////////////////////////////////////////////
@@ -73,6 +73,7 @@ $(function(){
 					console.log(tmY);
 					maker= new kakao.maps.Marker ({
 						position: new kakao.maps.LatLng(tmY,tmX),
+						image: new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 						map:map
 					});
 				});
