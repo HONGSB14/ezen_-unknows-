@@ -11,8 +11,6 @@ $(function(){
 	
 	
 	
-	
-	
 	///////////////////////////////////////////마커생성//////////////////////////////////////////////////////////
 	var imageSrc = "/taxicompany_data_system/img/taximaker2.png", // 마커이미지의 주소입니다    
     imageSize = new kakao.maps.Size(30, 39), // 마커이미지의 크기입니다
@@ -23,6 +21,7 @@ $(function(){
 	    markerPosition  = new kakao.maps.LatLng(37.492825, 126.835671); 
 	
 	// 마커를 생성합니다
+	
 	var marker = new kakao.maps.Marker({
 	    position: markerPosition,
   		image: markerImage,
@@ -51,9 +50,43 @@ $(function(){
 	});
 	
 	
-	let carNumInfo= $("#carNumInfo");
+
 	
+	
+	///////////////////////////////////////////////////////////버스 위치 ////////////////////////////////////////////
+	
+	$.ajax({
+		
+		url:"http://ws.bus.go.kr/api/rest/buspos/getBusPosByVehId?serviceKey=V1D0RoBJCl1PTrNrdovcJHzbZkwiiyLMbHx%2FsQfaQfsvS0iIM3OQ2x91yr6PXyIFl0hj0ETaeC1Fvd0WoSMHmg%3D%3D&vehId=111033115",
+		type:"get",
+		dataType:"TEXT",
+		success:function(data){
+			
+			if(data){
+				
+				
+				$(data).find('itemList').each(function(){
+					
+					let tmX= $(this).find("tmX").text();
+					let tmY= $(this).find("tmY").text();
+					console.log(tmX);
+					console.log(tmY);
+					maker= new kakao.maps.Marker ({
+						position: new kakao.maps.LatLng(tmY,tmX),
+						map:map
+					});
+				});
+			}else{
+				console.log("2");
+			}
+		}
+		
+	});
 	
 	
 }); //실행문서코드 끝
+
+
+
+
 

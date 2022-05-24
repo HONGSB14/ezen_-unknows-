@@ -1,3 +1,4 @@
+<%@page import="controller.api.Api"%>
 <%@page import="dao.TacometerDao"%>
 <%@page import="dto.Tacometer"%>
 <%@page import="dto.Car"%>
@@ -27,11 +28,11 @@
 			ArrayList<Driver> driverlist=DriverDao.getDriverDao().driverlist(cnum);
 			
 			ArrayList<Car> carlisList = CarDao.getcarDao().carlist(cnum);
-			
+			String busPosition= Api.busPosition();
 			
 		%>
 		
-	
+	 
 	<div class="container text-center">
 	
 
