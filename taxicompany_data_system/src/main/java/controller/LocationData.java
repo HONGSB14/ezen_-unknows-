@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.CarDao;
+import dao.LocationDao;
+import dto.Location;
+
 /**
  * Servlet implementation class LocationData
  */
@@ -26,11 +30,25 @@ public class LocationData extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("통신");
+		
 		String tmX=request.getParameter("tmX");
 		String tmY=request.getParameter("tmY");
-		System.out.println(tmX);
-		System.out.println(tmY);
+		String carNum=request.getParameter("plainNo");
+		int cnum= Integer.parseInt(request.getParameter("cnum"));
+		String coordinate=tmY+","+tmX;
+		
+		Location location = new Location(cnum, coordinate, carNum);
+		
+		boolean result=LocationDao.getLocationDao().locationset(location);
+		
+		if(result) {
+			System.out.println("db저장성공");
+		}else {
+			System.out.println("db저장실패");
+		}
+		
+		
+		
 	}
 
 	/**

@@ -53,9 +53,8 @@ $(function(){
 
 	///////////////////////////////////////////////////////////버스 위치 ////////////////////////////////////////////
 	
-	//맵 새로고침
-	//$('#map').load(location.href+' #map');
 	
+	let cnum=$("#cnum").val();
 	//버스 위치정보 데이터 받아오기 (10초 간격)
 	setInterval(function(){
 	$.ajax({
@@ -64,7 +63,6 @@ $(function(){
 		type:"get",
 		dataType:"TEXT",
 		success:function(data){
-		
 			if(data){
 				
 				$(data).find('itemList').each(function(){
@@ -72,13 +70,13 @@ $(function(){
 					//데이터에서 좌표 불러오기 
 					let tmX= $(this).find("tmX").text();
 					let tmY= $(this).find("tmY").text();
-					
+					let plainNo=$(this).find("plainNo").text();
 					console.log(tmY,tmX);
 					
 					//좌표 값 DB에 저장
 					$.ajax({
 						url:"LocationData",
-						data:{"tmX":tmX , "tmY":tmY},
+						data:{"tmY":tmY, "tmX":tmX ,"plainNo":plainNo , "cnum":cnum},
 						type:"get",
 						success:function(setData){
 							if(setData){

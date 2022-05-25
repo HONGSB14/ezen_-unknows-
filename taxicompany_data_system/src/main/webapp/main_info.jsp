@@ -30,7 +30,8 @@
 			
 			
 		%>
-		
+		<!--회사번호 -->
+		<input type="hidden" value="<%=cnum%>" id="cnum">
 	 
 	<div class="container text-center">
 	

@@ -7,8 +7,8 @@ $(function(){
 		
 		let carnum=$("#carnum").val();
 		let carnumc=/^([0-9]{2,3})([가-힣]{1,1})([0-9]{4,4})$/;
-		
-		if(carnumc.test(carnum)){
+		let carnumc2=/^([가-힣]{2,2})([0-9]{2,3})([가-힣]{1,1})([0-9]{4,4})$/;
+		if(carnumc.test(carnum) || carnumc2.test(carnum) ){
 			$("#carcheck2").html(""); pass=true;
 		}else{
 			$("#carcheck").html(""); 
