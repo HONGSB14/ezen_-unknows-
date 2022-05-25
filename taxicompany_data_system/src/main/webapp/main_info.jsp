@@ -53,6 +53,7 @@
 					</div>
 				</div>
 	
+		
 			<!-- 지도 -->
 			<div id="map" style="width:100%;height:350px;">
 				<!-- 로딩 스피너 -->
@@ -61,9 +62,8 @@
 						<span class="visually-hidden">차량</span>
 					</div>
 				</div>
+				
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77754e23f7d3787ff007ce519a9c1d86"> </script>
-				
-				
 			</div>
 			
 			<!------------------------------------------------ 운전자 정보---------------------------------------------------------------->
