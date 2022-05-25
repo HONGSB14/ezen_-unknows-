@@ -52,23 +52,20 @@
 						</div>
 					</div>
 				</div>
-				
-				
-			
-		
+	
 			<!-- 지도 -->
 			<div id="map" style="width:100%;height:350px;">
-				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77754e23f7d3787ff007ce519a9c1d86"> </script>
-				<!-- 오버레이 -->
-				<div class="customoverlay" id="customoverlay">
-					<a href="https://map.kakao.com/link/map/11394059" target="_blank">
-					<!--인포인터 ( 차량 번호 가져오기) -->
-					<span id="carnum">
-						
-					</span>
-					</a>
+				<!-- 로딩 스피너 -->
+				<div class="my-5 py-5">
+					<div class="spinner-border text-warning" role="status">
+						<span class="visually-hidden">차량</span>
+					</div>
 				</div>
+				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77754e23f7d3787ff007ce519a9c1d86"> </script>
+				
+				
 			</div>
+			
 			<!------------------------------------------------ 운전자 정보---------------------------------------------------------------->
 				<div class="col-md-12 row">
 					
@@ -95,21 +92,12 @@
 				
 				<!---------------------------------------------------------------- 현재 운행 리스트----------------------------------------------  -->
 				<div class="col-md-12 row">
-					<h1>현재 운행중인 차량 정보</h1>
+					<h1>운행 차량 데이터</h1>
 				</div>
 				
 						
 				<div class="col-md-12">
-					<table class="table table-bordered">
-						<tr class="table-secondary"><th>ID</th><th>이름</th><th>차량번호</th><th>기타사항</th><th>출차 시간</th></tr>
-						<tr>
-							<td>543534</td>
-							<td>홍길동</td>
-							<td>123가1234</td>
-							<td>기타사항</td>
-							<td>12:00~</td>
-						</tr>
-					</table>
+					운행 정보 데이터 그래프
 				</div>
 		
 	  	<script src="js/maininfo.js" type="text/javascript"></script>

@@ -332,5 +332,31 @@ public class ProductDao extends Dao {
 		}catch (Exception e) { System.out.println( e );} return null;
 	}
 	
+	public boolean cancelorder( int orderdetailno , int active ) {
+		try {
+			String sql = " update porderdetail set orderdetailactive = "+active
+					+ " where orderdetailno = "+orderdetailno;
+			ps = conn.prepareStatement(sql); ps.executeUpdate(); return true;
+		}catch (Exception e) { System.out.println( e ); } return false;
+	}
 	
+	public JSONArray getchart() {
+		String sql ="SELECT "
+				+ "	substring_index( orderdate , ' ' , 1 ) AS 날짜 , "
+				+ "	sum( ordertotalpay ) "
+				+ "FROM porder "
+				+ "GROUP BY 날짜 ORDER BY 날짜 DESC";
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			JSONArray ja = new JSONArray();
+			while( rs.next() ) {
+				JSONObject jo = new JSONObject();
+				jo.put("date", rs.getString( 1 ) );
+				jo.put("value", rs.getString(2) );
+				ja.put(jo);
+			}
+			return ja;
+		}catch (Exception e) { System.out.println( e );} return null;
+	}
 }
