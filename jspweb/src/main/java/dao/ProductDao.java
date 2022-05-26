@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import dto.Cart;
 import dto.Category;
 import dto.Order;
+import dto.Ordertail;
 import dto.Product;
 import dto.Stock;
 
@@ -28,7 +29,7 @@ public class ProductDao extends Dao {
 	public boolean csave( String cname) { 
 		String sql = "insert into category(cname)values('"+cname+"')";
 		try {
-			ps = conn.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			ps.executeUpdate(); return true;
 		}catch (Exception e) {} return false;
 	}
@@ -37,7 +38,7 @@ public class ProductDao extends Dao {
 		ArrayList<Category> list = new ArrayList<Category>();
 		String sql = "select * from category";
 		try {
-			ps =conn.prepareStatement(sql);
+			ps =con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while( rs.next() ) { // 1개 호출시 if // 여러개 호출시 while
 				Category category = new Category( rs.getInt(1) , rs.getString(2) );
@@ -54,7 +55,7 @@ public class ProductDao extends Dao {
 		String sql = "insert into product(pname,pprice,pdiscount,pimg,cno ) "
 				+ "values(?,?,?,?,?)";
 		try {
-			ps = conn.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			ps.setString( 1 , product.getPname() );		ps.setInt( 2 , product.getPprice() );
 			ps.setFloat( 3 , product.getPdiscount() );	ps.setString( 4 , product.getPimg() );
 			ps.setInt( 5 , product.getCno() );ps.executeUpdate(); return true;
@@ -67,7 +68,7 @@ public class ProductDao extends Dao {
 		String sql = "select * from product";
 		
 		try {
-			ps = conn.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while (rs.next()) {
 				Product product = new Product(
@@ -82,7 +83,7 @@ public class ProductDao extends Dao {
 	public Product getproduct( int pno ) { 
 		String sql = "select * from product where pno = " + pno;
 		try {
-			ps = conn.prepareStatement(sql); rs = ps.executeQuery();
+			ps = con.prepareStatement(sql); rs = ps.executeQuery();
 			if( rs.next() ) {
 				Product product = new Product(
 						rs.getInt(1),rs.getString(2), 
@@ -96,7 +97,7 @@ public class ProductDao extends Dao {
 	// 4-2 제품 상태 변경 
 	public boolean activechange( int pno , int active  ) {
 		String sql = "update product set pactive = "+active+" where pno="+pno;
-		try { ps=conn.prepareStatement(sql); ps.executeUpdate(); return true; }
+		try { ps=con.prepareStatement(sql); ps.executeUpdate(); return true; }
 		catch (Exception e) {} return false;
 	}
 	// 5. 제품 삭제 
@@ -105,7 +106,7 @@ public class ProductDao extends Dao {
 	public boolean ssvae( Stock stock) { 
 		try {
 			String sql = "insert into stock( scolor , ssize , samount , pno )values(?,?,?,?)";
-			ps = conn.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			ps.setString( 1 , stock.getScolor() ); 	ps.setString( 2 , stock.getSsize() );
 			ps.setInt( 3 , stock.getSamount() );	ps.setInt( 4 , stock.getPno() ); 
 			ps.executeUpdate(); return true;
@@ -116,7 +117,7 @@ public class ProductDao extends Dao {
 		ArrayList<Stock> list = new ArrayList<Stock>();
 		try {
 			String sql = "select * from stock where pno = "+pno+" order by scolor asc , ssize desc ";
-			ps = conn.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while( rs.next() ) {
 				Stock stock = new Stock( 
@@ -134,7 +135,7 @@ public class ProductDao extends Dao {
 		public boolean stockupdate( int sno , int samount ) {
 			String sql = "update stock set samount = "+samount+" where sno="+sno;
 			try {
-				ps = conn.prepareStatement(sql);
+				ps = con.prepareStatement(sql);
 				ps.executeUpdate(); return true;
 			}catch (Exception e) { System.out.println( e ); } return false;
 			
@@ -145,15 +146,15 @@ public class ProductDao extends Dao {
 		try {
 			// 1. 검색  	제품번호와 회원번호가 동일하면 
 			String sql = "select plikeno from plike where pno="+pno+" and mno="+mno;
-			ps = conn.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			if( rs.next() ) { // 2. 만약에 존재하면 삭제처리 
 				sql = "delete from plike where plikeno = "+rs.getInt(1);
-				ps = conn.prepareStatement(sql); ps.executeUpdate();
+				ps = con.prepareStatement(sql); ps.executeUpdate();
 				return 2; // 삭제 
 			}else { 	// 3. 만약에 존재하지 않으면 등록처리 
 				sql = "insert into plike( pno , mno )values( "+pno+","+mno+" ) ";
-				ps = conn.prepareStatement(sql); ps.executeUpdate();
+				ps = con.prepareStatement(sql); ps.executeUpdate();
 				return 1; // 등록 
 			}
 		}catch (Exception e) { System.out.println(e); } return 3; // DB오류 
@@ -161,7 +162,7 @@ public class ProductDao extends Dao {
 // 해당 제품 찜하기 여부 확인 메소드 
 	public boolean getplike( int pno , int mno ) {
 		String sql = "select * from plike where pno = "+pno+" and mno ="+mno;
-		try { ps = conn.prepareStatement(sql); rs = ps.executeQuery();
+		try { ps = con.prepareStatement(sql); rs = ps.executeQuery();
 			if( rs.next() ) return true;
 		}catch (Exception e) { System.out.println( e );} return false;
 	}
@@ -170,16 +171,16 @@ public class ProductDao extends Dao {
 	public boolean savecart( Cart cart ) {
 		try {
 			String sql = "select cartno from cart where sno = "+cart.getSno()+" and mno = "+cart.getMno();
-			ps = conn.prepareStatement(sql); rs=ps.executeQuery();
+			ps = con.prepareStatement(sql); rs=ps.executeQuery();
 			if( rs.next() ) { // 1. 장바구니내 동일한 제품이 존재하면 수량/가격 업데이트 처리
 				sql = "update cart set samount = samount + "+cart.getSamount()+
 								" , totalprice = totalprice + " + cart.getTotalprice() +
 						" where cartno = " + rs.getInt(1);
-				ps = conn.prepareStatement(sql);	ps.executeUpdate(); return true;
+				ps = con.prepareStatement(sql);	ps.executeUpdate(); return true;
 				
 			}else { // 2. 존재하지 않으면 등록
 				sql ="insert into cart( samount , totalprice , sno , mno ) values( ?,?,?,? )";
-				ps = conn.prepareStatement(sql);
+				ps = con.prepareStatement(sql);
 				ps.setInt( 1 ,  cart.getSamount() );
 				ps.setInt( 2 ,  cart.getTotalprice() );
 				ps.setInt( 3 ,  cart.getSno() );
@@ -206,7 +207,7 @@ public class ProductDao extends Dao {
 				+ "on B.pno = C.pno "
 				+ "where A.mno ="+mno;
 		try {
-			ps = conn.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while( rs.next() ) {
 				// 결과내 하나씩 모든 레코드를 -> 하나씩 json객체 변환  
@@ -229,13 +230,13 @@ public class ProductDao extends Dao {
 	// 장바구니 업데이트[수정]메소드 
 	public boolean updatecart( int cartno , int samount , int tatalprice ) {
 		String sql ="update cart set samount = "+samount+" , totalprice = "+tatalprice+" where cartno ="+cartno;
-		try { ps = conn.prepareStatement(sql); ps.executeUpdate(); return true;}
+		try { ps = con.prepareStatement(sql); ps.executeUpdate(); return true;}
 		catch (Exception e) { System.out.println( e ); } return false;
 	}
 	// 장바구니 삭제 메소드 
 	public boolean deletecart( int cartno ) {
 		String sql = "delete from cart where cartno="+cartno;
-		try { ps = conn.prepareStatement(sql); ps.executeUpdate(); return true;}
+		try { ps = con.prepareStatement(sql); ps.executeUpdate(); return true;}
 		catch (Exception e) { System.out.println( e ); } return false;
 	}
 	//////////////////////////주문//////////////////////////////
@@ -244,7 +245,7 @@ public class ProductDao extends Dao {
 		String sql = "insert into porder(ordername,orderphone,orderaddress,ordertotalpay,orderrequest,mno) "
 				+ " values(?,?,?,?,?,?)";
 		try {				// !! -> insert 후에 자동 생성된 pk값 가져오기 
-			ps = conn.prepareStatement( sql , Statement.RETURN_GENERATED_KEYS );
+			ps = con.prepareStatement( sql , Statement.RETURN_GENERATED_KEYS );
 			ps.setString( 1 , order.getOrdername() );
 			ps.setString( 2 , order.getOrderphone() );
 			ps.setString( 3 , order.getOrderaddress() );
@@ -258,12 +259,12 @@ public class ProductDao extends Dao {
 				// cart -> porderdetail 
 				sql = "insert into porderdetail( samount ,totalprice,orderno,sno )"
 						+ "select samount , totalprice , "+pk+" , sno from cart where mno = "+order.getMno();
-				ps = conn.prepareStatement(sql);
+				ps = con.prepareStatement(sql);
 				ps.executeUpdate();
 				
 				// cart : delete 
 				sql ="delete from cart where mno = "+order.getMno();
-				ps = conn.prepareStatement(sql);
+				ps = con.prepareStatement(sql);
 				ps.executeUpdate();
 				return true;
 			}
@@ -290,7 +291,7 @@ public class ProductDao extends Dao {
 				+ "JOIN STOCK C on B.sno = C.sno "
 				+ "JOIN product D ON C.pno = D.pno where A.mno = "+mno+" order by A.orderno desc;";
 		try {
-			ps = conn.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery(); 
 			// 1. json 사용하는 이유 -> js로 전송하기위해 
 			// 2. Arraylist 사용하는 이유 -> jsp로 사용할려면 
@@ -336,27 +337,81 @@ public class ProductDao extends Dao {
 		try {
 			String sql = " update porderdetail set orderdetailactive = "+active
 					+ " where orderdetailno = "+orderdetailno;
-			ps = conn.prepareStatement(sql); ps.executeUpdate(); return true;
+			ps = con.prepareStatement(sql); ps.executeUpdate(); return true;
 		}catch (Exception e) { System.out.println( e ); } return false;
 	}
 	
-	public JSONArray getchart() {
-		String sql ="SELECT "
+	public JSONArray getchart( int type , int value  ) {
+		String sql ="";
+		JSONArray ja = new JSONArray();
+		
+		if( type == 1 ) { // 일별 매출 
+			sql ="SELECT "
 				+ "	substring_index( orderdate , ' ' , 1 ) AS 날짜 , "
 				+ "	sum( ordertotalpay ) "
 				+ "FROM porder "
 				+ "GROUP BY 날짜 ORDER BY 날짜 DESC";
+		}else if( type == 2 ) { // 카테고리별 전체 판매량 
+			sql = "select  "
+					+ "	sum( A.samount )  ,  "
+					+ "    D.cname "
+					+ "from porderdetail A, stock B , product C , category D  "
+					+ "where A.sno = B.sno and B.pno = C.pno and C.cno = D.cno  "
+					+ "group by D.cname "
+					+ "order by orderdetailno desc";
+		}else if( type == 3 ) { // 재고번호 -> 제품별 판매량 추이
+			sql = "select "
+					+ "	substring_index(  A.orderdate , ' ' , 1 ) as 날짜, "
+					+ "	sum( B.samount ) as 총판매수량 "
+					+ "from porder A , porderdetail B , stock C "
+					+ "where A.orderno = B.orderno and B.sno = C.sno and C.pno =  ( select pno from stock where sno = "+value+" ) "
+					+ "group by 날짜 order by 날짜 desc";
+		}
 		try {
-			ps = conn.prepareStatement(sql);
+			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
-			JSONArray ja = new JSONArray();
 			while( rs.next() ) {
 				JSONObject jo = new JSONObject();
-				jo.put("date", rs.getString( 1 ) );
-				jo.put("value", rs.getString(2) );
-				ja.put(jo);
+				if( type == 1 || type == 3  ) {
+					jo.put("date", rs.getString( 1 ) );
+					jo.put("value", rs.getInt(2) );
+					ja.put( jo );
+				}else if( type == 2 ) {
+					jo.put("value", rs.getInt( 1 ) );
+					jo.put("category", rs.getString(2) );
+					ja.put(jo);
+				}
 			}
 			return ja;
 		}catch (Exception e) { System.out.println( e );} return null;
+	}
+	
+	// 1. 오늘 주문상세 호출 
+	public ArrayList<Ordertail> getordertail(){
+		
+		String sql = "select "
+				+ "	A.* , substring_index( B.orderdate , ' ' , 1 ) as 날짜 "
+				+ "from  porderdetail A , porder B "
+				+ "where A.orderno = B.orderno "
+				+ "and substring_index( B.orderdate , ' ' , 1 ) = substring_index( now() , ' ' , 1 ) "
+				+ "and  A.orderdetailactive = 3";
+		try {
+			ps = con.prepareStatement(sql);
+			rs  = ps.executeQuery();
+			ArrayList<Ordertail> list = new ArrayList<Ordertail>();
+			while( rs.next() ) {
+				Ordertail ordertail = new Ordertail();
+				ordertail.setOrderdetailno(  rs.getInt(1)  );
+				ordertail.setOrderdetailactive( rs.getInt(2) );
+				ordertail.setSamount(rs.getInt(3) );
+				ordertail.setTotalprice(rs.getInt(4));
+				ordertail.setOrderno(rs.getInt(5));
+				ordertail.setSno(rs.getInt(6));
+				
+				list.add(ordertail);
+			}
+			return list;
+		}catch (Exception e) {} return null;
+		
 	}
 }

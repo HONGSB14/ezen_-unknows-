@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.ProductDao;
 
-/**
- * Servlet implementation class categoryadd
- */
+
 @WebServlet("/admin/categoryadd")
 public class categoryadd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,16 +26,12 @@ public class categoryadd extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		request.setCharacterEncoding("UTF-8");
-		String cname=request.getParameter("cname");
-		boolean result=ProductDao.getProductDao().csave(cname);
-		if(result) {
-			response.getWriter().print(1);	
-		}else {
-			response.getWriter().print(2);
-		}
-		
+		String cname = request.getParameter("cname");
+		boolean reuslt 
+		= ProductDao.getProductDao().csave( cname );
+		if( reuslt ) { response.getWriter().print(1);}
+		else { response.getWriter().print(2); }
 	}
 
 	/**

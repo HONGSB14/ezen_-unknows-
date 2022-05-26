@@ -1,7 +1,7 @@
 package dto;
 
 public class Order {
-
+	
 	private int  orderno;
 	private String orderdate;
 	private String ordername;
@@ -121,4 +121,5 @@ public class Order {
 				+ orderactive + ", orderrequest=" + orderrequest + ", orderdeliverno=" + orderdeliverno + ", mno=" + mno
 				+ "]";
 	}
+	
 }

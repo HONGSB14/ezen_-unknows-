@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MemberDao;
 
 /**
- * Servlet implementation class passwordcheck
+ * Servlet implementation class idcheck
  */
-@WebServlet("/passwordcheck")
-public class passwordcheck extends HttpServlet {
+@WebServlet("/idcheck")
+public class idcheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public passwordcheck() {
+    public idcheck() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,30 +28,22 @@ public class passwordcheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		request.setCharacterEncoding("UTF-8"); 	// 요청시 사용되는 인코딩타입 [ 한글 ] 
+		String mid = request.getParameter("mid"); // 데이터 요청 
+		// 1. dao를 통해 동일한 아이디가 있는지 체크 
+		boolean result 
+			=  MemberDao.getmemberDao().idcheck(mid);
+		if( result ) { // 2. 만약에 동일한 아이디가 있으면 1 없으면 2 
+			response.getWriter().print( 1 );
+		}else {
+			response.getWriter().print( 2 );
+		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-	
-		String mid = request.getParameter("mid");
-		String mpassword=request.getParameter("mpassword");
-		
-		boolean result=MemberDao.getMemberDao().passwordcheck(mid, mpassword);
-		
-		//4.결과
-		if(result) {
-				//5.통신된 페이지로 데이터를 응답하기
-			response.getWriter().print(1);
-		
-		}else {
-			response.getWriter().print(2);
-		
-		}
+		doGet(request, response);
 	}
 
 }
+

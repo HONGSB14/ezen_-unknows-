@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<p>오류났어~ 고쳐~ </p>
+
+	<%@include file = "../header.jsp" %>
+	<div class="container">
+		<h3> 오류 관리자에게 문의 </h3>
+	</div>
+	<%@include file = "../footer.jsp" %>
+
+
 </body>
 </html>

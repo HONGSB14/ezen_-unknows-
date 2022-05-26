@@ -27,10 +27,8 @@ public class logout extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.setAttribute("login", null);
-		
 		response.sendRedirect("/jspweb/main.jsp");
 	}
 

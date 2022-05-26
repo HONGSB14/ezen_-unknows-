@@ -1,6 +1,4 @@
 
-
-
 $(function(){
     $('#uploadBtn').on('click', function(){
         uploadFile();
@@ -8,7 +6,7 @@ $(function(){
 });
  
 function uploadFile(){
-    var form = $('#uploadForm')[0];
+    var form = $('#uploadForm');
     var formData = new FormData(form);
     $.ajax({
         url : 'filesend',

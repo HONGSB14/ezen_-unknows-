@@ -64,7 +64,7 @@ $(function(){
 		dataType:"TEXT",
 		success:function(data){
 			if(data){
-				
+				console.log(data);
 				$(data).find('itemList').each(function(){
 					
 					//데이터에서 좌표 불러오기 

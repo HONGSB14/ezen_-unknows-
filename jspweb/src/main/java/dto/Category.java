@@ -1,14 +1,12 @@
 package dto;
 
 public class Category {
-
-	private int cno;
-	private String cname;
 	
-	public Category() {
-		// TODO Auto-generated constructor stub
-	}
-
+	private int cno ; 
+	private String cname ; 
+	
+	public Category() {}
+	
 	public Category(int cno, String cname) {
 		super();
 		this.cno = cno;
@@ -29,6 +27,11 @@ public class Category {
 
 	public void setCname(String cname) {
 		this.cname = cname;
+	}
+
+	@Override
+	public String toString() {
+		return "Category [cno=" + cno + ", cname=" + cname + "]";
 	}
 	
 	

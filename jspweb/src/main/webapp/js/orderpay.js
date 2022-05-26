@@ -1,3 +1,4 @@
+
 let jsonarray; // JSON 형식의 변수를 선언 	= ajax 이용한 회원정보를 가져와서 저장되는 변수 
 
 let sumprice = 0; // 상품 총가격 변수 선언 	= jsonarray 에 있는 제품들의 총가격을 합산 
@@ -214,4 +215,5 @@ function pointbtn(){
 	}
 	cartview(); // 새로고침
 }
+
 

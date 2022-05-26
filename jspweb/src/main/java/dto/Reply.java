@@ -3,7 +3,6 @@ package dto;
 import dao.MemberDao;
 
 public class Reply {
-	
 	private int rno;
 	private String  rcontent;
 	private String  rdate ;
@@ -11,7 +10,7 @@ public class Reply {
     private int  bno;
     private int  mno;
     private String mid;
-	
+    
     public Reply() {}
 
 	public Reply(int rno, String rcontent, String rdate, int rindex, int bno, int mno, String mid) {
@@ -23,7 +22,7 @@ public class Reply {
 		this.bno = bno;
 		this.mno = mno;
 		// 회원번호를 이용한 회원 아이디 찾기
-		this.mid = MemberDao.getMemberDao().getid(mno);
+		this.mid = MemberDao.getmemberDao().getmid(mno);
 	}
 
 	public int getRno() {
@@ -87,6 +86,6 @@ public class Reply {
 		return "Reply [rno=" + rno + ", rcontent=" + rcontent + ", rdate=" + rdate + ", rindex=" + rindex + ", bno="
 				+ bno + ", mno=" + mno + ", mid=" + mid + "]";
 	}
-	
+    
 	
 }

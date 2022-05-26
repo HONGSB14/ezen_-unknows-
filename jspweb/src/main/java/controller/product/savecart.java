@@ -63,7 +63,7 @@ public class savecart extends HttpServlet {
 				System.out.println( jsonObject.get("point") );  // 테스트 확인 
 				// 5. json -> Dto 
 				String mid = (String)request.getSession().getAttribute("login");
-				int mno = MemberDao.getMemberDao().getmno(mid);
+				int mno = MemberDao.getmemberDao().getmno(mid);
 				// json객체명.get( 키 ) -> 반환타입 Object -> String -> int 
 				int amount = Integer.parseInt( jsonObject.get("amount").toString() );
 				int totalprice = Integer.parseInt( jsonObject.get("totalprice").toString() );

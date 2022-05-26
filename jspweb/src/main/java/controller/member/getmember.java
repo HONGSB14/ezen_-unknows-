@@ -32,7 +32,7 @@ public class getmember extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String mid = (String)request.getSession().getAttribute("login");
-		Member member =	MemberDao.getMemberDao().getmember( mid );
+		Member member =	MemberDao.getmemberDao().getmember( mid );
 		
 		// dto -> json 변환
 		try {

@@ -1,4 +1,4 @@
-package controller;
+package controller.member;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -28,14 +28,14 @@ public class emailcheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
 		String email = request.getParameter("email");
-		boolean  result = MemberDao.getMemberDao().emailcheck(email);
-		System.out.println("통신");
-		if(result) {
-			response.getWriter().print(2);
-		}else {
-			response.getWriter().print(1);
-		}
+		
+		boolean result 
+			= MemberDao.getmemberDao().emailcheck(email);
+		if( result ) { response.getWriter().print(1); }
+		else { response.getWriter().print(2); }
 	}
 
 	/**

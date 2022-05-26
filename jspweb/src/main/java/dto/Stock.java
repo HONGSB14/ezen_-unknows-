@@ -1,7 +1,7 @@
 package dto;
 
 public class Stock {
-
+	
 	private int sno;
 	private String scolor;
 	private String ssize;
@@ -10,9 +10,7 @@ public class Stock {
 	private String updatedate;
 	private int pno;
 	
-	public Stock() {
-		// TODO Auto-generated constructor stub
-	}
+	public Stock() {}
 
 	public Stock(int sno, String scolor, String ssize, int samount, String firstdate, String updatedate, int pno) {
 		super();
@@ -80,6 +78,13 @@ public class Stock {
 	public void setPno(int pno) {
 		this.pno = pno;
 	}
+
+	@Override
+	public String toString() {
+		return "Stock [sno=" + sno + ", scolor=" + scolor + ", ssize=" + ssize + ", samount=" + samount + ", firstdate="
+				+ firstdate + ", updatedate=" + updatedate + ", pno=" + pno + "]";
+	}
 	
 	
+
 }

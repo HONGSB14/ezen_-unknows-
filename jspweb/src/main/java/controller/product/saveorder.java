@@ -4,10 +4,6 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,7 +35,7 @@ public class saveorder extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String mid =  (String)request.getSession().getAttribute("login");
-		int mno = MemberDao.getMemberDao().getmno(mid);
+		int mno = MemberDao.getmemberDao().getmno(mid);
 		
 		String json = request.getParameter("orderjson"); // 변수 요청 
 		try {

@@ -54,7 +54,7 @@ public class login extends HttpServlet {
 		String mpassword = request.getParameter("mpassword");
 		// 2. 객체화 ( 데이터가 적기 때문에 생략 )
 		// 3. DB처리
-		int result =  MemberDao.getMemberDao().login( mid , mpassword );
+		int result =  MemberDao.getmemberDao().login( mid , mpassword );
 		// 4. DB결과
 		if( result == 1   ) { // 로그인 성공 
 			// 로그인 성공시 세션 부여  [ 세션 : 서버에 메모리 할당=>모든 페이지에서 동일한 메모리 사용 가능 ] 
@@ -76,4 +76,3 @@ public class login extends HttpServlet {
 	}
 
 }
-

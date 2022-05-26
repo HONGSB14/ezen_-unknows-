@@ -1,63 +1,56 @@
 package dto;
 
-import java.text.DateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 
+import dao.BoardDao;
 import dao.MemberDao;
 
 public class Board {
 	
-	private int bno;			//게시판 번호 (PK)
-	private String btitle;		//게시판 제목
-	private String bcontent;	//게시판 내용
-	private int mno;			//회원 번호 (FK)
-	private int bview;			//게시판 조회수
-	private String bdate;		//게시판 작성날짜
-	private String bfile;		//게시판 첨부 파일
-	private String mid;			//회원아이디   (화면 표시용)
+	private int bno;
+	private String btitle;
+	private String bcontent;
+	private int mno;
+	private String bfile;
+	private int bview;
+	private String bdate;
+	private String mid;	/* 화면 표시용 */
 	
-	public Board() {
-		// TODO Auto-generated constructor stub
-	}
+	public Board() {}
 
-	public Board(int bno, String btitle, String bcontent, int mno, int bview, String bdate, String bfile , String mid) {
+	public Board(int bno, String btitle, String bcontent, int mno, String bfile, int bview, String bdate, String mid) {
 		super();
 		this.bno = bno;
 		this.btitle = btitle;
 		this.bcontent = bcontent;
 		this.mno = mno;
-		this.bview = bview;
-		//작성일이 오늘이면 시간만 표시 // 아니면 날짜만 표시
-		if( bdate != null ) {
-		DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd");	//날짜 형식 변환설정
-		String today = dateformat.format(LocalDate.now());	//오늘 날짜를 문자열 반환
-		String boardday = bdate.split(" ")[0];//날짜만
-		String boardtime= bdate.split(" ")[1];//시간만
-		
-			if(today.equals(boardday)) { //만약 날짜가 같다면
-				this.bdate=boardtime;	//시간만 출력
-			}else{						//만약 날짜가 틀리다면
-				this.bdate=boardday;	//전체 출력
-			}
-		}else{ 
-			this.bdate=bdate; 
-		} 
-		
 		this.bfile = bfile;
-		// mno를 가지고 mid출력 (모든 곳에 아이디 출력)
-		this.mid= MemberDao.getMemberDao().getid(mno);
+		this.bview = bview;
+		
+		// 작성일이 오늘이면 시간만 표시 // 아니면 날짜만 표시 
+			// 현재 날짜 : LocalDate.now() 
+		if( bdate != null ) { 
+			
+			DateTimeFormatter dateformat = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // 날짜 형식 변환 설정 
+			String today = dateformat.format( LocalDate.now() ) ; // 오늘날짜를 문자열 변환
+			String boardday = bdate.split(" ")[0];	// 날짜만 
+			String boardtime = bdate.split(" ")[1]; // 시간만 
+								// db에 저장된 게시물 등록날짜의 날짜 시간 중에 split 분리후 앞에 있는 날짜만 가져오기 
+			// 현재날짜와 게시물등록날짜와 동일하면 
+			if( today.equals(boardday) ) { this.bdate = boardtime;}
+			// 동일하지 않으면 
+			else { this.bdate = boardday; }
+			
+		}else { this.bdate = bdate; }
+		
+		// mno를 가지고 mid출력
+		this.mid = MemberDao.getmemberDao().getmid(mno);
+		
 	}
 
-	
-	//객체 정보(필드정보 ) 출력 메소드
-	@Override
-	public String toString() {
-		return "Board [bno=" + bno + ", btitle=" + btitle + ", bcontent=" + bcontent + ", mno=" + mno + ", bview="
-				+ bview + ", bdate=" + bdate + ", bfile=" + bfile + ", mid=" + mid + "]";
-	}
-		
-	
+	// 필드 저장/호출 용 메소드 
 	public int getBno() {
 		return bno;
 	}
@@ -90,6 +83,14 @@ public class Board {
 		this.mno = mno;
 	}
 
+	public String getBfile() {
+		return bfile;
+	}
+
+	public void setBfile(String bfile) {
+		this.bfile = bfile;
+	}
+
 	public int getBview() {
 		return bview;
 	}
@@ -106,23 +107,20 @@ public class Board {
 		this.bdate = bdate;
 	}
 
-	public String getBfile() {
-		return bfile;
-	}
-
-	public void setBfile(String bfile) {
-		this.bfile = bfile;
-	}
-	
 	public String getMid() {
 		return mid;
 	}
 
-	public void setMid(String Mid) {
-		this.mid = Mid;
+	public void setMid(String mid) {
+		this.mid = mid;
 	}
 
+	// 객체 정보(필드정보) 출력 메소드 
+	@Override
+	public String toString() {
+		return "Board [bno=" + bno + ", btitle=" + btitle + ", bcontent=" + bcontent + ", mno=" + mno + ", bfile="
+				+ bfile + ", bview=" + bview + ", bdate=" + bdate + ", mid=" + mid + "]";
+	}
 	
-	
-	
+
 }

@@ -32,7 +32,7 @@
 		%>
 	
 	
-		<h2 class="boardview_title"><%=board.getBtitle() %></h2>
+		<h4 class="boardview_title"><%=board.getBtitle() %></h4>
 		
 		<table class="table"> <!-- table : 부스트랩 테이블 클래스 -->
 			<tr> 
@@ -60,7 +60,7 @@
  <!----------------------------------- 게시물 삭제/수정/목록 버튼 구역 ------------------------------------------------->		
 		<div class="row">
 		<%
-			if( board.getMno() == MemberDao.getMemberDao().getmno(mid) ){ 	// 아이디로 회원번호 가져와서 비교 
+			if( board.getMno() == MemberDao.getmemberDao().getmno(mid) ){ 	// 아이디로 회원번호 가져와서 비교 
 		%>
 			<div class="col-md-2">
 				<a href="delete?bno=<%=board.getBno()%>"> <button class="form-control">삭제</button> </a> <!--작성자와 로그인된 id가 동일하면 보이는 버튼  -->
@@ -101,10 +101,11 @@
 					<%=reply.getRcontent() %> <br> 
 				<% if( mid !=null && mid.equals( reply.getMid() ) ){ // 본인 작성한 댓글이면 %>
 					<button class="btn replybtn"> 수정 </button>
-					<button class="btn replybtn"> 삭제 </button>
+					<button type="button" class="btn replybtn" onclick="replydelete(<%=reply.getRno()%>)"> 삭제 </button>
 				<%} %>
 					<button class="btn replybtn" 
-					onclick="rereplyview(<%=reply.getRno()%> , <%=reply.getBno()%> , <%=mid%> )"> 
+						onclick="rereplyview(<%=reply.getRno()%> , <%=reply.getBno()%> , '<%=mid%>' )"> 
+																	<!-- js메소드에 인수 넣을때 문자열 ' '처리 //  숫자형 제외 -->
 					댓글 
 					</button>
 				</td>
@@ -124,12 +125,11 @@
 						<%=rereply.getMid() %> <br> 
 						<span class="replydate"> <%=rereply.getRdate() %> </span>
 					</td>
-					
 					<td width="80%">
 						<%=rereply.getRcontent() %> <br> 
 					<% if( mid != null && mid.equals( rereply.getMid() ) ){ %>
-						<a href="#"><button class="btn replybtn"> 수정 </button></a>
-						<a href="#"><button class="btn replybtn"> 삭제 </button></a>
+						<button class="btn replybtn"> 수정 </button>
+						<button class="btn replybtn" onclick="replydelete(<%=rereply.getRno()%>)"> 삭제 </button>
 					<%} %>
 					</td>
 				</tr>
@@ -145,4 +145,5 @@
 
 </body>
 </html>
+
 

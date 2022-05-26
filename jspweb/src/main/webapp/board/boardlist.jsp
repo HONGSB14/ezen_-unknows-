@@ -101,7 +101,7 @@
 				<th width="10%"> 조회수  </th> 
 			</tr>
 			<!-- for 문 -->
-			<% for( Board board : boardlist ){ %>
+			<% for(Board board : boardlist ){ %>
 				<tr>
 					<td> <%=board.getBno() %> </td>
 					<td  style="text-align: left;"> 
