@@ -10,7 +10,7 @@
 	font-size:  3px;
 }
 
-.contentbox{ height: 600px; background-color: #b2c7d9;}
+.contentbox{ height: 600px; background-color: #b2c7d9; overflow-y: scroll;}
 
 .secontent{text-align:  right};
 
