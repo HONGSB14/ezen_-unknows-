@@ -8,7 +8,7 @@ public class Tacometer {
 	private int mileageFee;			//주행요금
 	private String dname;			//운전자 이름
 	private int dnum;				//운전자 고유 번호 (id)	
-	private String workingStatus;	//운행 상태
+	private String startLocation;	//운행 시작위치
 	
 	
 	public Tacometer() {
@@ -16,10 +16,8 @@ public class Tacometer {
 	}
 
 
-	
-	
 	public Tacometer(int cnum, String carNum, int totalMileage, int mileageFee, String dname, int dnum,
-			String workingStatus) {
+			String startLocation) {
 		super();
 		this.cnum = cnum;
 		this.carNum = carNum;
@@ -27,19 +25,15 @@ public class Tacometer {
 		this.mileageFee = mileageFee;
 		this.dname = dname;
 		this.dnum = dnum;
-		this.workingStatus = workingStatus;
+		this.startLocation = startLocation;
 	}
-
-
 
 
 	@Override
 	public String toString() {
 		return "Tacometer [cnum=" + cnum + ", carNum=" + carNum + ", totalMileage=" + totalMileage + ", mileageFee="
-				+ mileageFee + ", dname=" + dname + ", dnum=" + dnum + ", workingStatus=" + workingStatus + "]";
+				+ mileageFee + ", dname=" + dname + ", dnum=" + dnum + ", startLocation=" + startLocation + "]";
 	}
-
-
 
 
 	public int getCnum() {
@@ -47,13 +41,9 @@ public class Tacometer {
 	}
 
 
-
-
 	public void setCnum(int cnum) {
 		this.cnum = cnum;
 	}
-
-
 
 
 	public String getCarNum() {
@@ -61,13 +51,9 @@ public class Tacometer {
 	}
 
 
-
-
 	public void setCarNum(String carNum) {
 		this.carNum = carNum;
 	}
-
-
 
 
 	public int getTotalMileage() {
@@ -75,13 +61,9 @@ public class Tacometer {
 	}
 
 
-
-
 	public void setTotalMileage(int totalMileage) {
 		this.totalMileage = totalMileage;
 	}
-
-
 
 
 	public int getMileageFee() {
@@ -89,13 +71,9 @@ public class Tacometer {
 	}
 
 
-
-
 	public void setMileageFee(int mileageFee) {
 		this.mileageFee = mileageFee;
 	}
-
-
 
 
 	public String getDname() {
@@ -103,13 +81,9 @@ public class Tacometer {
 	}
 
 
-
-
 	public void setDname(String dname) {
 		this.dname = dname;
 	}
-
-
 
 
 	public int getDnum() {
@@ -117,29 +91,18 @@ public class Tacometer {
 	}
 
 
-
-
 	public void setDnum(int dnum) {
 		this.dnum = dnum;
 	}
 
 
-
-
-	public String getWorkingStatus() {
-		return workingStatus;
+	public String getStartLocation() {
+		return startLocation;
 	}
 
 
-
-
-	public void setWorkingStatus(String workingStatus) {
-		this.workingStatus = workingStatus;
+	public void setStartLocation(String startLocation) {
+		this.startLocation = startLocation;
 	}
-	
-	
-	
-	
-	
 	
 }

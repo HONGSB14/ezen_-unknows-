@@ -37,7 +37,7 @@ public class LocationData extends HttpServlet {
 		int cnum= Integer.parseInt(request.getParameter("cnum"));
 		String coordinate=tmY+","+tmX;
 		
-		Location location = new Location(cnum, coordinate, carNum);
+		Location location = new Location(cnum, coordinate, carNum, null);
 		
 		boolean result=LocationDao.getLocationDao().locationset(location);
 		

@@ -19,19 +19,16 @@ public class TacometerDao extends Dao {
 	}
 	
 	
-	public ArrayList<Tacometer> getTacoList(int cnum, String carnum , String workingstatus){
+	public ArrayList<Tacometer> getTacoList(int cnum){
 		ArrayList<Tacometer> tacolist = new ArrayList<Tacometer>();
 		
-		String sql= "SELECT * from taxisaledata.tacometer where cnum=? carnum=?";
+		String sql= "SELECT * from taxisaledata.tacometer where cnum=?";
 		
 		try {
 			
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, cnum);
-			ps.setString(2, carnum);
-			ps.setString(3, workingstatus);
 			rs=ps.executeQuery();
-			
 			while(rs.next()) {
 				Tacometer tacometer =  new  Tacometer(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getInt(6), rs.getString(7));
 				tacolist.add(tacometer);

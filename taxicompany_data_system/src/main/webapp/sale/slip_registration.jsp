@@ -46,7 +46,10 @@
 					<h3>일보 등록</h3>
 					</div>
 				</div>
-	
+				<!--타코미터 리스트 버튼 -->
+				<div class="offset-10 col-md-2 py-1">
+					<a href="/taxicompany_data_system/tacometer/tacometerlist.jsp"><button class="form-control">타코미터 기록보기</button></a>
+				</div>
 				<!-- 매출정보 기입 란 -->
 				<div class="col-md-12">
 					<form action="../slip/SlipRegistration" id="saleform" method="get">
