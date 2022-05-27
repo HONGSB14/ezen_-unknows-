@@ -30,7 +30,7 @@ public class TacometerDao extends Dao {
 			ps.setInt(1, cnum);
 			rs=ps.executeQuery();
 			while(rs.next()) {
-				Tacometer tacometer =  new  Tacometer(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getInt(6), rs.getString(7));
+				Tacometer tacometer =  new  Tacometer(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getInt(6), rs.getString(7),rs.getString(8));
 				tacolist.add(tacometer);
 			}
 			return tacolist;
