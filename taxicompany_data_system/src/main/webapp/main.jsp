@@ -18,7 +18,7 @@
 		<div class="offset-2 col-md-6 text-left py-5">
 			<p id="mainp">국내 최초 <br>택시 데이터 프로그램</p>
 			<br>
-			<p id="mainp2">나의 택시 데이터 경쟁력 <br>  <Strong>TDS</Strong> 와 함께　UP!!　UP!! </p>
+			<p id="mainp2">나의 택시 데이터 경쟁력 <br><Strong>TDS</Strong> 와 함께　UP!!　UP!! </p>
 		</div>
 		<div class="col-md-4 px-5">
 			<img  id="mainlogo" src="img/mainlogo.png">
