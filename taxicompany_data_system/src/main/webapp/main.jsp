@@ -16,15 +16,24 @@
 	<div class="container py-5">
 		<div class="row py-5">
 			<!-- 소개글 -->
-			<div class="col-md-6 text-center">
-				안녕하세요?
+			<div class="col-md-6">
+				<h2 class="py-2">1.<strong>Why? </strong></h2>
+				<h5>택시의 기본 매출을 담당 하는 유일한 국내 택시 데이터 사이트!!</h5>
+				<h2 class="py-2">2.<strong>What?</strong></h2>
+				<h5>택시의 매출등록 시스템 및 매출차트, 실시간 데이터, 매출출처의 데이터 까지 !! </h5>
+				<h2 class="py-2">3.<strong>When?</strong> </h2>
+				<h5>남들과는 다르게 <strong>"실시간"</strong> 으로 !!</h5>
+				<h2 class="py-2">4.<strong>How?</strong> </h2>
+				<h5>보다 <strong>"깔끔한"</strong> 인터페이스로  보다 더 알아보기 쉽게 !!</h5>
+				<h1 class="py-5">데이터로 회사의 경쟁력을 높이고 싶다면 ??</h1>
 			</div>
-			<!-- 이미지 (gif) -->
+			<!-- 이미지 (.gif) -->
 			<div class="col-md-6 text-center py-3">
 				<img class="img-fluid rounded float-end" alt="maindata" src="img/maindata.gif">
 			</div>
 		</div>
 	</div>
+	<!-- 광고 란 -->
 	<div class="col-md-12 py-5 px-5 row" style="background: #FFFFCC;"> 
 		
 		<div class="offset-2 col-md-6 text-left py-5">
