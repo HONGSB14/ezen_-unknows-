@@ -64,5 +64,24 @@ public class TacometerDao extends Dao {
 		
 	}
 	
+	//위치 정보 가져오기
+	public ArrayList<Tacometer> getlocation(int cnum){
+		ArrayList<Tacometer> locationList =new ArrayList<Tacometer>();
+		String sql="select startlocation,tdate from taxisaledata.tacometer where cnum=?";
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, cnum);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				Tacometer tacometer = new Tacometer(0, null, 0, 0, null, 0, rs.getString(1), rs.getString(2));
+				locationList.add(tacometer);
+			}
+			return locationList;
+		} catch (Exception e) {
+			System.out.println("위치정보 불러오기 실패 ~ !" +e);
+		}
+		return null;
+	}
+	
 }
 

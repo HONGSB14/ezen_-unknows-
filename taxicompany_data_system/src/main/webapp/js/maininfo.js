@@ -9,6 +9,7 @@ $(function(){
 				
 	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
 	var map = new kakao.maps.Map(mapContainer,mapOption); 
+	
 
 	
 	///////////////////////////////////////////마커생성//////////////////////////////////////////////////////////
@@ -29,31 +30,9 @@ $(function(){
 	});
 
 	marker.setMap(map);
-	
-	
-	////////////////////////////////////////////////////인포인터 생성////////////////////////////////////////////////////
-	
-//	var iwContent = document.getElementById("carnum"), // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-//	    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
-//	
-//	// 인포윈도우를 생성합니다
-//	var infowindow = new kakao.maps.InfoWindow({
-//	    content : iwContent,
-//	    removable : iwRemoveable
-//	});
-//	
-//	// 마커에 클릭이벤트를 등록합니다
-//	kakao.maps.event.addListener(marker, 'click', function() {
-//	      // 마커 위에 인포윈도우를 표시합니다
-//	      infowindow.open(map, marker);  
-//	      $("#driverinfo").html("@@@@@@@@@@@@@@@운전자 정보 데이터 가져오기@@@@@@@@@@@@@");
-//	      $("#driversaleinfo").html("@@@@@@@@@@@@@@운전자 하루 매출 데이터 가져오기@@@@@@@@@@@@");
-//	});
-	
 
 	///////////////////////////////////////////////////////////버스 위치 ////////////////////////////////////////////
-	
-	
+
 	let cnum=$("#cnum").val();
 	//버스 위치정보 데이터 받아오기 (10초 간격)
 	setInterval(function(){
@@ -100,8 +79,7 @@ $(function(){
 						position: new kakao.maps.LatLng(tmY,tmX),
 						image: new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 						map:map
-					});
-					
+					});  	
 				});
 			}else{
 				console.log("에러가 났어요~!");
@@ -109,10 +87,74 @@ $(function(){
 		}
 	});
 	},10000);
-
 	
 }); //실행문서코드 끝
 
+
+
+//지도통계 (1주)
+function onWeek(cnum){
+	
+	//지도생성
+	var mapContainer = document.getElementById('mapdata'), // 지도를 표시할 div 
+		 mapOption = { 
+			 center: new kakao.maps.LatLng(37.492590,126.83518), // 지도의 중심좌표
+			 level: 5 // 지도의 확대 레벨
+		};
+				
+	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+	var map = new kakao.maps.Map(mapContainer,mapOption);
+	
+	$.ajax({
+			
+		url:"DataInfo",
+		data:{"cnum":cnum},
+		success:function(data){
+			
+			if(data){
+			
+				
+			}else{
+				console.log(2);
+			}
+		}
+	}); 
+	
+	
+	
+}
+
+
+
+//지도통계 (1달)
+function onMonth(){
+	
+
+	var mapContainer = document.getElementById('mapdata'), 
+		 mapOption = { 
+			 center: new kakao.maps.LatLng(37.492590,126.83518), 
+			 level: 5 
+		};
+				
+	
+	var map = new kakao.maps.Map(mapContainer,mapOption); 
+}
+
+
+
+//지도통계 (1년)
+function onYear(){
+	
+	
+	var mapContainer = document.getElementById('mapdata'),
+		 mapOption = { 
+			 center: new kakao.maps.LatLng(37.492590,126.83518), 
+			 level: 5 
+		};
+				
+	
+	var map = new kakao.maps.Map(mapContainer,mapOption); 
+}
 
 
 

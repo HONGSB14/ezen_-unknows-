@@ -59,9 +59,7 @@
 			<div id="map" style="width:100%;height:350px;">
 				<!-- 로딩 스피너 -->
 				<div class="my-5 py-5">
-					<div class="spinner-border text-warning" role="status">
-						<span class="visually-hidden">차량</span>
-					</div>
+					<div class="spinner-border text-warning" role="status"></div>
 				</div>
 				
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77754e23f7d3787ff007ce519a9c1d86"> </script>
@@ -94,6 +92,26 @@
 				<!---------------------------------------------------------------- 현재 운행 리스트----------------------------------------------  -->
 				<div class="col-md-12 row">
 					<h1>운행 차량 데이터</h1>
+					<!-- 통계 지도  버튼-->
+					<div class="row py-5">
+						<div class="col-md-4">
+							<button onclick="onWeek('<%=cnum%>')" class="form-control">통계보기 (1주)</button>
+						</div>
+						<div class="col-md-4">
+							<button onclick="onMonth('<%=cnum%>')" class="form-control">통계보기 (1달)</button>
+						</div>
+						<div  class="col-md-4">
+							<button onclick="onYear('<%=cnum%>')" class="form-control">통계보기 (1년)</button>
+						</div>
+					</div>
+					<div id="mapdata" style="width:100%;height:500px;">
+						<!-- 로딩 스피너 -->
+						<div class="my-5 py-5">
+							<div class="spinner-border text-warning" role="status"></div>
+						</div>
+						<!--지도 생성-->
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77754e23f7d3787ff007ce519a9c1d86"></script>
+					</div>
 				</div>
 				
 						
