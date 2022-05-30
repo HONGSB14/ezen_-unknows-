@@ -68,7 +68,7 @@
 						<div class="carousel-item active">	
 							<img class="d-block w-100 img-fluid" src="img/mainimg1.jpg">
 						</div>	
-						<div class="carousel-item">
+						<div class="carousel-em">
 							<img class="d-block w-100 img-fluid" src="img/mainimg2.jpg">
 						</div>	
 						<div class="carousel-item">

@@ -113,7 +113,12 @@ function onWeek(cnum){
 			
 			if(data){
 				console.log(data);
-				
+				let i=0;
+				for(let i=0; i<data.length; i++){
+					let location=data[i]["location"];
+					console.log(location);
+				}
+			
 			}else{
 				console.log(2);
 			}

@@ -42,49 +42,17 @@ public class DataInfo extends HttpServlet {
 		
 		JSONObject jo = new JSONObject();
 		JSONArray array=new JSONArray();
-	
-		Date date2 = new Date();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		String today=sdf.format(date2);
-		int day=Integer.parseInt( today.split("-")[2]);
-		int month=Integer.parseInt( today.split("-")[1]);
-		int year=Integer.parseInt( today.split("-")[0]);
-		int sum= year+month;
-		
-		
-		
-		for(Tacometer tacometer : locationList) {
-			String current=tacometer.getTdate().split(" ")[0];
-			
-			int tDay=Integer.parseInt(current.split("-")[2]);
-			int tMonth=Integer.parseInt(current.split("-")[1]);
-			int tYear=Integer.parseInt(current.split("-")[0]);
-			int sum2=tYear+tMonth;
-			
-			if((day-tDay)<7 || sum==sum2) {
-				try {
-					jo.put("location",tacometer.getStartLocation());
-					jo.put("date",tacometer.getTdate());
-				} catch (JSONException e) {
-					System.out.println("json err~!");
-				}
-				array.put(jo);	
+		try {
+			for(Tacometer tacometer : locationList) {
+					jo.put("location", tacometer.getStartLocation());
+					jo.put("date", tacometer.getTdate());
+					array.put(jo);
 			}
+		} catch (JSONException e) {
+			System.out.println("json error");
 		}
+		System.out.println(array.toString());
 		
-		
-		
-		
-		
-		
-		
-		if(locationList != null) {
-			response.setContentType("application/json");
-			response.getWriter().print(array);		
-		}else {
-			
-		}
-	
 	
 	}
 
