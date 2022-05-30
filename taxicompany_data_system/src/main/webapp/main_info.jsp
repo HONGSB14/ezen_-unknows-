@@ -110,7 +110,8 @@
 							<div class="spinner-border text-warning" role="status"></div>
 						</div>
 						<!--지도 생성-->
-						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77754e23f7d3787ff007ce519a9c1d86"></script>
+						<!-- services와 clusterer, drawing 라이브러리 불러오기 -->
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77754e23f7d3787ff007ce519a9c1d86&libraries=services,clusterer,drawing"></script>
 					</div>
 				</div>
 				

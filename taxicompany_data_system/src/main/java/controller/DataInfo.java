@@ -4,12 +4,14 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import dao.TacometerDao;
 import dto.Tacometer;
 
@@ -35,11 +37,11 @@ public class DataInfo extends HttpServlet {
 	
 		int cnum=Integer.parseInt(request.getParameter("cnum"));
 		
+		//여기서 jsonarray 로 바로 못쓰나?
 		ArrayList<Tacometer> locationList=TacometerDao.gettacometerDao().getlocation(cnum);
 		
 		ArrayList<String> location = new ArrayList<String>();
 		ArrayList<String> date = new ArrayList<String>();
-		
 		Date date2 = new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		String today=sdf.format(date2);
@@ -56,16 +58,30 @@ public class DataInfo extends HttpServlet {
 			int tMonth=Integer.parseInt(current.split("-")[1]);
 			int tYear=Integer.parseInt(current.split("-")[0]);
 			int sum2=tYear+tMonth;
-			if((day-7)<tDay && sum==sum2) {
+			
+			if((day-tDay)<7 || sum==sum2) {
 				location.add(tacometer.getStartLocation());
 				date.add(tacometer.getTdate());
+				
 			}
 			
 		}
 		
+		JSONObject jo = new JSONObject();
+		JSONArray array=new JSONArray();
+		
+		try {
+			jo.put("location",location);
+			jo.put("date", date);
+			array.put(jo);
+			System.out.println(array.toString());
+		} catch (JSONException e) {
+			System.out.println("json err" +e);
+		}
+		
+		
 		if(locationList != null) {
-			response.getWriter().print(location);
-			response.getWriter().print(date);
+			response.getWriter().print(array);		
 		}else {
 			
 		}

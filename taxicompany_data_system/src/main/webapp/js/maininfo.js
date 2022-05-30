@@ -112,8 +112,7 @@ function onWeek(cnum){
 		success:function(data){
 			
 			if(data){
-			
-				
+				console.log(data);
 			}else{
 				console.log(2);
 			}
