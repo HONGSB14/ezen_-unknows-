@@ -94,7 +94,7 @@ $(function(){
 
 //지도통계 (1주)
 function onWeek(cnum){
-	
+	console.log(1);
 	//지도생성
 	var mapContainer = document.getElementById('mapdata'), // 지도를 표시할 div 
 		 mapOption = { 
@@ -107,7 +107,7 @@ function onWeek(cnum){
 	
 	$.ajax({
 			
-		url:"DataInfo",
+		url:"datainfo/WeekInfo",
 		data:{"cnum":cnum},
 		success:function(data){
 			
