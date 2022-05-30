@@ -40,8 +40,9 @@ public class DataInfo extends HttpServlet {
 		//여기서 jsonarray 로 바로 못쓰나?
 		ArrayList<Tacometer> locationList=TacometerDao.gettacometerDao().getlocation(cnum);
 		
-		ArrayList<String> location = new ArrayList<String>();
-		ArrayList<String> date = new ArrayList<String>();
+		JSONObject jo = new JSONObject();
+		JSONArray array=new JSONArray();
+	
 		Date date2 = new Date();
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		String today=sdf.format(date2);
@@ -49,6 +50,7 @@ public class DataInfo extends HttpServlet {
 		int month=Integer.parseInt( today.split("-")[1]);
 		int year=Integer.parseInt( today.split("-")[0]);
 		int sum= year+month;
+		
 		
 		
 		for(Tacometer tacometer : locationList) {
@@ -60,27 +62,24 @@ public class DataInfo extends HttpServlet {
 			int sum2=tYear+tMonth;
 			
 			if((day-tDay)<7 || sum==sum2) {
-				location.add(tacometer.getStartLocation());
-				date.add(tacometer.getTdate());
-				
+				try {
+					jo.put("location",tacometer.getStartLocation());
+					jo.put("date",tacometer.getTdate());
+				} catch (JSONException e) {
+					System.out.println("json err~!");
+				}
+				array.put(jo);	
 			}
-			
 		}
 		
-		JSONObject jo = new JSONObject();
-		JSONArray array=new JSONArray();
 		
-		try {
-			jo.put("location",location);
-			jo.put("date", date);
-			array.put(jo);
-			System.out.println(array.toString());
-		} catch (JSONException e) {
-			System.out.println("json err" +e);
-		}
+		
+		
+		
 		
 		
 		if(locationList != null) {
+			response.setContentType("application/json");
 			response.getWriter().print(array);		
 		}else {
 			
