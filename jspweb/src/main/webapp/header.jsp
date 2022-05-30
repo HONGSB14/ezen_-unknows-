@@ -70,7 +70,7 @@
 				<li class="nav-item"> <a href="#"> 상의 </a> </li>
 				<li class="nav-item"> <a href="#"> 바지 </a> </li>
 				<li class="nav-item"> <a href="#"> 슈즈 </a> </li>
-				<li class="nav-item"> <a href="#"> 악세사리 </a> </li>
+				<li class="nav-item"> <a href="/jspweb/board/안산시약국.jsp"> 안산시 약국 </a> </li>
 				<li class="nav-item"> <a href="/jspweb/board/chatting.jsp"> 채팅 </a> </li>
 				<li class="nav-item"> <a href="/jspweb/teamchatting.jsp"> 트레이닝 </a> </li>
 				<li class="nav-item"> <a href="/jspweb/teammarble.jsp" style="color: #FFBB00;"> 모델처러입자 </a> </li>
