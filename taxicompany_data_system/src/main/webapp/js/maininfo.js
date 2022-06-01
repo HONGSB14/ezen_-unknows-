@@ -94,39 +94,55 @@ $(function(){
 
 //지도통계 (1주)
 function onWeek(cnum){
-	console.log(1);
-	//지도생성
-	var mapContainer = document.getElementById('mapdata'), // 지도를 표시할 div 
-		 mapOption = { 
-			 center: new kakao.maps.LatLng(37.492590,126.83518), // 지도의 중심좌표
-			 level: 5 // 지도의 확대 레벨
-		};
+	
+	//지도 생성
+	var map = new kakao.maps.Map(document.getElementById('mapdata'), { // 지도를 표시할 div
+			 center : new kakao.maps.LatLng(37.49311801652184, 126.8372818518843), // 지도의 중심좌표 
+			 level : 10 // 지도의 확대 레벨 
+	});
+	setInterval(function(){
+    //json 형태의 데이터 가져오기
+		$.ajax({
 				
-	// 지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
-	var map = new kakao.maps.Map(mapContainer,mapOption);
-	
-	$.ajax({
-			
-		url:"datainfo/WeekInfo",
-		data:{"cnum":cnum},
-		success:function(data){
-			
-			if(data){
-				console.log(data);
-				let i=0;
-				for(let i=0; i<data.length; i++){
-					let location=data[i]["location"];
-					console.log(location);
+			url:"datainfo/WeekInfo",
+			data:{"cnum":cnum},
+			success:function(dataLocation){
+				
+				if(dataLocation){
+					
+					// 마커 클러스터러 생성 
+					var clusterer = new kakao.maps.MarkerClusterer({
+							 map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+							 averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+							 minLevel: 4 // 클러스터 할 최소 지도 레벨 
+					});
+					//저장용 배열 생성
+					let y=[];
+					let x=[];
+					let markers=[];
+					//데이터 생성
+					
+					for(let i=0; i<dataLocation.length; i++){
+							
+						y[i]=dataLocation[i]["locationY"];
+						x[i]=dataLocation[i]["locationX"];
+						//마커 생성
+						 var marker =new kakao.maps.Marker({  
+						  position : new kakao.maps.LatLng(y[i], x[i])
+						  
+						 });
+						markers.push(marker);
+					};
+					  
+				      // 클러스터러에 마커들을 추가합니다
+				      clusterer.addMarkers(markers);
+				      
+				}else{
+					console.log("error: null");
 				}
-			
-			}else{
-				console.log(2);
 			}
-		}
-	}); 
-	
-	
-	
+		});	
+	},5000);
 }
 
 
@@ -135,14 +151,54 @@ function onWeek(cnum){
 function onMonth(){
 	
 
-	var mapContainer = document.getElementById('mapdata'), 
-		 mapOption = { 
-			 center: new kakao.maps.LatLng(37.492590,126.83518), 
-			 level: 5 
-		};
+	//지도 생성
+	var map = new kakao.maps.Map(document.getElementById('mapdata'), { // 지도를 표시할 div
+			 center : new kakao.maps.LatLng(37.49311801652184, 126.8372818518843), // 지도의 중심좌표 
+			 level : 10 // 지도의 확대 레벨 
+	});
+	setInterval(function(){
+    //json 형태의 데이터 가져오기
+		$.ajax({
 				
-	
-	var map = new kakao.maps.Map(mapContainer,mapOption); 
+			url:"datainfo/MonthInfo",
+			data:{"cnum":cnum},
+			success:function(dataLocation){
+				
+				if(dataLocation){
+					
+					// 마커 클러스터러 생성 
+					var clusterer = new kakao.maps.MarkerClusterer({
+							 map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+							 averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+							 minLevel: 4 // 클러스터 할 최소 지도 레벨 
+					});
+					//저장용 배열 생성
+					let y=[];
+					let x=[];
+					let markers=[];
+					//데이터 생성
+					
+					for(let i=0; i<dataLocation.length; i++){
+							
+						y[i]=dataLocation[i]["locationY"];
+						x[i]=dataLocation[i]["locationX"];
+						//마커 생성
+						 var marker =new kakao.maps.Marker({  
+						  position : new kakao.maps.LatLng(y[i], x[i])
+						  
+						 });
+						markers.push(marker);
+					};
+					  
+				      // 클러스터러에 마커들을 추가합니다
+				      clusterer.addMarkers(markers);
+				      
+				}else{
+					console.log("error: null");
+				}
+			}
+		});	
+	},5000);
 }
 
 
@@ -151,14 +207,54 @@ function onMonth(){
 function onYear(){
 	
 	
-	var mapContainer = document.getElementById('mapdata'),
-		 mapOption = { 
-			 center: new kakao.maps.LatLng(37.492590,126.83518), 
-			 level: 5 
-		};
+	//지도 생성
+	var map = new kakao.maps.Map(document.getElementById('mapdata'), { // 지도를 표시할 div
+			 center : new kakao.maps.LatLng(37.49311801652184, 126.8372818518843), // 지도의 중심좌표 
+			 level : 10 // 지도의 확대 레벨 
+	});
+	setInterval(function(){
+    //json 형태의 데이터 가져오기
+		$.ajax({
 				
-	
-	var map = new kakao.maps.Map(mapContainer,mapOption); 
+			url:"datainfo/YearInfo",
+			data:{"cnum":cnum},
+			success:function(dataLocation){
+				
+				if(dataLocation){
+					
+					// 마커 클러스터러 생성 
+					var clusterer = new kakao.maps.MarkerClusterer({
+							 map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
+							 averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
+							 minLevel: 4 // 클러스터 할 최소 지도 레벨 
+					});
+					//저장용 배열 생성
+					let y=[];
+					let x=[];
+					let markers=[];
+					//데이터 생성
+					
+					for(let i=0; i<dataLocation.length; i++){
+							
+						y[i]=dataLocation[i]["locationY"];
+						x[i]=dataLocation[i]["locationX"];
+						//마커 생성
+						 var marker =new kakao.maps.Marker({  
+						  position : new kakao.maps.LatLng(y[i], x[i])
+						  
+						 });
+						markers.push(marker);
+					};
+					  
+				      // 클러스터러에 마커들을 추가합니다
+				      clusterer.addMarkers(markers);
+				      
+				}else{
+					console.log("error: null");
+				}
+			}
+		});	
+	},5000);
 }
 
 

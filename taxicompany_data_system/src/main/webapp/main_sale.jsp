@@ -134,6 +134,7 @@
 	<div class="col-md-12 py-5">
 		<!-- 구글차트 선언 -->
 		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		
 		<!--weekchart (pieChart) -->
 		<div class="text-center"><h3>주 매출비교</h3></div>		
 		<div id="pie_chart" class="offset-2 col-md-4">
