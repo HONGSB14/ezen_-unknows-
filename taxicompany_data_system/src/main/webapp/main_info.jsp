@@ -64,61 +64,44 @@
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77754e23f7d3787ff007ce519a9c1d86&libraries=services,clusterer,drawing"></script>
 			</div>
 			
-			<!------------------------------------------------ 운전자 정보---------------------------------------------------------------->
+			<!------------------------------------------------ 중간---------------------------------------------------------------->
 				<div class="col-md-12 row">
 					
-					<!-- 운전자 상세정보 -->
-					<div class="col-md-4" >
-						Driver info
-						<!--  드라이버 정보 가져오기  -->
-						<div id="driverinfo">
-							
-						</div>
-					</div>
-					<div class="col-md-4 text-center py-5 row">
+					
+					<div class="offset-4 col-md-4 text-center py-5 row">
 						<img src="/taxicompany_data_system/img/taxidriving.gif">
 					</div>
-					<!-- 운전자 일 매출 차트 -->
-					<div class=" col-md-4">
-						Driver Day Sales graph
-						<!--  드라이버 매출정보 가져오기  -->
-						<div id="driversaleinfo">
-							
-						</div>
-					</div>
+				
 				</div>
 				
 				<!---------------------------------------------------------------- 현재 운행 리스트----------------------------------------------  -->
 				<div class="col-md-12 row">
 					<h1>탑승 위치 데이터</h1>
+					<div class=" py-5 my-5 text-center">
+							<h4>하단 버튼을 클릭하면 지도가 나타납니다.</h4>
+					</div>
+					<!--지도 생성-->
+					<div id="mapdata" style="width:100%;height:700px;">
+						<!-- 로딩 스피너 -->
+						<div class="my-5 py-5">
+							<div class="spinner-border text-warning" role="status"></div>
+						</div>	
+					</div>
 					
 					<!-- 통계 지도  버튼-->
 					<div class="row py-5">
 						<div class="col-md-4">
-							<button onclick="onWeek('<%=cnum%>')" class="form-control">통계보기 (1주)</button>
+							<button onclick="onWeek('<%=cnum%>')" class="form-control">데이터 보기 (1주)</button>
 						</div>
 						<div class="col-md-4">
-							<button onclick="onMonth('<%=cnum%>')" class="form-control">통계보기 (1달)</button>
+							<button onclick="onMonth('<%=cnum%>')" class="form-control">데이터 보기 (1달)</button>
 						</div>
 						<div  class="col-md-4">
-							<button onclick="onYear('<%=cnum%>')" class="form-control">통계보기 (1년)</button>
+							<button onclick="onYear('<%=cnum%>')" class="form-control">데이터 보기 (1년)</button>
 						</div>
 					</div>
-					
-					<!--지도 생성-->
-					<div id="mapdata" style="width:100%;height:500px;">
-						<!-- 로딩 스피너 -->
-						<div class="my-5 py-5">
-							<div class="spinner-border text-warning" role="status"></div>
-						</div>
-								
-					</div>
 				</div>
-				
-						
-				<div class="col-md-12">
-					운행 정보 데이터 그래프
-				</div>
+			
 		
 	  	<script src="js/maininfo.js" type="text/javascript"></script>
 		<%@include file ="footer.jsp" %>

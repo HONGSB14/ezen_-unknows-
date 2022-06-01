@@ -148,9 +148,8 @@ function onWeek(cnum){
 
 
 //지도통계 (1달)
-function onMonth(){
+function onMonth(cnum){
 	
-
 	//지도 생성
 	var map = new kakao.maps.Map(document.getElementById('mapdata'), { // 지도를 표시할 div
 			 center : new kakao.maps.LatLng(37.49311801652184, 126.8372818518843), // 지도의 중심좌표 
@@ -204,7 +203,7 @@ function onMonth(){
 
 
 //지도통계 (1년)
-function onYear(){
+function onYear(cnum){
 	
 	
 	//지도 생성

@@ -45,6 +45,7 @@ public class LocationData extends HttpServlet {
 			System.out.println("db저장성공");
 		}else {
 			System.out.println("db저장실패");
+			response.sendRedirect("/taxicompany_daya_system/errorpage.jsp");
 		}
 		
 		

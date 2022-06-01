@@ -1,4 +1,5 @@
 package controller.datainfo;
+
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,23 +10,25 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import dao.TacometerDao;
 import dto.Tacometer;
 
 /**
- * Servlet implementation class WeekInfo
+ * Servlet implementation class MonthInfo
  */
-@WebServlet("/datainfo/WeekInfo")
-public class WeekInfo extends HttpServlet {
+@WebServlet("/datainfo/MonthInfo")
+public class MonthInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public WeekInfo() {
+    public MonthInfo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,7 +38,7 @@ public class WeekInfo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int cnum=Integer.parseInt(request.getParameter("cnum"));
+int cnum=Integer.parseInt(request.getParameter("cnum"));
 		
 		ArrayList<Tacometer> locatinList= TacometerDao.gettacometerDao().getlocation(cnum);
 		//날짜 객체 생성
@@ -44,9 +47,7 @@ public class WeekInfo extends HttpServlet {
 		String date=sdf.format(newDate);
 		int year=Integer.parseInt(date.split("-")[0]);
 		int month=Integer.parseInt(date.split("-")[1]);
-		int day=Integer.parseInt(date.split("-")[2]);
-		 
-		
+
 		JSONArray ja= new JSONArray();
 		try {
 			for(Tacometer tacometer : locatinList) {
@@ -54,11 +55,11 @@ public class WeekInfo extends HttpServlet {
 				String today=tacometer.getTdate().split(" ")[0];
 				int tacoYear=Integer.parseInt( today.split("-")[0]);				
 				int tacoMonth=Integer.parseInt( today.split("-")[1]);				
-				int tacoDay=Integer.parseInt( today.split("-")[2]);				
+							
 				
-				int realDay=(day-tacoDay);
 				
-				if(realDay<7 && realDay>=0 && month==tacoMonth && year==tacoYear||-24>realDay) {
+				
+				if(month==tacoMonth &&year==tacoYear){
 					
 					if(tacometer.getStartLocation() !=null) {
 					
@@ -73,13 +74,12 @@ public class WeekInfo extends HttpServlet {
 						System.out.println("NULL POINER");
 						response.sendRedirect("/taxicompany_data_system/errorpage.jsp");
 					}
-				}else {
-					response.sendRedirect("/taxicompany_data_system/errorpage.jsp");
 				}
 			}
 		} catch (JSONException e) {
 			System.out.println("JSON ERROR");
 			response.sendRedirect("/taxicompany_data_system/errorpage.jsp");
+			
 		}
 		
 		if(locatinList != null) {
@@ -88,7 +88,6 @@ public class WeekInfo extends HttpServlet {
 			response.getWriter().print(ja);
 		}
 	}
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

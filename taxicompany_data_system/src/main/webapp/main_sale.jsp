@@ -151,7 +151,7 @@
 		 		int dayDay2=Integer.parseInt(weekDay);
 		 		int realDay=(today-dayDay2);
 		 		
-		 		if(realDay>=0 && realDay<7 && year.equals(weekYear) && month.equals(weekMonth)){
+		 		if(realDay>=0 && realDay<7 && year.equals(weekYear) && month.equals(weekMonth) ||realDay<-24 ){
 		 			saleList.add(slip.getSdaysale());
 		 			saleDate.add(slip.getSdate());
 		 			for(int i=0; i<saleDate.size(); i++){
