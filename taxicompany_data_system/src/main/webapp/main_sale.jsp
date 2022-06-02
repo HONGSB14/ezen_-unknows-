@@ -128,7 +128,7 @@
 			</div>
 	</div>
 	<%
-		if(priceCheck.equals("2")){
+		if(priceCheck.equals("2") || priceCheck.equals("3")){
 	%>
 	<!----------------------------------차트부분 --------------------------------- -->
 	<div class="col-md-12 py-5">

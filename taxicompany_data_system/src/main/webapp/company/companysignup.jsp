@@ -25,9 +25,9 @@
 						<select name="price" class="form-control text-center" id="selectprice">
 						
 							<option id="first">원하시는 가격을 선택해 주세요.</option>
-							<option value="1">120,000원</option>
-							<option value="2">150,000원</option>
-							
+							<option value="1">30,000원  (기본 표 제공)</option>
+							<option value="2">60,000원  (표+차트 제공)</option>
+							<option value="3">90,000원  (표+차트+탑승데이터 제공)</option>
 						</select>
 					</div>
 					<!-- 중복체크 안내표시 -->

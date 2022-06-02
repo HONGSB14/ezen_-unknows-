@@ -72,14 +72,11 @@ int cnum=Integer.parseInt(request.getParameter("cnum"));
 						ja.put(jo);
 					}else {
 						System.out.println("NULL POINER");
-						response.sendRedirect("/taxicompany_data_system/errorpage.jsp");
 					}
 				}
 			}
 		} catch (JSONException e) {
 			System.out.println("JSON ERROR");
-			response.sendRedirect("/taxicompany_data_system/errorpage.jsp");
-			
 		}
 		
 		if(locatinList != null) {

@@ -1,3 +1,4 @@
+<%@page import="dao.SaleDao"%>
 <%@page import="dao.TacometerDao"%>
 <%@page import="dto.Tacometer"%>
 <%@page import="dto.Car"%>
@@ -25,8 +26,10 @@
 		<%
 			session.getAttribute("cnum");
 			ArrayList<Driver> driverlist=DriverDao.getDriverDao().driverlist(cnum);
-			
 			ArrayList<Car> carlisList = CarDao.getcarDao().carlist(cnum);
+	
+			//가격에 따른 서비스 제공 차이 값
+			String priceCheck=SaleDao.getsaleDao().pricecheck(cnum);
 			
 			
 		%>
@@ -73,19 +76,18 @@
 					</div>
 				
 				</div>
-				
+				<%
+					if(priceCheck.equals("3")){
+				%>
 				<!---------------------------------------------------------------- 현재 운행 리스트----------------------------------------------  -->
 				<div class="col-md-12 row">
 					<h1>탑승 위치 데이터</h1>
-					<div class=" py-5 my-5 text-center">
-							<h4>하단 버튼을 클릭하면 지도가 나타납니다.</h4>
-					</div>
+					
 					<!--지도 생성-->
 					<div id="mapdata" style="width:100%;height:700px;">
-						<!-- 로딩 스피너 -->
-						<div class="my-5 py-5">
-							<div class="spinner-border text-warning" role="status"></div>
-						</div>	
+						<div class=" py-5 my-5 text-center" id="info">
+							<h4>하단 버튼을 클릭하면 지도가 나타납니다.</h4>
+						</div>
 					</div>
 					
 					<!-- 통계 지도  버튼-->
@@ -102,6 +104,9 @@
 					</div>
 				</div>
 			
+			<% 		
+				 }
+			%>
 		
 	  	<script src="js/maininfo.js" type="text/javascript"></script>
 		<%@include file ="footer.jsp" %>
