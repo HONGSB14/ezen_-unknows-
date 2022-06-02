@@ -12,11 +12,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
-<style type="text/css">
-
-</style>
-
 </head>
 <body>
 		
@@ -27,15 +22,15 @@
 			session.getAttribute("cnum");
 			ArrayList<Driver> driverlist=DriverDao.getDriverDao().driverlist(cnum);
 			ArrayList<Car> carlisList = CarDao.getcarDao().carlist(cnum);
-	
-			//가격에 따른 서비스 제공 차이 값
 			String priceCheck=SaleDao.getsaleDao().pricecheck(cnum);
 			
-			
 		%>
+	
+
 		<!--회사번호 -->
 		<input type="hidden" value="<%=cnum%>" id="cnum">
-	 
+	 	
+	
 	<div class="container text-center">
 	
 
@@ -56,8 +51,9 @@
 						</div>
 					</div>
 				</div>
-	
-		
+			<!-- 안내 문구 -->
+			
+			
 			<!-- 지도 -->
 			<div id="map" style="width:100%;height:350px;">
 				<!-- 로딩 스피너 -->
@@ -66,7 +62,7 @@
 				</div>
 				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=77754e23f7d3787ff007ce519a9c1d86&libraries=services,clusterer,drawing"></script>
 			</div>
-			
+			<span id="mapinfo">	</span>
 			<!------------------------------------------------ 중간---------------------------------------------------------------->
 				<div class="col-md-12 row">
 					

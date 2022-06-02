@@ -2,13 +2,11 @@
     pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html>
-<head></head>
+<head>
+<meta charset="UTF-8">
+</head>
 <body>
-	
-	
-	
-		
-	
+
 	<%@include file="header.jsp" %>
 	<%
 		session.getAttribute("login");
