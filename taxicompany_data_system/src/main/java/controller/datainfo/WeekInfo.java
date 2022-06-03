@@ -58,7 +58,7 @@ public class WeekInfo extends HttpServlet {
 				
 				int realDay=(day-tacoDay);
 				
-				if(realDay<7 && realDay>=0 && month==tacoMonth && year==tacoYear||-24>realDay) {
+				if(realDay<7 && realDay>=0 && month==tacoMonth && year==tacoYear||-24>=realDay) {
 					
 					if(tacometer.getStartLocation() !=null) {
 					

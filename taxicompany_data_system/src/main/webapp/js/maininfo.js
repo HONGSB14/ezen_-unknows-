@@ -72,8 +72,9 @@ $(function(){
 					let tmX= $(this).find("tmX").text();
 					let tmY= $(this).find("tmY").text();
 					let plainNo=$(this).find("plainNo").text();
-					//차량 유효성 검사
+					//차량번호 데이터로 for문
 					for(let i=0; i<carNum.length; i++){
+						//차량번호 유효성 검사
 						if(carNum[i]==plainNo){
 		
 								//좌표 값 DB에 저장

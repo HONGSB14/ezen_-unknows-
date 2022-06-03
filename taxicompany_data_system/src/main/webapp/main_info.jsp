@@ -43,12 +43,19 @@
 				<!-- -------------------------------------------------------기사 등록----------------------------------------------------->
 				<div class="col-md-12">
 					<div class="row">
-						<div class="offset-8 col-md-2 py-2 text-left">
-							<a href="/taxicompany_data_system/driver/driver_registration.jsp"><button class="form-control">기사등록</button></a>
+						<div class="offset-4 col-md-2 py-2 text-left">
+							<a href="/taxicompany_data_system/driver/driver_registration.jsp"><button class="form-control">기사 등록</button></a>
 						</div>
 						<div class="col-md-2 py-2">
-							<a href="/taxicompany_data_system/car/carResistration.jsp"><button class="form-control">차량등록</button></a>
+							<a href="/taxicompany_data_system/driver/driverlist.jsp"><button class="form-control">기사 목록보기</button></a>
 						</div>
+						<div class="col-md-2 py-2">
+							<a href="/taxicompany_data_system/car/carResistration.jsp"><button class="form-control">차량 등록</button></a>
+						</div>
+						<div class="col-md-2 py-2">
+							<a href="/taxicompany_data_system/car/carlist.jsp"><button class="form-control">차량 목록보기</button></a>
+						</div>
+						
 					</div>
 				</div>
 			<!-- 안내 문구 -->
