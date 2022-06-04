@@ -43,8 +43,12 @@
 	 	ArrayList<Integer> saleList = new ArrayList<>();
 		//날짜 가져오기용 리스트 생성
 		ArrayList<String> saleDate = new ArrayList<>();
+		
 	 %>
 	<div class="container text-center">
+		 	<div class="col-md-12 text-center py-5">
+		 		<h1>매출 현황</h1>
+		 	</div>
 		 	<!-- 일보 리스트 부분 -->
 		 	<div class="col-md-12">
 		 		<div class="text-center">
@@ -52,14 +56,42 @@
 		 		</div>
 		 	</div>
 			 
-			 <!-- 등록 버튼-->
+			 <!--버튼-->
 			 <div class="row">	
 				<div class="col-md-2">
 				<span>company. <%=cnum%></span>
 				</div>
-				<div class=" offset-8 col-md-2 py-2">
-				<a href="sale/slip_registration.jsp"><button class="form-control">매출 등록</button></a>	
+				<!-- 매출 등록 버튼 -->
+				<div class="offset-6 col-md-2 py-2">
+					<button type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#searchsale">매출 검색</button>	
 				</div>
+				<!-- 매출검색 버튼 -->
+				<div class="col-md-2 py-2">
+					<a href="sale/slip_registration.jsp"><button class="form-control">매출 등록</button></a>
+				</div>
+				<!-- 모달 -->
+				<div class="modal fade" id="searchsale" tabindex="-1" aria-labelledby="searchsale" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="searchsaleModalLabel">매출검색</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+							</div>
+							<div class="modal-body">
+								<h3><%=year%>년 <%=month%>월</h3>
+								<table class="table">
+									<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>
+									<tr><td></td></tr>
+								</table>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="form-control" data-bs-dismiss="modal">Search</button>
+								<button type="button" class="form-control" data-bs-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				
 			</div>
 			
 			<!-- 테이블 표 -->
@@ -170,7 +202,7 @@
 		</div>
 		
 		<!-- monthchart (column) -->
-		<div class="text-center"><h3><%=month %>월 매출비교</h3></div>	
+		<div class="text-center"><h3><%=month %>월 일별 매출비교</h3></div>	
 		<div id="bar_chart" class="col-md-12" >
 				 <!-- 월 매출 (일별)값 JS로 넘기 -->	
 		 <% 
