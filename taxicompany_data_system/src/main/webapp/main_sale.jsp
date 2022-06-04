@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="javax.print.DocFlavor.INPUT_STREAM"%>
 <%@page import="dao.SaleDao"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
@@ -44,6 +45,9 @@
 		//날짜 가져오기용 리스트 생성
 		ArrayList<String> saleDate = new ArrayList<>();
 		
+		//달력 날짜 생성
+		int cYear=Integer.parseInt(year);		
+		
 	 %>
 	<div class="container text-center">
 		 	<div class="col-md-12 text-center py-5">
@@ -78,10 +82,51 @@
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
 							</div>
 							<div class="modal-body">
+								<!-- 달력 날짜 선택 란 -->
+								<div class="container">
+									<div class="col-md-12 text-center">
+										<h5>날짜선택</h5>
+										<div class="row">
+											<div class="col-md-2 py-2">
+												년도 :
+											</div>
+											<div class="col-md-4">
+												<select class="form-select">	
+													<%
+														for(int i=0; i<31; i++){
+													%>	
+														<option class="text-center"><%=cYear-i%></option>
+													<%
+														} 
+													%>
+												</select>
+											</div>
+											<div class="col-md-2 py-2">
+												월 :
+											</div>
+											<div class="col-md-4">
+												<select class="form-select">	
+													<%
+														for(int i=1; i<13; i++){
+													%>	
+														<option class="text-center"><%=i%></option>
+													<%
+														} 
+													%>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- 달력 출력 란  -->
 								<h3><%=year%>년 <%=month%>월</h3>
 								<table class="table">
 									<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>
-									<tr><td></td></tr>
+								</table>
+								<table class="table">
+									<tr>
+										<td></td>
+									</tr>
 								</table>
 							</div>
 							<div class="modal-footer">
