@@ -1,4 +1,7 @@
+
 $(function(){	//문서 시작
+	
+
 	 
 	 //구글 차트 시각화
      google.charts.load('current', {'packages':['corechart']});

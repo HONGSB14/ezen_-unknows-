@@ -60,7 +60,7 @@
 		<!-- 캐러셀 이미지 -->
 		<div class="col-md-12 py-5">
 			
-				<div id="mainslide" class="carousel slide container carousel-fade " data-bs-ride="carousel"data-bs-interval="3000">
+				<div id="mainslide" class="carousel slide container carousel-fade" data-bs-ride="carousel"data-bs-interval="3000">
 					<div class="carousel-inner">
 						<div class="carousel-item active">	
 							<img class="d-block w-100 img-fluid" src="img/mainimg1.jpg">

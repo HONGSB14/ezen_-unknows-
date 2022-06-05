@@ -46,7 +46,8 @@
 		ArrayList<String> saleDate = new ArrayList<>();
 		
 		//달력 날짜 생성
-		int cYear=Integer.parseInt(year);		
+		int cYear=Integer.parseInt(year);
+		
 		
 	 %>
 	<div class="container text-center">
@@ -86,40 +87,61 @@
 								<div class="container">
 									<div class="col-md-12 text-center">
 										<h5>날짜선택</h5>
+										<form action="Calender/CalenderMaker" method="get">
 										<div class="row">
 											<div class="col-md-2 py-2">
 												년도 :
 											</div>
-											<div class="col-md-4">
-												<select class="form-select">	
-													<%
-														for(int i=0; i<31; i++){
-													%>	
-														<option class="text-center"><%=cYear-i%></option>
-													<%
-														} 
-													%>
-												</select>
+											
+												<div class="col-md-4">
+													<select class="form-select" id="cYear" name="cYear">	
+														<%
+															for(int i=0; i<31; i++){
+														%>	
+															<option class="text-center" value="<%=cYear-i%>"><%=cYear-i%></option>
+														<%
+															} 
+														%>
+													</select>
+												</div>
+												<div class="col-md-2 py-2">
+													월 :
+												</div>
+												<div class="col-md-4">
+													<select class="form-select" id="cMonth" name="cMonth">	
+														<%
+															for(int i=1; i<13; i++){
+																if(i<10){
+														%>	
+															<option class="text-center" value="0<%=i%>"><%=i%></option>
+														<%
+																}else{
+														%>
+															<option class="text-center" value="<%=i%>"><%=i%></option>
+														<% 			
+																}
+															} 
+														%>
+													</select>
+												</div>
+												<div class="col-md-12">
+													<button class="form-control" type="submit">search</button>
+												</div>	
 											</div>
-											<div class="col-md-2 py-2">
-												월 :
-											</div>
-											<div class="col-md-4">
-												<select class="form-select">	
-													<%
-														for(int i=1; i<13; i++){
-													%>	
-														<option class="text-center"><%=i%></option>
-													<%
-														} 
-													%>
-												</select>
-											</div>
-										</div>
+										</form>
 									</div>
 								</div>
 								<!-- 달력 출력 란  -->
-								<h3><%=year%>년 <%=month%>월</h3>
+								<div class="col-md-12 py-3">
+									<div class="row g-0">
+										<div id="yearMonth">
+											<h3><%=year%>년　 <%=month%>월</h3>
+										</div>
+										<div class="offset-3 col-md-3" id="yearInfo"></div> 
+										<div class="col-md-2" id="monthInfo"></div>
+									</div>					
+								</div>
+								
 								<table class="table">
 									<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>
 								</table>
@@ -313,6 +335,6 @@
 		}
 	%>
 	<%@include file ="footer.jsp" %>
-	<script src="/taxicompany_data_system/js/chart.js" type="text/javascript"></script>
+	<script src="/taxicompany_data_system/js/mainsales.js" type="text/javascript"></script>
 </body>
 </html>
