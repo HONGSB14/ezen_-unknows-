@@ -78,6 +78,8 @@
 				<div class="modal fade" id="searchsale" tabindex="-1" aria-labelledby="searchsale" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
+						<form action="Calender/CalenderMaker" method="get">
+						<input type="hidden" value="<%=cnum%>" name="cnum">
 							<div class="modal-header">
 								<h5 class="modal-title" id="searchsaleModalLabel">매출검색</h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
@@ -87,13 +89,13 @@
 								<div class="container">
 									<div class="col-md-12 text-center">
 										<h5>날짜선택</h5>
-										<form action="Calender/CalenderMaker" method="get">
 										<div class="row">
-											<div class="col-md-2 py-2">
-												년도 :
+											<!-- 년도 선택 란 -->
+											<div class="col-md-1 py-2">
+												년:
 											</div>
 											
-												<div class="col-md-4">
+												<div class="col-md-3">
 													<select class="form-select" id="cYear" name="cYear">	
 														<%
 															for(int i=0; i<31; i++){
@@ -104,10 +106,11 @@
 														%>
 													</select>
 												</div>
-												<div class="col-md-2 py-2">
-													월 :
+												<!-- 월 선택 란 -->
+												<div class="col-md-1 py-2">
+													월:
 												</div>
-												<div class="col-md-4">
+												<div class="col-md-3">
 													<select class="form-select" id="cMonth" name="cMonth">	
 														<%
 															for(int i=1; i<13; i++){
@@ -124,37 +127,35 @@
 														%>
 													</select>
 												</div>
-												<div class="col-md-12">
-													<button class="form-control" type="submit">search</button>
-												</div>	
+												<div class="col-md-1">
+													일:
+												</div>
+												<div class="col-md-3">
+													<select class="form-select" id="cDay" name="cDay">	
+														<%
+															for(int i=1; i<32; i++){
+																if(i<10){
+														%>	
+															<option class="text-center" value="0<%=i%>"><%=i%></option>
+														<%
+																}else{
+														%>
+															<option class="text-center" value="<%=i%>"><%=i%></option>
+														<% 			
+																}
+															} 
+														%>
+													</select>
+												</div>
 											</div>
-										</form>
 									</div>
 								</div>
-								<!-- 달력 출력 란  -->
-								<div class="col-md-12 py-3">
-									<div class="row g-0">
-										<div id="yearMonth">
-											<h3><%=year%>년　 <%=month%>월</h3>
-										</div>
-										<div class="offset-3 col-md-3" id="yearInfo"></div> 
-										<div class="col-md-2" id="monthInfo"></div>
-									</div>					
-								</div>
-								
-								<table class="table">
-									<tr><th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>
-								</table>
-								<table class="table">
-									<tr>
-										<td></td>
-									</tr>
-								</table>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="form-control" data-bs-dismiss="modal">Search</button>
+								<button type="submit" class="form-control" data-bs-dismiss="modal">Search</button>
 								<button type="button" class="form-control" data-bs-dismiss="modal">Close</button>
 							</div>
+							</form>
 						</div>
 					</div>
 				</div>

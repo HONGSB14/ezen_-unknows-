@@ -1,6 +1,7 @@
 package controller.Calender;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import javax.servlet.ServletException;
@@ -8,6 +9,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.SaleDao;
+import dao.SlipDao;
+import dto.Slip;
 
 /**
  * Servlet implementation class Calender
@@ -29,19 +34,22 @@ public class CalenderMaker extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("통신");
 		String year=request.getParameter("cYear");
 		String month=request.getParameter("cMonth");
-		String yearMonth=year+"-"+month;	
-		System.out.println(yearMonth);
+		String day=request.getParameter("cDay");
+		String current=year+"-"+month+"-"+day;	
+		
+		response.getWriter().print(current);
+		response.sendRedirect("/taxicompany_data_system/sale/salesearch.jsp?current="+current);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	
+		
 	}
 
 }

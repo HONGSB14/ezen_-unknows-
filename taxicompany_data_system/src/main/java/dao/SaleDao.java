@@ -109,7 +109,44 @@ public class SaleDao extends Dao {
 			
 			return null;
 		}
+		//검색 
+		public ArrayList<Slip> searchList(int cnum,String current){
+			ArrayList<Slip> list =new ArrayList<Slip>();
+			String sql="SELECT carnum,sflux,sfee,scardfee,sdaysale,snote,sdate FROM taxisaledata.slip WHERE cnum="+cnum+" and date(sdate)='"+current+"'";
+			
+			try {
+				
+				ps=conn.prepareStatement(sql);
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					
+					Slip slip = new Slip(0, 0, rs.getString(1), rs.getInt(2), rs.getInt(3),rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7));
+					list.add(slip);
+				}
+				return list;
+			} catch (Exception e) {
+				System.out.println("검색 실패 !! "+e);
+			}
 		
-
+			return null;
+		
+		}
+		
+//		// 검색 총 합계
+//		public ArrayList<Slip> searchSumList(int cnum,String current){
+//			
+//			String sql="SELECT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y-%m-%d')" 
+//					+ "FROM taxisaledata.slip"
+//					+ "WHERE cnum=456745 and date_format(sdate,'%Y-%m-%d')=?"
+//					+ "GROUP BY date_format(sdate,'%Y-%m-%d')"
+//					+ "ORDER BY date_format(sdate,'%Y-%m-%d') ASC";
+//			try {
+//				
+//			} catch (Exception e) {
+//				System.out.println("총 합계 검색 실패 !! "+e);
+//			}
+//			
+//			return null;
+//		}
 	
 }
