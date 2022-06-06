@@ -1,3 +1,5 @@
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDateTime"%>
 <%@page import="dto.Slip"%>
 <%@page import="dao.SaleDao"%>
 <%@page import="java.util.ArrayList"%>
@@ -17,8 +19,16 @@
 <%	
 	String current=request.getParameter("current");
 	ArrayList<Slip> searchList = SaleDao.getsaleDao().searchList(cnum,current);
+	
+	//현재 시간 가져오기
+	LocalDateTime now = LocalDateTime.now();
+	String wedate=now.format(DateTimeFormatter.ISO_LOCAL_DATE);
+	String year=wedate.split("-")[0];	//년도
+	
+	//달력 날짜 생성
+	int cYear=Integer.parseInt(year);
 %>
-
+	
 	<div class="container">
 		<div class="container">
 		<!----------------------------------------------------- 매출등록 란 ------------------------------------------>
@@ -29,40 +39,145 @@
 					<div class="col-md-2">
 					<!-- 검색 날짜 표시-->
 					<h3><%=current%></h3>
+					<span>company. <%=cnum%></span>
 					</div>
 					<div class="text-center">
-					<h3>일보 검색 내역</h3>
+					<h3>매출 검색 내역</h3>
 					</div>
 				</div>
 				
 		</div>
 		<!------------------------------------------- 운송일보 표-------------------------------------------->
-		<div class="col-md-12 text-center py-5">
-				<h3 class="text-center">운송 일보</h3>
-			<table class="table table-center table-bordered table-hover">
-					<tr class="table-info"><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
-					<%
-							for(Slip slip :searchList){		
-					%>
-								<tr>
-									<td><%=slip.getCarnum()%></td>
-									<td><%=slip.getSflux()%></td>
-									<td><%=slip.getSfee() %></td>
-									<td><%=slip.getScardfee() %></td>
-									<td><%=slip.getSdaysale() %></td>
-									<td><%=slip.getSnote()%></td>
-									<td><%=slip.getSdate() %></td>
-								</tr>
-					<%	
-							}
-					%>
-					
-			</table>
+		<div class="col-md-12 text-center">
+			<!--버튼-->
+			 <div class="row">	
+				<!-- 매출 검색 버튼 -->
+				<div class="offset-6 col-md-2 py-2">
+					<button type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#searchsale">매출 검색</button>	
+				</div>
+				<!-- 매출 수정 버튼 -->
+				<div class="col-md-2 py-2">
+					<button class="form-control" onclick="saleUpdate(<%=cnum%>)">매출 수정</button>
+				</div>
+				
+				<!-- 매출 삭제 버튼 -->
+				<div class="col-md-2 py-2">
+					<button class="form-control" onclick="saleDelete(<%=cnum%>)">매출 삭제</button>
+				</div>
+				<!-- 모달 -->
+				<div class="modal fade" id="searchsale" tabindex="-1" aria-labelledby="searchsale" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+						<form action="../Calender/CalenderMaker" method="get">
+						<input type="hidden" value="<%=cnum%>" name="cnum">
+							<div class="modal-header">
+								<h5 class="modal-title" id="searchsaleModalLabel">매출검색</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+							</div>
+							<div class="modal-body">
+								<!-- 달력 날짜 선택 란 -->
+								<div class="container">
+									<div class="col-md-12 text-center">
+										<h5>날짜선택</h5>
+										<div class="row">
+											<!-- 년도 선택 란 -->
+											<div class="col-md-1 py-2">
+												년:
+											</div>
+											
+												<div class="col-md-3">
+													<select class="form-select" id="cYear" name="cYear">	
+														<%
+															for(int i=0; i<31; i++){
+														%>	
+															<option class="text-center" value="<%=cYear-i%>"><%=cYear-i%></option>
+														<%
+															} 
+														%>
+													</select>
+												</div>
+												<!-- 월 선택 란 -->
+												<div class="col-md-1 py-2">
+													월:
+												</div>
+												<div class="col-md-3">
+													<select class="form-select" id="cMonth" name="cMonth">	
+														<%
+															for(int i=1; i<13; i++){
+																if(i<10){
+														%>	
+															<option class="text-center" value="0<%=i%>"><%=i%></option>
+														<%
+																}else{
+														%>
+															<option class="text-center" value="<%=i%>"><%=i%></option>
+														<% 			
+																}
+															} 
+														%>
+													</select>
+												</div>
+												<div class="col-md-1">
+													일:
+												</div>
+												<div class="col-md-3">
+													<select class="form-select" id="cDay" name="cDay">	
+														<%
+															for(int i=1; i<32; i++){
+																if(i<10){
+														%>	
+															<option class="text-center" value="0<%=i%>"><%=i%></option>
+														<%
+																}else{
+														%>
+															<option class="text-center" value="<%=i%>"><%=i%></option>
+														<% 			
+																}
+															} 
+														%>
+													</select>
+												</div>
+											</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="form-control" data-bs-dismiss="modal">Search</button>
+								<button type="button" class="form-control" data-bs-dismiss="modal">Close</button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+			<!-- 검색내역 출력 란 -->
+			<div class="col-md-12">
+				<table class="table table-center table-bordered table-hover">
+						<tr class="table-info"><th></th><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
+						<%
+								for(Slip slip :searchList){		
+						%>
+									<tr>
+										<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getCarnum()%>" name="carnum" id="carnum"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getSflux()%>" name="flux" id="flux"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getSfee() %>" name="fee" id="fee"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getScardfee() %>" name="cardfee" id="cardfee"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getSdaysale() %>" name="daysale" id="daysale"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getSnote()%>" name="note" id="note"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getSdate()%>" name="date" id="date" disabled="disabled"></td>
+									</tr>
+						<%	
+								}
+						%>
+						
+				</table>
+			</div>
 		</div>
 	</div>
 	
 	<%@include file ="../footer.jsp" %>
 	<script src="../js/slip.js" type="text/javascript"></script>
-	</div>
 </body>
 </html>

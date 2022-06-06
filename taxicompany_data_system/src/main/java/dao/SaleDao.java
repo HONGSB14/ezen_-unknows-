@@ -109,7 +109,7 @@ public class SaleDao extends Dao {
 			
 			return null;
 		}
-		//검색 
+		//매출 검색  
 		public ArrayList<Slip> searchList(int cnum,String current){
 			ArrayList<Slip> list =new ArrayList<Slip>();
 			String sql="SELECT carnum,sflux,sfee,scardfee,sdaysale,snote,sdate FROM taxisaledata.slip WHERE cnum="+cnum+" and date(sdate)='"+current+"'";
@@ -132,21 +132,40 @@ public class SaleDao extends Dao {
 		
 		}
 		
-//		// 검색 총 합계
-//		public ArrayList<Slip> searchSumList(int cnum,String current){
-//			
-//			String sql="SELECT cnum,sum(sflux),sum(sfee),sum(scardfee),sum(sdaysale),date_format(sdate,'%Y-%m-%d')" 
-//					+ "FROM taxisaledata.slip"
-//					+ "WHERE cnum=456745 and date_format(sdate,'%Y-%m-%d')=?"
-//					+ "GROUP BY date_format(sdate,'%Y-%m-%d')"
-//					+ "ORDER BY date_format(sdate,'%Y-%m-%d') ASC";
-//			try {
-//				
-//			} catch (Exception e) {
-//				System.out.println("총 합계 검색 실패 !! "+e);
-//			}
-//			
-//			return null;
-//		}
-	
+		//매출 삭제
+		public boolean deleteSale(int cnum,String date) {
+			
+			String sql="Delete from taxisaledata.slip where cnum="+cnum+" and sdate='"+date+"'";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+				return true;
+			} catch (Exception e) {
+				System.out.println("매출 삭제 실패 "+e);
+			}
+			return false;
+		}
+		
+		//매출 업데이트
+		public boolean updateSale(Slip slip) {
+			
+			String sql="Update taxisaledata.slip set "
+					+ "cnum="+slip.getCnum()
+					+ " carnum="+slip.getCarnum()
+					+ " sflux="+slip.getSflux()
+					+ " sfee="+slip.getSfee()
+					+ " scardfee="+slip.getScardfee()
+					+ " sdaysale="+slip.getSdaysale()
+					+ " snote="+slip.getSnote()
+					+ " sdate='"+slip.getSdate()
+					+ " where cnum="+slip.getCnum();
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+				return true;
+			} catch (Exception e) {
+				System.out.println("매출 수정 실패 "+e);
+			}
+			return false;
+		}
 }

@@ -1,4 +1,5 @@
-let pass=[false,false,false,false]
+let pass=[false,false,false,false];
+
 $(function(){
 	
 
@@ -151,4 +152,55 @@ function salecheck(){
 	}else{
 		alert("등록 할 수 없는 형식입니다.");
 	}
+}
+
+function saleDelete(cnum){
+	alert("정말 삭제를 진행하시겠습니까?");
+	
+ 	let check=$('input:checkbox[name="salecheckbox"]').is(":checked") == true
+ 	let date=$("#date").val();
+ 	if(check==true){
+
+			$.ajax({
+				url:"../slip/SaleDelete",
+				data:{"date":date,"cnum":cnum},
+				success:function(data){
+					if(data==1){
+						alert("선택 하신 매출이 삭제 되었습니다.");
+						location.reload();
+					}else{
+						alert("삭제진행 오류가 발생하였습니다. 관리자에게 문의해주십시오.");
+						location.reload();
+					}
+				}
+			});
+		
+	}
+}
+
+function saleUpdate(cnum){
+	let date=$("#date").val();
+	let carnum=$("#carnum").val();
+	let flux=$("#flux").val();
+	let fee=$("#fee").val();
+	let cardfee=$("#cardfee").val();
+	let daysale=$("#daysale").val();
+	let note=$("#note").val();
+	
+	
+		$.ajax({
+				url:"../slip/SaleUpdate",
+				data:{"cnum":cnum,"date":date,"carnum":carnum,"fee":fee,"cardfee":cardfee,"note":note,"flux":flux,"daysale":daysale},
+				success:function(data){
+					if(data==1){
+						alert("매출수정이 완료 되었습니다.");
+						location.reload();
+					}else{
+						alert("수정진행 오류가 발생하였습니다. 관리자에게 문의해주십시오.");
+						location.reload();
+					}
+				}
+			});
+	
+	
 }

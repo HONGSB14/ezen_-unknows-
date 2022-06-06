@@ -46,9 +46,20 @@
 					<h3>일보 등록</h3>
 					</div>
 				</div>
-				<!--타코미터 리스트 버튼 -->
-				<div class="offset-10 col-md-2 py-1">
-					<a href="/taxicompany_data_system/tacometer/tacometerlist.jsp"><button class="form-control">타코미터 기록보기</button></a>
+				 <div class="row">	
+					<!--타코미터 리스트 버튼 -->
+					<div class="offset-6 col-md-2 py-2">
+						<a href="/taxicompany_data_system/tacometer/tacometerlist.jsp"><button class="form-control">타코미터 기록보기</button></a>
+					</div>
+					<!-- 매출 수정 버튼 -->
+					<div class="col-md-2 py-2">
+						<button class="form-control" onclick="saleUpdate(<%=cnum%>)">매출 수정</button>
+					</div>
+					
+					<!-- 매출 삭제 버튼 -->
+					<div class="col-md-2 py-2">
+						<button class="form-control" onclick="saleDelete(<%=cnum%>)">매출 삭제</button>
+					</div>
 				</div>
 				<!-- 매출정보 기입 란 -->
 				<div class="col-md-12">
@@ -98,7 +109,7 @@
 		<div class="col-md-12 text-center py-3">
 				<h3 class="text-center">운송 일보 (오전)</h3>
 			<table class="table table-center table-bordered table-hover">
-					<tr class="table-info"><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
+					<tr class="table-info"><th></th><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
 
 				<%
 				
@@ -112,6 +123,7 @@
 					 		if(hour<12){
 				%>
 							<tr>
+									<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox"></td>	<!-- 체크박스 -->
 									<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
 									<td><%=df.format(slip.getSflux()) %></td>			<!-- 유량 -->
 									<td><%=df.format(slip.getSfee()) %></td>			<!-- 실입금액 -->
@@ -133,7 +145,7 @@
 		<div class="col-md-12 text-center py-3">
 				<h3 class="text-center">운송 일보 (오후)</h3>
 			<table class="table table-center table-bordered">
-					<tr class="table-info"><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
+					<tr class="table-info"><th></th><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
 				<%
 					for(Slip slip : sliplist){ 
 
@@ -146,6 +158,7 @@
 					 		if(12<=hour){
 				%>
 								<tr>
+									<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox"></td>	<!-- 체크박스 -->
 									<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
 									<td><%=df.format(slip.getSflux()) %></td>			<!-- 유량 -->
 									<td><%=df.format(slip.getSfee()) %></td>			<!-- 실입금액 -->
