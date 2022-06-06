@@ -150,15 +150,15 @@ public class SaleDao extends Dao {
 		public boolean updateSale(Slip slip) {
 			
 			String sql="Update taxisaledata.slip set "
-					+ "cnum="+slip.getCnum()
-					+ " carnum="+slip.getCarnum()
-					+ " sflux="+slip.getSflux()
-					+ " sfee="+slip.getSfee()
-					+ " scardfee="+slip.getScardfee()
-					+ " sdaysale="+slip.getSdaysale()
-					+ " snote="+slip.getSnote()
-					+ " sdate='"+slip.getSdate()
-					+ " where cnum="+slip.getCnum();
+					+ "cnum="+slip.getCnum()+","
+					+ "carnum='"+slip.getCarnum()+"',"
+					+ "sflux="+slip.getSflux()+","
+					+ "sfee="+slip.getSfee()+","
+					+ "scardfee="+slip.getScardfee()+","
+					+ "sdaysale="+slip.getSdaysale()+","
+					+ "snote='"+slip.getSnote()+"',"
+					+ "sdate='"+slip.getSdate()+"'"
+					+ " where cnum="+slip.getCnum()+" and sdate='"+slip.getSdate()+"'";
 			try {
 				ps=conn.prepareStatement(sql);
 				ps.executeUpdate();

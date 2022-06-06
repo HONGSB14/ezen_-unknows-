@@ -160,13 +160,13 @@
 						%>
 									<tr>
 										<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox"></td>
-										<td><input class="form-control" type="text" value="<%=slip.getCarnum()%>" name="carnum" id="carnum"></td>
-										<td><input class="form-control" type="text" value="<%=slip.getSflux()%>" name="flux" id="flux"></td>
-										<td><input class="form-control" type="text" value="<%=slip.getSfee() %>" name="fee" id="fee"></td>
-										<td><input class="form-control" type="text" value="<%=slip.getScardfee() %>" name="cardfee" id="cardfee"></td>
-										<td><input class="form-control" type="text" value="<%=slip.getSdaysale() %>" name="daysale" id="daysale"></td>
-										<td><input class="form-control" type="text" value="<%=slip.getSnote()%>" name="note" id="note"></td>
-										<td><input class="form-control" type="text" value="<%=slip.getSdate()%>" name="date" id="date" disabled="disabled"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getCarnum()%>" name="ucarnum" id="ucarnum"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getSflux()%>" name="uflux" id="uflux"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getSfee() %>" name="ufee" id="ufee"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getScardfee() %>" name="ucardfee" id="ucardfee"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getSdaysale() %>" name="udaysale" id="udaysale"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getSnote()%>" name="unote" id="unote"></td>
+										<td><input class="form-control" type="text" value="<%=slip.getSdate()%>" name="udate" id="udate" disabled="disabled"></td>
 									</tr>
 						<%	
 								}

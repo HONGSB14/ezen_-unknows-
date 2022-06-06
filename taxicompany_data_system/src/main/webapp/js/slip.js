@@ -179,13 +179,13 @@ function saleDelete(cnum){
 }
 
 function saleUpdate(cnum){
-	let date=$("#date").val();
-	let carnum=$("#carnum").val();
-	let flux=$("#flux").val();
-	let fee=$("#fee").val();
-	let cardfee=$("#cardfee").val();
-	let daysale=$("#daysale").val();
-	let note=$("#note").val();
+	let date=$("#udate").val();
+	let carnum=$("#ucarnum").val();
+	let flux=$("#uflux").val();
+	let fee=$("#ufee").val();
+	let cardfee=$("#ucardfee").val();
+	let daysale=$("#udaysale").val();
+	let note=$("#unote").val();
 	
 	
 		$.ajax({
