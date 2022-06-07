@@ -25,6 +25,9 @@
 		Date date = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(date);
+		String year =today.split("-")[0];
+		//달력 날짜 생성
+		int cYear=Integer.parseInt(year);
 		//페이지 반환
 		String result=request.getParameter("result");
 		//테이블 뷰 리스트 생성 
@@ -48,9 +51,15 @@
 				</div>
 				 <div class="row">	
 					<!--타코미터 리스트 버튼 -->
-					<div class="offset-6 col-md-2 py-2">
+					<div class="offset-4 col-md-2 py-2">
 						<a href="/taxicompany_data_system/tacometer/tacometerlist.jsp"><button class="form-control">타코미터 기록보기</button></a>
 					</div>
+					
+					<!-- 매출 검색 버튼 -->
+					<div class="col-md-2 py-2">
+						<button type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#searchsale">등록 날짜 검색</button>	
+					</div>
+					
 					<!-- 매출 수정 버튼 -->
 					<div class="col-md-2 py-2">
 						<button class="form-control" onclick="saleUpdate(<%=cnum%>)">매출 수정</button>
@@ -59,6 +68,92 @@
 					<!-- 매출 삭제 버튼 -->
 					<div class="col-md-2 py-2">
 						<button class="form-control" onclick="saleDelete(<%=cnum%>)">매출 삭제</button>
+					</div>
+					
+					<!-- 모달 -->
+					<div class="modal fade" id="searchsale" tabindex="-1" aria-labelledby="searchsale" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+							<form action="../slip/SearchCurrent" method="get">
+							<input type="hidden" value="<%=cnum%>" name="cnum">
+								<div class="modal-header">
+									<h5 class="modal-title" id="searchsaleModalLabel">등록 날짜 검색</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="close"></button>
+								</div>
+								<div class="modal-body">
+									<!-- 달력 날짜 선택 란 -->
+									<div class="container">
+										<div class="col-md-12 text-center">
+											<h5>날짜선택</h5>
+											<div class="row">
+												<!-- 년도 선택 란 -->
+												<div class="col-md-1 py-2">
+													년:
+												</div>
+												
+													<div class="col-md-3">
+														<select class="form-select" id="cYear" name="cYear">	
+															<%
+																for(int i=0; i<31; i++){
+															%>	
+																<option class="text-center" value="<%=cYear-i%>"><%=cYear-i%></option>
+															<%
+																} 
+															%>
+														</select>
+													</div>
+													<!-- 월 선택 란 -->
+													<div class="col-md-1 py-2">
+														월:
+													</div>
+													<div class="col-md-3">
+														<select class="form-select" id="cMonth" name="cMonth">	
+															<%
+																for(int i=1; i<13; i++){
+																	if(i<10){
+															%>	
+																<option class="text-center" value="0<%=i%>"><%=i%></option>
+															<%
+																	}else{
+															%>
+																<option class="text-center" value="<%=i%>"><%=i%></option>
+															<% 			
+																	}
+																} 
+															%>
+														</select>
+													</div>
+													<div class="col-md-1">
+														일:
+													</div>
+													<div class="col-md-3">
+														<select class="form-select" id="cDay" name="cDay">	
+															<%
+																for(int i=1; i<32; i++){
+																	if(i<10){
+															%>	
+																<option class="text-center" value="0<%=i%>"><%=i%></option>
+															<%
+																	}else{
+															%>
+																<option class="text-center" value="<%=i%>"><%=i%></option>
+															<% 			
+																	}
+																} 
+															%>
+														</select>
+													</div>
+												</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="submit" class="form-control" data-bs-dismiss="modal">Search</button>
+									<button type="button" class="form-control" data-bs-dismiss="modal">Close</button>
+								</div>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
 				<!-- 매출정보 기입 란 -->

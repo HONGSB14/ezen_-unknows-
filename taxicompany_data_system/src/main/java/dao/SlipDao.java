@@ -55,5 +55,21 @@ public class SlipDao extends Dao{
 		}
 		return null;
 	}
+	
+	//전표 검색등록 메소드
+	public boolean searchSlip(Slip slip) {
+				
+		String sql ="INSERT INTO taxisaledata.slip(cnum,carnum,sflux,sfee,scardfee,sdaysale,snote,sdate) "
+					+ "values("+slip.getCnum()+",'"+slip.getCarnum()+"',"+slip.getSflux()+","+slip.getSfee()+","+slip.getScardfee()+","+slip.getSdaysale()+",'"+slip.getSnote()+"','"+slip.getSdate()+"')";
+			try {
+				ps=conn.prepareStatement(sql);
+				ps.executeUpdate();
+					
+				return true;
+			} catch (Exception e) {
+				System.out.println("addSlip err!!   "+e);
+			}
+				return false;
+		}
 
 }

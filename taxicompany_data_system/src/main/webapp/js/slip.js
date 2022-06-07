@@ -183,8 +183,10 @@ function commaDelete(){
 function saleDelete(cnum){
 	alert("정말 삭제를 진행하시겠습니까?");
 	
+	
  	let check=$('input:checkbox[name="salecheckbox"]').is(":checked") == true
- 	let date=$("#date").val();
+ 	let date=$("#date2").val();
+ 	
  	if(check==true){
 
 			$.ajax({
@@ -206,15 +208,13 @@ function saleDelete(cnum){
 //업데이트 버튼
 function saleUpdate(cnum){
 	
-	
-	
-	let date=$("#date").val();
-	let carnum=$("#carnum").val();
-	let flux=$("#flux").val();
-	let fee=$("#fee").val();
-	let cardfee=$("#cardfee").val();
-	let daysale=$("#daysale").val();
-	let note=$("#note").val();
+	let date=$("#date2").val();
+	let carnum=$("#carnum2").val();
+	let flux=$("#flux2").val();
+	let fee=$("#fee2").val();
+	let cardfee=$("#cardfee2").val();
+	let daysale=$("#daysale2").val();
+	let note=$("#note2").val();
 	
 	commaDelete();
 		
