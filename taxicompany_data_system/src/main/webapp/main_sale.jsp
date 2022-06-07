@@ -67,7 +67,7 @@
 				<span>company. <%=cnum%></span>
 				</div>
 				<!-- 매출 검색 버튼 -->
-				<div class="offset-2 col-md-2 py-2">
+				<div class="offset-6 col-md-2 py-2">
 					<button type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#searchsale">매출 검색</button>	
 				</div>
 				<!-- 매출등록 버튼 -->
@@ -75,14 +75,6 @@
 					<a href="sale/slip_registration.jsp"><button class="form-control">매출 등록</button></a>
 				</div>
 				
-				<div class="col-md-2 py-2">
-					<button class="form-control">매출 수정</button>
-				</div>
-				
-				<!-- 매출 삭제 버튼 -->
-				<div class="col-md-2 py-2">
-					<button class="form-control">매출 삭제</button>
-				</div>
 				<!-- 모달 -->
 				<div class="modal fade" id="searchsale" tabindex="-1" aria-labelledby="searchsale" aria-hidden="true">
 					<div class="modal-dialog">

@@ -1,3 +1,4 @@
+
 let pass=[false,false,false,false];
 
 $(function(){
@@ -115,6 +116,7 @@ $(function(){
 	
 });//문서종료
 
+//유효성 검사
 function salecheck(){
 
 	//유량 컴마제거
@@ -154,6 +156,30 @@ function salecheck(){
 	}
 }
 
+//컴마 제거 함수
+function commaDelete(){
+	//유량 컴마제거
+	let flux=$("#flux").val();
+	fluxcheck=flux.replace(/,/g, "");
+	$("#flux").val(fluxcheck);
+	
+	//실입요금 컴마제거
+	let fee=$("#fee").val();
+	 feecheck= fee.replace(/,/g, "");
+	$("#fee").val(feecheck);
+	
+	//카드요금 제거
+	let cardfee=$("#cardfee").val();
+	cardfeecheck=cardfee.replace(/,/g, "");
+	$("#cardfee").val(cardfeecheck);
+	
+	//총 매출 컴마제거
+	let daysale=$("#daysale").val();
+	daysalecheck=daysale.replace(/,/g, "");
+	$("#daysale").val(daysalecheck);
+}
+
+//삭제 버튼
 function saleDelete(cnum){
 	alert("정말 삭제를 진행하시겠습니까?");
 	
@@ -174,20 +200,24 @@ function saleDelete(cnum){
 					}
 				}
 			});
-		
 	}
 }
 
+//업데이트 버튼
 function saleUpdate(cnum){
-	let date=$("#udate").val();
-	let carnum=$("#ucarnum").val();
-	let flux=$("#uflux").val();
-	let fee=$("#ufee").val();
-	let cardfee=$("#ucardfee").val();
-	let daysale=$("#udaysale").val();
-	let note=$("#unote").val();
 	
 	
+	
+	let date=$("#date").val();
+	let carnum=$("#carnum").val();
+	let flux=$("#flux").val();
+	let fee=$("#fee").val();
+	let cardfee=$("#cardfee").val();
+	let daysale=$("#daysale").val();
+	let note=$("#note").val();
+	
+	commaDelete();
+		
 		$.ajax({
 				url:"../slip/SaleUpdate",
 				data:{"cnum":cnum,"date":date,"carnum":carnum,"fee":fee,"cardfee":cardfee,"note":note,"flux":flux,"daysale":daysale},
@@ -201,6 +231,4 @@ function saleUpdate(cnum){
 					}
 				}
 			});
-	
-	
 }
