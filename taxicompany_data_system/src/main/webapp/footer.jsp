@@ -6,9 +6,46 @@
 </head>
 <body>
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-	<div class="container text-center">
+	<div style="background-color: black;">
+		<div class="row">
+			<div class="col-md-6 py-5 px-5">
+				<h2 style="color: white;">
+					만든이 	: HONG SEOUNG BIN
+					<br>
+					<br>
+					개발환경	: Eclipse IDE
+					<br>
+					<br>
+					서버		: Apache Tomcat 9.0
+					<br>
+					<br>
+					개발목적	: 매출시스템의 빅 데이터
+					<br>
+					<br>
+				</h2>
+			</div>
+			
+			<div class="offset-2 col-md-4 py-5">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<h2 style="color: white;">
+				연락처 : 010-1234-1234
+				</h2>
+				<br>
+				<h4 style="color: white;">
+					궁금한점이 있으면 표기되어있는 전화번호로 연락해 주세요.
+				</h4>
+			</div>
+			
+		</div>
+			
 		
-		<p>푸터페이지</p>
 	</div>
 	
 </body>
