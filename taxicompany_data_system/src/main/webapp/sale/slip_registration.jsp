@@ -34,6 +34,7 @@
 		ArrayList<Slip> sliplist= SlipDao.getSlipDao().sliplist(cnum);
 		//천 자리 표현식
 		DecimalFormat df = new DecimalFormat("#,###");
+		
 	%>
 	
 	<div class="container">
@@ -166,12 +167,12 @@
 							<table class="table">
 								<tr class="table-info"><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th></tr>
 								<tr>  	
-									<td><input type="text" name="carnum" id="carnum" class="form-control"></td> 
-									<td><input type="text" name="flux" id="flux"  class="form-control" autofocus="autofocus"></td> 
-									<td><input type="text" name="fee" id="fee"  class="form-control"></td >
-									<td><input type="text" name="cardfee" id="cardfee"   class="form-control"></td> 
-									<td><input type="text" name="daysale" id="daysale"  class="form-control"></td> 
-									<td><input type="text" name="note" id="note"  class="form-control"></td> 
+									<td><input type="text" name="carnum" id="carnum" class="form-control"></td> 						<!-- 차량번호 -->
+									<td><input type="text" name="flux" id="flux"  class="form-control" autofocus="autofocus"></td> 		<!-- 유량 -->
+									<td><input type="text" name="fee" id="fee"  class="form-control"></td >								<!-- 실입요금 -->
+									<td><input type="text" name="cardfee" id="cardfee"   class="form-control"></td> 					<!-- 카드요금 -->
+									<td><input type="text" name="daysale" id="daysale"  class="form-control"></td> 						<!-- 총 매출 -->
+									<td><input type="text" name="note" id="note"  class="form-control"></td> 							<!-- 비고 -->
 								</tr>
 							</table>
 						</div>
@@ -218,7 +219,7 @@
 					 		if(hour<12){
 				%>
 							<tr>
-									<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox"></td>	<!-- 체크박스 -->
+									<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox" onclick="check('<%=slip.getSnum()%>')"></td>	<!-- 체크박스 -->
 									<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
 									<td><%=df.format(slip.getSflux()) %></td>			<!-- 유량 -->
 									<td><%=df.format(slip.getSfee()) %></td>			<!-- 실입금액 -->
@@ -253,7 +254,7 @@
 					 		if(12<=hour){
 				%>
 								<tr>
-									<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox"></td>	<!-- 체크박스 -->
+									<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox" onclick="check('<%=slip.getSnum()%>')"></td>	<!-- 체크박스 -->
 									<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
 									<td><%=df.format(slip.getSflux()) %></td>			<!-- 유량 -->
 									<td><%=df.format(slip.getSfee()) %></td>			<!-- 실입금액 -->

@@ -159,7 +159,7 @@
 								for(Slip slip :searchList){		
 						%>
 									<tr>
-										<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox"></td>
+										<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox" onclick="check('<%=slip.getSnum()%>')"></td>
 										<td><input class="form-control" type="text" value="<%=slip.getCarnum()%>" name="carnum" id="carnum"></td>					<!-- 차량번호 -->
 										<td><input class="form-control" type="text" value="<%=slip.getSflux()%>" name="flux" id="flux"></td>						<!-- 유량 -->
 										<td><input class="form-control" type="text" value="<%=slip.getSfee() %>" name="fee" id="fee"></td>							<!-- 실입요금 -->

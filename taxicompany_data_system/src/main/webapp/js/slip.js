@@ -1,6 +1,6 @@
 
 let pass=[false,false,false,false];
-
+let num=[];
 $(function(){
 	
 
@@ -231,4 +231,10 @@ function saleUpdate(cnum){
 					}
 				}
 			});
+}
+
+//체크상자
+function check(snum){
+	
+	
 }
