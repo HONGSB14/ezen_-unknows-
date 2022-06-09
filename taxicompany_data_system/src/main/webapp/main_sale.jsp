@@ -238,7 +238,7 @@
 		
 		<!--weekchart (pieChart) -->
 		<div class="text-center"><h3>주 매출비교</h3></div>		
-		<div id="pie_chart" class="offset-2 col-md-4">
+		<div id="pie_chart" class="offset-2">
 		 <%
 			//주 계산을 위한 인트 변환
 		 	int today=Integer.parseInt(day);
@@ -272,7 +272,7 @@
 		
 		<!-- monthchart (column) -->
 		<div class="text-center"><h3><%=month %>월 일별 매출비교</h3></div>	
-		<div id="bar_chart" class="col-md-12" >
+		<div id="bar_chart" class="col-md-6" >
 				 <!-- 월 매출 (일별)값 JS로 넘기 -->	
 		 <% 
 			for(Slip slip : daySaleList){
@@ -303,7 +303,7 @@
 		
 		<!-- yearchart (line) -->
 		<div class="text-center"><h3><%=year %>년 매출비교</h3></div>		
-		<div id="line_chart" class="col-md-12">
+		<div id="line_chart" class="col-md-6">
 			<!-- 년 매출(월별) 값 JS로 넘기기 -->
 			<%
 				for(Slip slip : monthSaleList){
@@ -329,10 +329,6 @@
 			%>
 		</div>
 	</div>
-	<%
-		}else{
-	%>
-	
 	<%
 		}
 	%>

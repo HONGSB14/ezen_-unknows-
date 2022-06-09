@@ -133,9 +133,9 @@ public class SaleDao extends Dao {
 		}
 		
 		//매출 삭제
-		public boolean deleteSale(int cnum,String date) {
+		public boolean deleteSale(int cnum,int snum) {
 			
-			String sql="Delete from taxisaledata.slip where cnum="+cnum+" and sdate='"+date+"'";
+			String sql="Delete from taxisaledata.slip where cnum="+cnum+" and snum="+snum;
 			try {
 				ps=conn.prepareStatement(sql);
 				ps.executeUpdate();

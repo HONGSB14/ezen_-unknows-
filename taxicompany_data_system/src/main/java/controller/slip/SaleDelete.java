@@ -29,10 +29,10 @@ public class SaleDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String date=request.getParameter("date");
+		int snum=Integer.parseInt(request.getParameter("snum"));
 		int cnum=Integer.parseInt(request.getParameter("cnum"));
 		
-		boolean result=SaleDao.getsaleDao().deleteSale(cnum, date);
+		boolean result=SaleDao.getsaleDao().deleteSale(cnum, snum);
 		if(result) {
 			response.getWriter().write("1");
 		}else {

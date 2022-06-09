@@ -182,27 +182,26 @@ function commaDelete(){
 //삭제 버튼
 function saleDelete(cnum){
 	alert("정말 삭제를 진행하시겠습니까?");
-	
-	
  	let check=$('input:checkbox[name="salecheckbox"]').is(":checked") == true
- 	let date=$("#date2").val();
  	
- 	if(check==true){
-
-			$.ajax({
-				url:"../slip/SaleDelete",
-				data:{"date":date,"cnum":cnum},
-				success:function(data){
-					if(data==1){
-						alert("선택 하신 매출이 삭제 되었습니다.");
-						location.reload();
-					}else{
-						alert("삭제진행 오류가 발생하였습니다. 관리자에게 문의해주십시오.");
-						location.reload();
+ 	for(let i=0; i<num.length; i++){
+	 	if(check==true){
+	
+				$.ajax({
+					url:"../slip/SaleDelete",
+					data:{"cnum":cnum,"snum":num[i]},
+					success:function(data){
+						if(data==1){
+							num.splice(0,num.length);
+							alert("선택 하신 매출이 삭제 되었습니다.");
+						}else{
+							alert("삭제진행 오류가 발생하였습니다. 관리자에게 문의해주십시오.");
+						}
 					}
-				}
-			});
+				});
+		}
 	}
+	location.reload();
 }
 
 //업데이트 버튼
@@ -234,7 +233,18 @@ function saleUpdate(cnum){
 }
 
 //체크상자
-function check(snum){
-	
-	
+function dcheck(snum){
+	console.log(num);
+	let check=$('input:checkbox[name="salecheckbox"]').is(":checked") == true
+
+	if(check==true){
+		num.push(snum);
+	}else{
+		for(let i=0; i<num.length; i++){
+			if(num[i]==snum){
+				num.splice(i,i);
+			}	
+		}
+	}
 }
+

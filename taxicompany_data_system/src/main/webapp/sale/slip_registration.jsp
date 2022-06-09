@@ -52,7 +52,7 @@
 				</div>
 				 <div class="row">	
 					<!--타코미터 리스트 버튼 -->
-					<div class="offset-4 col-md-2 py-2">
+					<div class="offset-6 col-md-2 py-2">
 						<a href="/taxicompany_data_system/tacometer/tacometerlist.jsp"><button class="form-control">타코미터 기록보기</button></a>
 					</div>
 					
@@ -60,12 +60,7 @@
 					<div class="col-md-2 py-2">
 						<button type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#searchsale">등록 날짜 검색</button>	
 					</div>
-					
-					<!-- 매출 수정 버튼 -->
-					<div class="col-md-2 py-2">
-						<button class="form-control" onclick="saleUpdate(<%=cnum%>)">매출 수정</button>
-					</div>
-					
+
 					<!-- 매출 삭제 버튼 -->
 					<div class="col-md-2 py-2">
 						<button class="form-control" onclick="saleDelete(<%=cnum%>)">매출 삭제</button>
@@ -254,7 +249,7 @@
 					 		if(12<=hour){
 				%>
 								<tr>
-									<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox" onclick="check('<%=slip.getSnum()%>')"></td>	<!-- 체크박스 -->
+									<td><input class="form-check-input" type="checkbox" name="salecheckbox" id="salecheckbox" onclick="dcheck('<%=slip.getSnum()%>')"></td>	<!-- 체크박스 -->
 									<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
 									<td><%=df.format(slip.getSflux()) %></td>			<!-- 유량 -->
 									<td><%=df.format(slip.getSfee()) %></td>			<!-- 실입금액 -->
