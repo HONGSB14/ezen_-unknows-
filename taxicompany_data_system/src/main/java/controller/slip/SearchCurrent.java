@@ -26,13 +26,9 @@ public class SearchCurrent extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String year=request.getParameter("cYear");
-		String month=request.getParameter("cMonth");
-		String day=request.getParameter("cDay");
-		String current=year+"-"+month+"-"+day;	
 		
-		response.getWriter().print(current);
-		response.sendRedirect("/taxicompany_data_system/sale/searchregistration.jsp?current="+current);
+		String date=request.getParameter("date");	
+		response.sendRedirect("/taxicompany_data_system/sale/searchregistration.jsp?current="+date);
 	}
 
 	/**

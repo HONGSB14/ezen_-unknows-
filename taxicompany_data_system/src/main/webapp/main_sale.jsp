@@ -33,7 +33,6 @@
 	 	
 		// 숫자 꾸미기
 		DecimalFormat df = new DecimalFormat("#,###");
-	 	
 		//현재 시간 가져오기
 		LocalDateTime now = LocalDateTime.now();
 	 	String wedate=now.format(DateTimeFormatter.ISO_LOCAL_DATE);
@@ -45,8 +44,10 @@
 		//날짜 가져오기용 리스트 생성
 		ArrayList<String> saleDate = new ArrayList<>();
 		
-		//달력 날짜 생성
-		int cYear=Integer.parseInt(year);
+		int aYear=Integer.parseInt(year);
+		int bYear=aYear-20;
+		String cYear=Integer.toString(bYear); 
+		String current=cYear+"-01-01";
 		
 		
 	 %>
@@ -60,7 +61,6 @@
 		 			<h2>월 보 (<%=month%>월)</h2>
 		 		</div>
 		 	</div>
-			 
 			 <!--버튼-->
 			 <div class="row">	
 				<div class="col-md-2">
@@ -87,70 +87,7 @@
 							</div>
 							<div class="modal-body">
 								<!-- 달력 날짜 선택 란 -->
-								<div class="container">
-									<div class="col-md-12 text-center">
-										<h5>날짜선택</h5>
-										<div class="row">
-											<!-- 년도 선택 란 -->
-											<div class="col-md-1 py-2">
-												년:
-											</div>
-											
-												<div class="col-md-3">
-													<select class="form-select" id="cYear" name="cYear">	
-														<%
-															for(int i=0; i<31; i++){
-														%>	
-															<option class="text-center" value="<%=cYear-i%>"><%=cYear-i%></option>
-														<%
-															} 
-														%>
-													</select>
-												</div>
-												<!-- 월 선택 란 -->
-												<div class="col-md-1 py-2">
-													월:
-												</div>
-												<div class="col-md-3">
-													<select class="form-select" id="cMonth" name="cMonth">	
-														<%
-															for(int i=1; i<13; i++){
-																if(i<10){
-														%>	
-															<option class="text-center" value="0<%=i%>"><%=i%></option>
-														<%
-																}else{
-														%>
-															<option class="text-center" value="<%=i%>"><%=i%></option>
-														<% 			
-																}
-															} 
-														%>
-													</select>
-												</div>
-												<div class="col-md-1">
-													일:
-												</div>
-												<div class="col-md-3">
-													<select class="form-select" id="cDay" name="cDay">	
-														<%
-															for(int i=1; i<32; i++){
-																if(i<10){
-														%>	
-															<option class="text-center" value="0<%=i%>"><%=i%></option>
-														<%
-																}else{
-														%>
-															<option class="text-center" value="<%=i%>"><%=i%></option>
-														<% 			
-																}
-															} 
-														%>
-													</select>
-												</div>
-											</div>
-									</div>
-								</div>
+								<input class="form-control" type="date" name="date" min="<%=current%>" max="<%=wedate%>">
 							</div>
 							<div class="modal-footer">
 								<button type="submit" class="form-control" data-bs-dismiss="modal">Search</button>

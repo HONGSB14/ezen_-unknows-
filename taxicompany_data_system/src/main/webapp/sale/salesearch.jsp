@@ -1,3 +1,4 @@
+
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="dto.Slip"%>
@@ -24,9 +25,16 @@
 	LocalDateTime now = LocalDateTime.now();
 	String wedate=now.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	String year=wedate.split("-")[0];	//년도
-	
+	String month=wedate.split("-")[1];  //월
+	String day=wedate.split("-")[2];	//일
+	//비교 날짜 생성
+	int todayYear=Integer.parseInt(year);
+	int todayMonth=Integer.parseInt(month);
+	int todayDay=Integer.parseInt(day);
 	//달력 날짜 생성
 	int cYear=Integer.parseInt(year);
+	int cMonth=Integer.parseInt(month);
+	int cday=Integer.parseInt(day);
 %>
 	
 	<div class="container">
@@ -83,7 +91,7 @@
 												<div class="col-md-3">
 													<select class="form-select" id="cYear" name="cYear">	
 														<%
-															for(int i=0; i<31; i++){
+															for(int i=0; i<21; i++){
 														%>	
 															<option class="text-center" value="<%=cYear-i%>"><%=cYear-i%></option>
 														<%
@@ -98,8 +106,9 @@
 												<div class="col-md-3">
 													<select class="form-select" id="cMonth" name="cMonth">	
 														<%
+														
 															for(int i=1; i<13; i++){
-																if(i<10){
+																if(i<10){	
 														%>	
 															<option class="text-center" value="0<%=i%>"><%=i%></option>
 														<%
