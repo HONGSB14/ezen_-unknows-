@@ -144,7 +144,7 @@
 		<div class="col-md-12 text-center py-3">
 				<h3 class="text-center">운송 일보 (오전)</h3>
 			<table class="table table-center table-bordered table-hover">
-					<tr class="table-info"><th></th><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
+					<tr class="table-info"><th>삭제</th><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
 
 				<%
 				
@@ -180,7 +180,7 @@
 		<div class="col-md-12 text-center py-3">
 				<h3 class="text-center">운송 일보 (오후)</h3>
 			<table class="table table-center table-bordered">
-					<tr class="table-info"><th></th><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
+					<tr class="table-info"><th>삭제</th><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
 				<%
 					for(Slip slip : sliplist){ 
 

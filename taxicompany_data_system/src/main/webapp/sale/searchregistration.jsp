@@ -75,7 +75,7 @@
 					<div class="modal fade" id="searchsale" tabindex="-1" aria-labelledby="searchsale" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
-							<form action="../Calender/CalenderMaker" method="get">
+							<form action="../slip/SearchCurrent" method="get">
 							<input type="hidden" value="<%=cnum%>" name="cnum">
 								<div class="modal-header">
 									<h5 class="modal-title" id="searchsaleModalLabel">매출검색</h5>

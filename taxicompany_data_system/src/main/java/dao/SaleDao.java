@@ -112,7 +112,7 @@ public class SaleDao extends Dao {
 		//매출 검색  
 		public ArrayList<Slip> searchList(int cnum,String current){
 			ArrayList<Slip> list =new ArrayList<Slip>();
-			String sql="SELECT carnum,sflux,sfee,scardfee,sdaysale,snote,sdate FROM taxisaledata.slip WHERE cnum="+cnum+" and date(sdate)='"+current+"'";
+			String sql="SELECT snum,carnum,sflux,sfee,scardfee,sdaysale,snote,sdate FROM taxisaledata.slip WHERE cnum="+cnum+" and date(sdate)='"+current+"'";
 			
 			try {
 				
@@ -120,7 +120,7 @@ public class SaleDao extends Dao {
 				rs=ps.executeQuery();
 				while(rs.next()) {
 					
-					Slip slip = new Slip(0, 0, rs.getString(1), rs.getInt(2), rs.getInt(3),rs.getInt(4), rs.getInt(5), rs.getString(6), rs.getString(7));
+					Slip slip = new Slip(0, rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4),rs.getInt(5), rs.getInt(6), rs.getString(7), rs.getString(8));
 					list.add(slip);
 				}
 				return list;
