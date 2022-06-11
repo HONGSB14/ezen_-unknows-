@@ -105,7 +105,7 @@
 				<table class="table table-center table-bordered" id="mainsale">
 					
 					<!-- 총 수입 (일) -->
-					<tr class="table-info"><th>유량 사용량 (L)</th><th>실입수입 (원)</th><th>카드 수입 (원)</th><th>총 매출 (원)</th><th>실 매출 (원)</th><th>날짜</th></tr>
+					<tr class="table-info"><th>날짜</th><th>유량 사용량 (L)</th><th>실입수입 (원)</th><th>카드 수입 (원)</th><th>총 매출 (원)</th><th>실 매출 (원)</th></tr>
 					<%
 						for(Slip slip :daySaleList){
 							
@@ -121,12 +121,12 @@
 							if(month.equals(dateMonth) && year.equals(dateYear) ){
 					%>			
 								<tr>
-									<td><%=df.format(slip.getSflux()) %></td>		<!-- 총 유량 일 사용량 -->
-									<td><%=df.format(slip.getSfee()) %></td>   		<!-- 실입수입  일 합계 -->
-									<td><%=df.format(slip.getScardfee()) %></td>   	<!-- 카드 수입 일 합계 -->
-									<td><%=df.format(slip.getSdaysale()) %></td>	<!-- 총 매출 -->
-									<td><%=df.format(pay)%></td>					<!-- 실 매출 -->
-									<td><%=slip.getSdate()%></td>					<!-- 날짜 -->
+									<td><a href="/taxicompany_data_system/sale/salesearch.jsp?current=<%=slip.getSdate()%>"><%=slip.getSdate()%></a></td>	<!-- 날짜 -->
+									<td><%=df.format(slip.getSflux()) %></td>																				<!-- 총 유량 일 사용량 -->
+									<td><%=df.format(slip.getSfee()) %></td>   																				<!-- 실입수입  일 합계 -->
+									<td><%=df.format(slip.getScardfee()) %></td>   																			<!-- 카드 수입 일 합계 -->
+									<td><%=df.format(slip.getSdaysale()) %></td>																			<!-- 총 매출 -->
+									<td><%=df.format(pay)%></td>																							<!-- 실 매출 -->
 								</tr>
 					<%
 							}

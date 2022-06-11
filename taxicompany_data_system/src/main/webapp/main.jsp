@@ -11,6 +11,30 @@
 	<%
 		session.getAttribute("login");
 	%>
+			<!-- 광고 란 -->
+			<div class="col-md-12 py-5 px-5 row" style="background: #FFFFCC;"> 
+				
+				<div class="offset-2 col-md-6 text-left py-5">
+					<p id="mainp"><strong>"국 내 최 초"</strong> <br>택시 매출정보 데이터 프로그램</p>
+					<br>
+					<p id="mainp2">나의 데이터 경쟁력 <br><Strong>TDS</Strong> 와 함께　UP!!　UP!! </p>
+				</div>
+				<div class="col-md-4 px-5">
+					<img  id="mainlogo" src="img/mainlogo.png">
+				</div>
+			</div>
+			<!--로그인 시 매출 화면 바로가기 -->
+			<div class="text-center py-5">
+				<%
+					if(login != null){
+				%>
+						<h4>반갑습니다. <%=login%> 님!!</h4>
+						<br>
+						<h1><a href="main_sale.jsp">매출 확인 바로 가기</a></h1> 
+				<%
+					}			
+				%>
+			</div>
 	<div class="container py-5">
 		<div class="row py-5">
 			<!-- 소개글 -->
@@ -23,7 +47,8 @@
 				<h5>남들과는 다르게 <strong>"실시간"</strong> 으로 !!</h5>
 				<h2 class="py-2">4.<strong>How?</strong> </h2>
 				<h5>보다 <strong>"깔끔한"</strong> 인터페이스로  보다 더 알아보기 쉽게 !!</h5>
-				<h1 class="py-5">데이터로 회사의 경쟁력을 높이고 싶다면 ??</h1>
+				<br>
+				<h1 class="py-5"><a href="/taxicompany_data_system/company/companysignup.jsp">데이터로 회사의 경쟁력을 높이고 싶다면 ??</a></h1>
 			</div>
 			<!-- 이미지 (.gif) -->
 			<div class="col-md-6 text-center py-3">
@@ -31,34 +56,10 @@
 			</div>
 		</div>
 	</div>
-	<!-- 광고 란 -->
-	<div class="col-md-12 py-5 px-5 row" style="background: #FFFFCC;"> 
-		
-		<div class="offset-2 col-md-6 text-left py-5">
-			<p id="mainp">국내 최초 <br>택시 데이터 프로그램</p>
-			<br>
-			<p id="mainp2">나의 택시 데이터 경쟁력 <br><Strong>TDS</Strong> 와 함께　UP!!　UP!! </p>
-		</div>
-		<div class="col-md-4 px-5">
-			<img  id="mainlogo" src="img/mainlogo.png">
-		</div>
-		
-	</div>
 	<!-- 매출확인 바로가기 -->
 	<div class="container">
-		<div class="text-center py-5">
-			<%
-				if(login != null){
-			%>
-					<h4>반갑습니다. <%=login%> 님!!</h4>
-					<br>
-					<h1><a href="main_sale.jsp">매출 확인 바로 가기</a></h1> 
-			<%
-				}			
-			%>
-		</div>
 		<!-- 캐러셀 이미지 -->
-		<div class="col-md-12 py-5">
+		<div class="col-md-12 py-3">
 			
 				<div id="mainslide" class="carousel slide container carousel-fade" data-bs-ride="carousel"data-bs-interval="2000">
 					<div class="carousel-inner">

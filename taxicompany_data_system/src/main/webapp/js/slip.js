@@ -234,9 +234,8 @@ function saleUpdate(cnum){
 
 //체크상자
 function dcheck(snum){
-	console.log(num);
 	let check=$('input:checkbox[name="salecheckbox"]').is(":checked") == true
-
+	
 	if(check==true){
 		num.push(snum);
 	}else{
@@ -246,6 +245,8 @@ function dcheck(snum){
 			}	
 		}
 	}
+	
+
 }
 
 

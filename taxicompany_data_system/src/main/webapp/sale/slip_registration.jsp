@@ -158,7 +158,7 @@
 					 		if(hour<12){
 				%>
 							<tr>
-									<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox" onclick="check('<%=slip.getSnum()%>')"></td>	<!-- 체크박스 -->
+									<td><input class="form-check-input" type="checkbox" name="salecheckbox" id="salecheckbox" onclick="dcheck('<%=slip.getSnum()%>')"></td>	<!-- 체크박스 -->
 									<td><%=slip.getCarnum() %></td>						<!-- 차 번호 -->
 									<td><%=df.format(slip.getSflux()) %></td>			<!-- 유량 -->
 									<td><%=df.format(slip.getSfee()) %></td>			<!-- 실입금액 -->

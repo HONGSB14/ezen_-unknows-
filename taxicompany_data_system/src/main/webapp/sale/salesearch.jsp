@@ -79,71 +79,7 @@
 							</div>
 							<div class="modal-body">
 								<!-- 달력 날짜 선택 란 -->
-								<div class="container">
-									<div class="col-md-12 text-center">
-										<h5>날짜선택</h5>
-										<div class="row">
-											<!-- 년도 선택 란 -->
-											<div class="col-md-1 py-2">
-												년:
-											</div>
-											
-												<div class="col-md-3">
-													<select class="form-select" id="cYear" name="cYear">	
-														<%
-															for(int i=0; i<21; i++){
-														%>	
-															<option class="text-center" value="<%=cYear-i%>"><%=cYear-i%></option>
-														<%
-															} 
-														%>
-													</select>
-												</div>
-												<!-- 월 선택 란 -->
-												<div class="col-md-1 py-2">
-													월:
-												</div>
-												<div class="col-md-3">
-													<select class="form-select" id="cMonth" name="cMonth">	
-														<%
-														
-															for(int i=1; i<13; i++){
-																if(i<10){	
-														%>	
-															<option class="text-center" value="0<%=i%>"><%=i%></option>
-														<%
-																}else{
-														%>
-															<option class="text-center" value="<%=i%>"><%=i%></option>
-														<% 			
-																}
-															} 
-														%>
-													</select>
-												</div>
-												<div class="col-md-1">
-													일:
-												</div>
-												<div class="col-md-3">
-													<select class="form-select" id="cDay" name="cDay">	
-														<%
-															for(int i=1; i<32; i++){
-																if(i<10){
-														%>	
-															<option class="text-center" value="0<%=i%>"><%=i%></option>
-														<%
-																}else{
-														%>
-															<option class="text-center" value="<%=i%>"><%=i%></option>
-														<% 			
-																}
-															} 
-														%>
-													</select>
-												</div>
-											</div>
-									</div>
-								</div>
+									<input class="form-control" type="date" name="date" min="<%=current%>" max="<%=wedate%>">
 							</div>
 							<div class="modal-footer">
 								<button type="submit" class="form-control" data-bs-dismiss="modal">Search</button>
@@ -157,7 +93,7 @@
 		</div>
 			<!-- 검색내역 출력 란 -->
 			<div class="col-md-12">
-				<table class="table table-center table-bordered table-hover">
+				<table class="table table-center table-bordered table-hover text-center">
 						<tr class="table-info"><th></th><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
 						<%
 								for(Slip slip :searchList){		
@@ -170,7 +106,7 @@
 										<td><input class="form-control" type="text" value="<%=slip.getScardfee() %>" name="cardfee" id="cardfee2"></td>				<!-- 카드요금 -->
 										<td><input class="form-control" type="text" value="<%=slip.getSdaysale() %>" name="daysale" id="daysale2"></td>				<!-- 총 매출 -->
 										<td><input class="form-control" type="text" value="<%=slip.getSnote()%>" name="note" id="note2"></td>						<!-- 비고 -->
-										<td><input class="form-control" type="text" value="<%=slip.getSdate()%>" name="date" id="date2" disabled="disabled"></td>	<!-- 날짜 -->
+										<td><input class="form-control" type="text" value="<%=slip.getSdate().split(" ")[0]%>" name="date" id="date2" disabled="disabled"></td>	<!-- 날짜 -->
 									</tr>
 						<%	
 								}
