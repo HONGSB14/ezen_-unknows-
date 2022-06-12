@@ -39,8 +39,8 @@
 					<%
 						}else{
 					%>
-							<span style="color: blue;">어서오세요  <%=login%> 님!! |</span> 
-							<a class="headerinfo" href="/taxicompany_data_system/product_info.jsp">제품소개 | </a>
+							<span style="color: blue;">hello  <%=login%> !! </span> 
+							<a class="headerinfo" href="/taxicompany_data_system/product_info.jsp">　제품소개 | </a>
 							<a class="headerinfo" href="/taxicompany_data_system/main_info.jsp?cnum=<%=cnum%>">매출 데이터 보기 |</a>
 							<a class="headerinfo" href="/taxicompany_data_system/main_sale.jsp?cnum=<%=cnum%>">매출등록하기 |</a>
 							<a class="headerinfo" href="/taxicompany_data_system/member/Logout">로그아웃 </a>	

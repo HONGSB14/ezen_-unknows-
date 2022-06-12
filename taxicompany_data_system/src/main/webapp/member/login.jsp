@@ -10,15 +10,12 @@
 <body>
 	
 	<%@include file = "../header.jsp" %>
-
-	
+	<div class=" col-md-12 text-center py-5" style="background: #FFFFCC;">
+		<a href="../main.jsp"><h1>Taxi Company Data System</h1></a>
+	</div>
 	<div class="container" style="padding-top: 100px; margin-left: 340px;">
 		
-		<div class=" col-md-11 text-center py-2">
-		<a href="../main.jsp"><h1>Taxi Company Data System</h1></a>
-		</div>
-			<div class="col-md-12 text-center">
-				<div class="py-5"></div>
+			<div class="col-md-12 text-center"> 
 				<form action="../member/Login" method="post">
 					
 					<div class="offset-4 col-md-3 py-2 ">

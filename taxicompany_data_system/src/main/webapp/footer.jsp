@@ -5,7 +5,8 @@
 <head>
 </head>
 <body>
-	<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
+	<img alt="" src="/taxicompany_data_system/img/mainimg5.png">
 	<div style="background-color: black;">
 		<div class="row">
 			<div class="col-md-6 py-5 px-5">
@@ -41,8 +42,7 @@
 			</div>
 			
 		</div>
-			
-		
+	
 	</div>
 	
 </body>

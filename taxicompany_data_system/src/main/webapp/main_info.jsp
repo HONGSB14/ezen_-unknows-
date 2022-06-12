@@ -110,15 +110,10 @@
 			<% 		
 				 }
 			%>
-		
-	  	<script src="js/maininfo.js" type="text/javascript"></script>
-		<%@include file ="footer.jsp" %>
-		
-		
 		</div>
 	</div>
-	
-	
+	<script src="js/maininfo.js" type="text/javascript"></script>
+	<%@include file ="footer.jsp" %>
 	
 </body>
 </html>

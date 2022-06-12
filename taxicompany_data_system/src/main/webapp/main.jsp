@@ -22,14 +22,14 @@
 				<div class="col-md-4 px-5">
 					<img  id="mainlogo" src="img/mainlogo.png">
 				</div>
+
 			</div>
 			<!--로그인 시 매출 화면 바로가기 -->
 			<div class="text-center py-5">
 				<%
 					if(login != null){
 				%>
-						<h4>반갑습니다. <%=login%> 님!!</h4>
-						<br>
+	
 						<h1><a href="main_sale.jsp">매출 확인 바로 가기</a></h1> 
 				<%
 					}			
@@ -120,7 +120,6 @@
 						<img alt="메인광고" src="img/mainimg4.gif" style="height: 100%; width: 100%;">
 					</div>
 			</div>
-	
 	</div>
 	<script src="/taxicompany_data_system/js/main.js" type="text/javascript"></script>
 	<%@include file ="footer.jsp" %>
