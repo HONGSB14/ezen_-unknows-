@@ -1,4 +1,5 @@
 
+<%@page import="java.util.Calendar"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="java.time.LocalDate"%>
@@ -41,6 +42,11 @@
 		int bYear=aYear-20;
 		String cYear=Integer.toString(bYear); 
 		String current=cYear+"-01-01";
+		
+		//달력 현재 날짜 -1일 변수 
+		Calendar beforeDate= Calendar.getInstance();
+		beforeDate.add(Calendar.DATE , -1);
+		String beforeDay=sdf.format(beforeDate.getTime());
 		
 	%>
 	
@@ -85,7 +91,7 @@
 								</div>
 								<div class="modal-body">
 									<!-- 달력 날짜 선택 란 -->
-									<input class="form-control" type="date" name="date" min="<%=current%>" max="<%=today%>">
+									<input class="form-control" type="date" name="date" min="<%=current%>" max="<%=beforeDay%>">
 								</div>
 								<div class="modal-footer">
 									<button type="submit" class="form-control" data-bs-dismiss="modal">Search</button>

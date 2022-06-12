@@ -1,3 +1,4 @@
+<%@page import="java.util.Calendar"%>
 <%@page import="dao.SaleDao"%>
 <%@page import="dao.SlipDao"%>
 <%@page import="java.text.DecimalFormat"%>
@@ -26,17 +27,23 @@
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sdf.format(date);
 		String year=today.split("-")[0];
+		String day=today.split("-")[2];
 		//페이지 반환
 		String result=request.getParameter("result");
 		//테이블 뷰 리스트 생성 
 		ArrayList<Slip> searchList = SaleDao.getsaleDao().searchList(cnum,current);
 		//천 자리 표현식
 		DecimalFormat df = new DecimalFormat("#,###");
-		
+		//달력 현재 날짜까지 검색 변수 생성
 		int aYear=Integer.parseInt(year);
 		int bYear=aYear-20;
 		String cYear=Integer.toString(bYear); 
 		String currented=cYear+"-01-01";
+		//달력 현재 날짜 -1일 변수 
+		Calendar beforeDate= Calendar.getInstance();
+		beforeDate.add(Calendar.DATE , -1);
+		String beforeDay=sdf.format(beforeDate.getTime());
+		
 		
 %>
 	<div class="container">
@@ -83,7 +90,7 @@
 								</div>
 								<div class="modal-body">
 									<!-- 달력 날짜 선택 란 -->
-									<input class="form-control" type="date" name="date" min="<%=currented%>" max="<%=today%>">
+									<input class="form-control" type="date" name="date" min="<%=currented%>" max="<%=beforeDay%>">
 								</div>
 								<div class="modal-footer">
 									<button type="submit" class="form-control" data-bs-dismiss="modal">Search</button>
@@ -145,7 +152,7 @@
 						<%
 								for(Slip slip :searchList){		
 						%>
-									<tr>
+									<tr onclick="updateClick('<%=slip.getSnum()%>')">
 										<td><input class="form-check-input" type="checkbox" value="checkbox" name="salecheckbox" id="salecheckbox" onclick="check('<%=slip.getSnum()%>')"></td>
 										<td><input class="form-control" type="text" value="<%=slip.getCarnum()%>" name="carnum" id="carnum2"></td>								<!-- 차량번호 -->
 										<td><input class="form-control" type="text" value="<%=slip.getSflux()%>" name="flux" id="flux2"></td>									<!-- 유량 -->

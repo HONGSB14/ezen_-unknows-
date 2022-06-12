@@ -37,13 +37,13 @@ public class SaleUpdate extends HttpServlet {
 		String note=request.getParameter("note");
 		String carnum=request.getParameter("carnum");
 		int cnum=Integer.parseInt(request.getParameter("cnum"));
+		int snum=Integer.parseInt(request.getParameter("snum"));
 		int fee=Integer.parseInt(request.getParameter("fee"));
 		int cardfee=Integer.parseInt(request.getParameter("cardfee"));
 		int flux=Integer.parseInt(request.getParameter("flux"));
 		int daysale=Integer.parseInt(request.getParameter("daysale"));
-		
-		Slip slip = new Slip(cnum, 0, carnum, flux, fee, cardfee, daysale, note, date);
-		
+		System.out.println(snum);
+		Slip slip = new Slip(cnum, snum, carnum, flux, fee, cardfee, daysale, note, date);
 		boolean result = SaleDao.getsaleDao().updateSale(slip);
 		
 		if(result){

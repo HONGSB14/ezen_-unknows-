@@ -158,7 +158,7 @@ public class SaleDao extends Dao {
 					+ "sdaysale="+slip.getSdaysale()+","
 					+ "snote='"+slip.getSnote()+"',"
 					+ "sdate='"+slip.getSdate()+"'"
-					+ " where cnum="+slip.getCnum()+" and sdate='"+slip.getSdate()+"'";
+					+ " where snum="+slip.getSnum();
 			try {
 				ps=conn.prepareStatement(sql);
 				ps.executeUpdate();

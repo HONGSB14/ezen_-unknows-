@@ -179,6 +179,45 @@ function commaDelete(){
 	$("#daysale").val(daysalecheck);
 }
 
+//매출수정 컴마 제거 함수
+function commaDelete2(){
+	//유량 컴마제거
+	let flux=$("#flux2").val();
+	fluxcheck=flux.replace(/,/g, "");
+	$("#flux").val(fluxcheck);
+	
+	//실입요금 컴마제거
+	let fee=$("#fee2").val();
+	 feecheck= fee.replace(/,/g, "");
+	$("#fee").val(feecheck);
+	
+	//카드요금 제거
+	let cardfee=$("#cardfee2").val();
+	cardfeecheck=cardfee.replace(/,/g, "");
+	$("#cardfee2").val(cardfeecheck);
+	
+	//총 매출 컴마제거
+	let daysale=$("#daysale2").val();
+	daysalecheck=daysale.replace(/,/g, "");
+	$("#daysale2").val(daysalecheck);
+}
+
+//체크상자
+function dcheck(snum){
+	let check=$('input:checkbox[name="salecheckbox"]').is(":checked") == true
+	
+	if(check==true){
+		num.push(snum);
+	}else{
+		for(let i=0; i<num.length; i++){
+			if(num[i]==snum){
+				num.splice(i,1);
+			}	
+		}
+	}
+
+}
+
 //삭제 버튼
 function saleDelete(cnum){
 	alert("정말 삭제를 진행하시겠습니까?");
@@ -215,38 +254,34 @@ function saleUpdate(cnum){
 	let daysale=$("#daysale2").val();
 	let note=$("#note2").val();
 	
-	commaDelete();
+	commaDelete2();
 		
+		for(let i=0; i<num.length; i++){
+			
 		$.ajax({
 				url:"../slip/SaleUpdate",
-				data:{"cnum":cnum,"date":date,"carnum":carnum,"fee":fee,"cardfee":cardfee,"note":note,"flux":flux,"daysale":daysale},
+				data:{"snum":num[i],"cnum":cnum,"date":date,"carnum":carnum,"fee":fee,"cardfee":cardfee,"note":note,"flux":flux,"daysale":daysale},
+				async:true,
 				success:function(data){
 					if(data==1){
 						alert("매출수정이 완료 되었습니다.");
-						location.reload();
 					}else{
 						alert("수정진행 오류가 발생하였습니다. 관리자에게 문의해주십시오.");
-						location.reload();
 					}
 				}
 			});
-}
-
-//체크상자
-function dcheck(snum){
-	let check=$('input:checkbox[name="salecheckbox"]').is(":checked") == true
-	
-	if(check==true){
-		num.push(snum);
-	}else{
-		for(let i=0; i<num.length; i++){
-			if(num[i]==snum){
-				num.splice(i,i);
-			}	
 		}
-	}
-	
-
+			num.splice(0,num.length);
+			location.reload();
 }
+
+
+function updateClick(snum){
+	console.log(snum);
+	num.push(snum);
+	
+}
+
+
 
 

@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="javax.print.DocFlavor.INPUT_STREAM"%>
 <%@page import="dao.SaleDao"%>
@@ -49,6 +50,13 @@
 		String cYear=Integer.toString(bYear); 
 		String current=cYear+"-01-01";
 		
+		//달력 현재 날짜 -1일 변수 
+		Calendar beforeDate= Calendar.getInstance();
+		beforeDate.add(Calendar.DATE , -1);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String beforeDay=sdf.format(beforeDate.getTime());
+				
+		
 		
 	 %>
 	<div class="container text-center">
@@ -87,7 +95,7 @@
 							</div>
 							<div class="modal-body">
 								<!-- 달력 날짜 선택 란 -->
-								<input class="form-control" type="date" name="date" min="<%=current%>" max="<%=wedate%>">
+								<input class="form-control" type="date" name="date" min="<%=current%>" max="<%=beforeDay%>">
 							</div>
 							<div class="modal-footer">
 								<button type="submit" class="form-control" data-bs-dismiss="modal">Search</button>

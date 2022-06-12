@@ -24,15 +24,14 @@
 			<div class="col-md-12 row">
 				<div class="col-md-3">
 					
-					<a href="/taxicompany_data_system/main.jsp">HOME |</a>
-					<a href="/taxicompany_data_system/product_info.jsp">제품소개 |</a>
-					<a href="#">요구사항접수 |</a>
-					<a href="#">상담요청</a>
+					<a href="/taxicompany_data_system/main.jsp"><img alt="" src="/taxicompany_data_system/img/mainlogo.png" style="height: 80px; width: 100px;"></a>
+				
 					
 				</div>
 				
 				
-				<div class="offset-6 col-md-3">
+				<div class="offset-6 col-md-3 py-4">
+					<a href="/taxicompany_data_system/product_info.jsp">제품소개 | </a>
 					<%
 						if(login==null){
 					%>

@@ -60,12 +60,16 @@
 			<!--버튼-->
 			 <div class="row">	
 				<!-- 매출 검색 버튼 -->
-				<div class="offset-8 col-md-2 py-2">
+				<div class="offset-6 col-md-2 py-2">
 					<button type="button" class="form-control" data-bs-toggle="modal" data-bs-target="#searchday">매출 검색</button>	
 				</div>
 				<!-- 매출 삭제 버튼 -->
 				<div class="col-md-2 py-2">
 					<button class="form-control" onclick="saleDelete(<%=cnum%>)">매출 삭제</button>
+				</div>
+				<!-- 매출 수정 버튼 -->
+				<div class="col-md-2 py-2">
+					<button class="form-control" onclick="saleUpdate('<%=cnum%>')">매출 수정</button>
 				</div>
 				<!-- 모달 -->
 				<div class="modal fade" id="searchday" tabindex="-1" aria-labelledby="searchday" aria-hidden="true">
@@ -98,7 +102,7 @@
 						<%
 								for(Slip slip :searchList){		
 						%>
-									<tr>
+									<tr onclick="updateClick('<%=slip.getSnum()%>')">
 										<td><input class="form-check-input" type="checkbox" name="salecheckbox" id="salecheckbox" onclick="dcheck('<%=slip.getSnum()%>')"></td>
 										<td><input class="form-control" type="text" value="<%=slip.getCarnum()%>" name="carnum" id="carnum2"></td>					<!-- 차량번호 -->
 										<td><input class="form-control" type="text" value="<%=slip.getSflux()%>" name="flux" id="flux2"></td>						<!-- 유량 -->
@@ -106,7 +110,7 @@
 										<td><input class="form-control" type="text" value="<%=slip.getScardfee() %>" name="cardfee" id="cardfee2"></td>				<!-- 카드요금 -->
 										<td><input class="form-control" type="text" value="<%=slip.getSdaysale() %>" name="daysale" id="daysale2"></td>				<!-- 총 매출 -->
 										<td><input class="form-control" type="text" value="<%=slip.getSnote()%>" name="note" id="note2"></td>						<!-- 비고 -->
-										<td><input class="form-control" type="text" value="<%=slip.getSdate().split(" ")[0]%>" name="date" id="date2" disabled="disabled"></td>	<!-- 날짜 -->
+										<td><input class="form-control" type="text" value="<%=slip.getSdate()%>" name="date" id="date2" disabled="disabled"></td>	<!-- 날짜 -->
 									</tr>
 						<%	
 								}
