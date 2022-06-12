@@ -23,11 +23,11 @@
 			
 			<div class="col-md-12 row">
 				<div class="col-md-3">	
-					<a href="/taxicompany_data_system/main.jsp"><img alt="" src="/taxicompany_data_system/img/mainlogo.png" style="height: 80px; width: 100px;"></a>		
+					<a href="/taxicompany_data_system/main.jsp"><img alt="로고홈" src="/taxicompany_data_system/img/mainlogo.png" style="height: 140px; width: 150px;"></a>		
 				</div>
 				
 				
-				<div class="offset-5 col-md-4 py-4">
+				<div class="offset-5 col-md-4 py-5">
 					
 					<%
 						if(login==null){
