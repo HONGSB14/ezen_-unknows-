@@ -22,29 +22,28 @@
 		<div class="text-center py-3">
 			
 			<div class="col-md-12 row">
-				<div class="col-md-3">
-					
-					<a href="/taxicompany_data_system/main.jsp"><img alt="" src="/taxicompany_data_system/img/mainlogo.png" style="height: 80px; width: 100px;"></a>
-				
-					
+				<div class="col-md-3">	
+					<a href="/taxicompany_data_system/main.jsp"><img alt="" src="/taxicompany_data_system/img/mainlogo.png" style="height: 80px; width: 100px;"></a>		
 				</div>
 				
 				
-				<div class="offset-6 col-md-3 py-4">
-					<a href="/taxicompany_data_system/product_info.jsp">제품소개 | </a>
+				<div class="offset-5 col-md-4 py-4">
+					
 					<%
 						if(login==null){
 					%>
-							<a href="/taxicompany_data_system/company/companysignup.jsp">Company Registration</a> |
-							<a href="/taxicompany_data_system/member/login.jsp">Login </a> |
-							<a href="/taxicompany_data_system/member/agreementpage.jsp">SignUp</a>	
+							<a class="headerinfo" href="/taxicompany_data_system/product_info.jsp">제품소개 | </a>	
+							<a class="headerinfo" href="/taxicompany_data_system/company/companysignup.jsp">가입하기 |</a> 
+							<a class="headerinfo" href="/taxicompany_data_system/member/login.jsp">로그인 |</a> 
+							<a class="headerinfo" href="/taxicompany_data_system/member/agreementpage.jsp">회원가입</a>	
 					<%
 						}else{
 					%>
-							<span style="color: blue;">Welcome  <%=login%> |</span> 
-							<a href="/taxicompany_data_system/main_info.jsp?cnum=<%=cnum%>">Info  </a>|
-							<a href="/taxicompany_data_system/main_sale.jsp?cnum=<%=cnum%>">Sales </a>|
-							<a href="/taxicompany_data_system/member/Logout">Logout </a>	
+							<span style="color: blue;">어서오세요  <%=login%> 님!! |</span> 
+							<a class="headerinfo" href="/taxicompany_data_system/product_info.jsp">제품소개 | </a>
+							<a class="headerinfo" href="/taxicompany_data_system/main_info.jsp?cnum=<%=cnum%>">매출 데이터 보기 |</a>
+							<a class="headerinfo" href="/taxicompany_data_system/main_sale.jsp?cnum=<%=cnum%>">매출등록하기 |</a>
+							<a class="headerinfo" href="/taxicompany_data_system/member/Logout">로그아웃 </a>	
 					<%
 						}
 					%>

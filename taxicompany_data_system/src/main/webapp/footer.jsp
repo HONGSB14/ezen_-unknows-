@@ -31,9 +31,6 @@
 				<br>
 				<br>
 				<br>
-				<br>
-				<br>
-				<br>
 				<h2 style="color: white;">
 				연락처 : 010-1234-1234
 				</h2>
