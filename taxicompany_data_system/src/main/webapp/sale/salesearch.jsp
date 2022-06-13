@@ -1,4 +1,7 @@
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.Calendar"%>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDateTime"%>
 <%@page import="dto.Slip"%>
@@ -22,19 +25,22 @@
 	ArrayList<Slip> searchList = SaleDao.getsaleDao().searchList(cnum,current);
 	
 	//현재 시간 가져오기
-	LocalDateTime now = LocalDateTime.now();
-	String wedate=now.format(DateTimeFormatter.ISO_LOCAL_DATE);
+	//날짜 계산
+	Date date = new Date();
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	String wedate = sdf.format(date);
 	String year=wedate.split("-")[0];	//년도
 	String month=wedate.split("-")[1];  //월
 	String day=wedate.split("-")[2];	//일
-	//비교 날짜 생성
-	int todayYear=Integer.parseInt(year);
-	int todayMonth=Integer.parseInt(month);
-	int todayDay=Integer.parseInt(day);
-	//달력 날짜 생성
-	int cYear=Integer.parseInt(year);
-	int cMonth=Integer.parseInt(month);
-	int cday=Integer.parseInt(day);
+	//달력 현재 날짜까지 검색 변수 생성
+	int aYear=Integer.parseInt(year);
+	int bYear=aYear-20;
+	String cYear=Integer.toString(bYear); 
+	String currented=cYear+"-01-01";
+	//달력 현재 날짜 -1일 변수 
+	Calendar beforeDate= Calendar.getInstance();
+	beforeDate.add(Calendar.DATE , -1);
+	String beforeDay=sdf.format(beforeDate.getTime());
 %>
 	
 	<div class="container">
@@ -83,7 +89,7 @@
 							</div>
 							<div class="modal-body">
 								<!-- 달력 날짜 선택 란 -->
-									<input class="form-control" type="date" name="date" min="<%=current%>" max="<%=wedate%>">
+									<input class="form-control" type="date" name="date" min="<%=currented%>" max="<%=beforeDay%>">
 							</div>
 							<div class="modal-footer">
 								<button type="submit" class="form-control" data-bs-dismiss="modal">Search</button>
