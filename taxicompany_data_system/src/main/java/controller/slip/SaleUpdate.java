@@ -44,7 +44,7 @@ public class SaleUpdate extends HttpServlet {
 		int daysale=Integer.parseInt(request.getParameter("daysale"));
 		
 		Slip slip = new Slip(cnum, snum, carnum, flux, fee, cardfee, daysale, note, date);
-	
+
 		boolean result = SaleDao.getsaleDao().updateSale(slip);
 		
 		if(result){

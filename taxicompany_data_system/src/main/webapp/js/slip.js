@@ -263,24 +263,15 @@ function saleUpdate(cnum){
 	}
 	
 	let date=$("#date2").val();
-//	let carnum=$("#carnum2").val();
-//	let flux=$("#flux2").val();
-//	let fee=$("#fee2").val();
-//	let cardfee=$("#cardfee2").val();
-//	let daysale=$("#daysale2").val();
-//	let note=$("#note2").val();
 	
-//	commaDelete2();
-		console.log(unote);
 		for(let i=0; i<num.length; i++){
 			
 		$.ajax({
 				url:"../slip/SaleUpdate",
-				//data:{"snum":num[i],"cnum":cnum,"date":date,"carnum":carnum,"fee":fee,"cardfee":cardfee,"note":note,"flux":flux,"daysale":daysale},
 				data:{"snum":num[i],"cnum":cnum,"date":date,"carnum":ucarnum[i],"fee":ufee[i],"cardfee":ucardfee[i],"note":unote[i],"flux":uflux[i],"daysale":udaysale[i]},
 				success:function(data){
 					if(data==1){
-						
+						num.splice(0,num.length);
 					}else{
 						alert("수정진행 오류가 발생하였습니다. 관리자에게 문의해주십시오.");
 					}
@@ -291,7 +282,7 @@ function saleUpdate(cnum){
 			location.reload();
 }
 
-
+//클릭 시 pk 번호 가져오기
 function updateClick(snum){
 	num.push(snum);
 	
