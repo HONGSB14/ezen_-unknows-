@@ -124,17 +124,32 @@
 							
 							//급여계산
 							int pay=(slip.getSdaysale())-(slip.getSdaysale()/10);
-							
-							
+							//만약 오늘 날짜와 데이터날짜와 같다면 년/월
 							if(month.equals(dateMonth) && year.equals(dateYear) ){
-					%>			
+					%> 			
 								<tr>
+					<%
+						//만약 오늘이라면 (날짜클릭 링크 제외)
+						if(wedate.equals(date)){
+					%>
+									<td><%=slip.getSdate()%></td>																							<!-- 날짜 -->
+									<td><%=df.format(slip.getSflux()) %></td>																				<!-- 총 유량 일 사용량 -->
+									<td><%=df.format(slip.getSfee()) %></td>   																				<!-- 실입수입  일 합계 -->
+									<td><%=df.format(slip.getScardfee()) %></td>   																			<!-- 카드 수입 일 합계 -->
+									<td><%=df.format(slip.getSdaysale()) %></td>																			<!-- 총 매출 -->
+									<td><%=df.format(pay)%></td>																							<!-- 실 매출 -->
+					<%
+						}else{
+					%>		
 									<td><a href="/taxicompany_data_system/sale/salesearch.jsp?current=<%=slip.getSdate()%>"><%=slip.getSdate()%></a></td>	<!-- 날짜 -->
 									<td><%=df.format(slip.getSflux()) %></td>																				<!-- 총 유량 일 사용량 -->
 									<td><%=df.format(slip.getSfee()) %></td>   																				<!-- 실입수입  일 합계 -->
 									<td><%=df.format(slip.getScardfee()) %></td>   																			<!-- 카드 수입 일 합계 -->
 									<td><%=df.format(slip.getSdaysale()) %></td>																			<!-- 총 매출 -->
 									<td><%=df.format(pay)%></td>																							<!-- 실 매출 -->
+					<%
+						}
+					%>																										
 								</tr>
 					<%
 							}
