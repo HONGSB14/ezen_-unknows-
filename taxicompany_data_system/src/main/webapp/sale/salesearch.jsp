@@ -106,19 +106,24 @@
 				<table class="table table-center table-bordered table-hover text-center">
 						<tr class="table-info"><th></th><th>차 번호</th><th>유량(L)</th><th>실입금액(원)</th><th>카드수입(원)</th><th>일 매출(원)</th><th>비고</th><th>날짜</th></tr>
 						<%
-								for(Slip slip :searchList){		
+								//각각의 수정값을 구별하기위한 변수
+							    int i=0;
+								for(Slip slip :searchList){	
+								
 						%>
 									<tr onclick="updateClick('<%=slip.getSnum()%>')">
 										<td><input class="form-check-input" type="checkbox" name="salecheckbox" id="salecheckbox" onclick="dcheck('<%=slip.getSnum()%>')"></td>
-										<td><input class="form-control" type="text" value="<%=slip.getCarnum()%>" name="carnum" id="carnum2"></td>					<!-- 차량번호 -->
-										<td><input class="form-control" type="text" value="<%=slip.getSflux()%>" name="flux" id="flux2"></td>						<!-- 유량 -->
-										<td><input class="form-control" type="text" value="<%=slip.getSfee() %>" name="fee" id="fee2"></td>							<!-- 실입요금 -->
-										<td><input class="form-control" type="text" value="<%=slip.getScardfee() %>" name="cardfee" id="cardfee2"></td>				<!-- 카드요금 -->
-										<td><input class="form-control" type="text" value="<%=slip.getSdaysale() %>" name="daysale" id="daysale2"></td>				<!-- 총 매출 -->
-										<td><input class="form-control" type="text" value="<%=slip.getSnote()%>" name="note" id="note2"></td>						<!-- 비고 -->
-										<td><input class="form-control" type="text" value="<%=slip.getSdate()%>" name="date" id="date2" disabled="disabled"></td>	<!-- 날짜 -->
+										<td><input class="form-control" type="text" value="<%=slip.getCarnum()%>" name="carnum" id="carnum2<%=i%>"></td>				<!-- 차량번호 -->
+										<td><input class="form-control" type="text" value="<%=slip.getSflux()%>" name="flux" id="flux2<%=i%>"></td>						<!-- 유량 -->
+										<td><input class="form-control" type="text" value="<%=slip.getSfee() %>" name="fee" id="fee2<%=i%>"></td>						<!-- 실입요금 -->
+										<td><input class="form-control" type="text" value="<%=slip.getScardfee() %>" name="cardfee" id="cardfee2<%=i%>"></td>			<!-- 카드요금 -->
+										<td><input class="form-control" type="text" value="<%=slip.getSdaysale() %>" name="daysale" id="daysale2<%=i%>"></td>			<!-- 총 매출 -->
+										<td><input class="form-control" type="text" value="<%=slip.getSnote()%>" name="note" id="note2<%=i%>"></td>						<!-- 비고 -->
+										<td><input class="form-control" type="text" value="<%=slip.getSdate()%>" name="date" id="date2" disabled="disabled"></td>	    <!-- 날짜 -->
 									</tr>
 						<%	
+								   
+									i++;
 								}
 						%>
 						

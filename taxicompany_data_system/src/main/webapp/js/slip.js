@@ -1,6 +1,12 @@
 
 let pass=[false,false,false,false];
 let num=[];
+let uflux=[];
+let ufee=[];
+let ucardfee=[];
+let udaysale=[];
+let ucarnum=[];
+let unote=[];
 $(function(){
 	
 
@@ -246,25 +252,35 @@ function saleDelete(cnum){
 //업데이트 버튼
 function saleUpdate(cnum){
 	
-	let date=$("#date2").val();
-	let carnum=$("#carnum2").val();
-	let flux=$("#flux2").val();
-	let fee=$("#fee2").val();
-	let cardfee=$("#cardfee2").val();
-	let daysale=$("#daysale2").val();
-	let note=$("#note2").val();
-	
-	commaDelete2();
+	for(let i=0; i<num.length; i++){
+		uflux.push($("#flux2"+i).val());
+		ucarnum.push($("#carnum2"+i).val());
+		ufee.push($("#fee2"+i).val());
+		ucardfee.push($("#cardfee2"+i).val());
+		udaysale.push($("#daysale2"+i).val());
+		unote.push($("#note2"+i).val());
 		
+	}
+	
+	let date=$("#date2").val();
+//	let carnum=$("#carnum2").val();
+//	let flux=$("#flux2").val();
+//	let fee=$("#fee2").val();
+//	let cardfee=$("#cardfee2").val();
+//	let daysale=$("#daysale2").val();
+//	let note=$("#note2").val();
+	
+//	commaDelete2();
+		console.log(unote);
 		for(let i=0; i<num.length; i++){
 			
 		$.ajax({
 				url:"../slip/SaleUpdate",
-				data:{"snum":num[i],"cnum":cnum,"date":date,"carnum":carnum,"fee":fee,"cardfee":cardfee,"note":note,"flux":flux,"daysale":daysale},
-				async:true,
+				//data:{"snum":num[i],"cnum":cnum,"date":date,"carnum":carnum,"fee":fee,"cardfee":cardfee,"note":note,"flux":flux,"daysale":daysale},
+				data:{"snum":num[i],"cnum":cnum,"date":date,"carnum":ucarnum[i],"fee":ufee[i],"cardfee":ucardfee[i],"note":unote[i],"flux":uflux[i],"daysale":udaysale[i]},
 				success:function(data){
 					if(data==1){
-						alert("매출수정이 완료 되었습니다.");
+						
 					}else{
 						alert("수정진행 오류가 발생하였습니다. 관리자에게 문의해주십시오.");
 					}
@@ -277,7 +293,6 @@ function saleUpdate(cnum){
 
 
 function updateClick(snum){
-	console.log(snum);
 	num.push(snum);
 	
 }
