@@ -60,7 +60,7 @@ $(function(){
 	//차량 번호 만큼 반복문 (다수 차량 지도 표시를 위해 )
 	for(let i=0; i<carNum.length;i++){
 		$.ajax({
-																																								    //차량 아이디 vehId[i]		//차량 아이디값 변수를 이용하여 등록  111033115 
+																																								   //차량 아이디 vehId[i]//차량 아이디값 변수를 이용하여 등록  111033115 
 			url:"http://ws.bus.go.kr/api/rest/buspos/getBusPosByVehId?serviceKey=V1D0RoBJCl1PTrNrdovcJHzbZkwiiyLMbHx%2FsQfaQfsvS0iIM3OQ2x91yr6PXyIFl0hj0ETaeC1Fvd0WoSMHmg%3D%3D&vehId=111033115",
 			type:"get",
 			dataType:"TEXT",
@@ -69,7 +69,7 @@ $(function(){
 					console.log(data);
 					$(data).find('itemList').each(function(){
 						
-						//데이터에서 좌표 불러오기 
+						//데이터에서 좌표 불러오기  (타코미터 저장용)
 						let tmX= $(this).find("tmX").text();
 						let tmY= $(this).find("tmY").text();
 						let plainNo=$(this).find("plainNo").text();

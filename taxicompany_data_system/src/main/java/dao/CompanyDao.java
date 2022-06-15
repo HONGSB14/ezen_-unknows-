@@ -37,7 +37,6 @@ public class CompanyDao extends Dao {
 	}
 	
 	//회사 유효성 체크
-	
 	public boolean comapnycheck(int crn, String cname) {
 		
 		String sql ="SELECT * FROM company WHERE crn=? AND cname=?";
@@ -90,5 +89,24 @@ public class CompanyDao extends Dao {
 		}
 		
 		return false;
+	}
+	
+	
+	//회사 정보 가져오기
+	public Company selectCompany(int cnum) {
+		String sql ="SELECT * FROM company WHERE cnum=?";
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, cnum);
+			rs=ps.executeQuery();
+			if(rs.next()){
+				Company company = new Company(rs.getInt(1), rs.getInt(2), rs.getString(3),rs.getString(4) , rs.getString(5), rs.getString(6));
+				return company;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return null;
 	}
 }

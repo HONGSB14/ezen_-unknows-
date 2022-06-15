@@ -29,11 +29,11 @@ public class CompanySignup extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(1);
+		
 		request.setCharacterEncoding("UTF-8");
+		
 		int cnum = Integer.parseInt(request.getParameter("cnum"));
 		String price=request.getParameter("price");
-		System.out.println(price);
 		String bn1=request.getParameter("three");
 		String bn2 = request.getParameter("two");
 		String bn3 = request.getParameter("five");
@@ -48,7 +48,8 @@ public class CompanySignup extends HttpServlet {
 		boolean result=CompanyDao.getCompanyDao().companysignup(company);
 		
 		if(result) {
-			response.sendRedirect("/taxicompany_data_system/company/csignupsuccess.jsp");
+			response.sendRedirect("/taxicompany_data_system/company/csignupsuccess.jsp?successcnum="+cnum);
+			
 		}else {
 			response.sendRedirect("/taxicompany_data_system/errorpage.jsp");
 		}

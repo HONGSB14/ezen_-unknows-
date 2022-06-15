@@ -8,7 +8,7 @@ $(function(){ //문서 시작
 
 		let selectprice=$("#selectprice").val();
 		
-		if(selectprice=="1" || selectprice=="2"){
+		if(selectprice=="1" || selectprice=="2" || selectprice=="3"){
 			$("#pricecheck").html("가격이 선택되었습니다."); pass[0]=true;			
 		}else{
 			$("#pricecheck").html("");pass[0]=false;	
