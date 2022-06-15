@@ -3,13 +3,13 @@ let cnum=$("#cnum").val();
 //차량 번호 배열
 let carNum=[];
 //차량등록 시 아이디 값을 가져와야함 (맵핑숙제)
-let vehid;
+let vehId=[];
 //맵 표시 유무 안내 공백설정
 $("mapinfo").html("");
 //각회사의 차량 번호 가져오기
 $.ajax({
 	
-	url:"car/GetCarNum",
+	url:"car/GetCarInfo",
 	data:{"cnum":cnum},
 	success:function(data){
 		for(let i=0; i<data.length; i++){
@@ -57,67 +57,67 @@ $(function(){
 	
 	
 	setInterval(function(){
-	
-	$.ajax({
-																																									//차량 아이디값 변수를 이용하여 등록 
-		url:"http://ws.bus.go.kr/api/rest/buspos/getBusPosByVehId?serviceKey=V1D0RoBJCl1PTrNrdovcJHzbZkwiiyLMbHx%2FsQfaQfsvS0iIM3OQ2x91yr6PXyIFl0hj0ETaeC1Fvd0WoSMHmg%3D%3D&vehId=111033115",
-		type:"get",
-		dataType:"TEXT",
-		success:function(data){
-			if(data){
-				console.log(data);
-				$(data).find('itemList').each(function(){
-					
-					//데이터에서 좌표 불러오기 
-					let tmX= $(this).find("tmX").text();
-					let tmY= $(this).find("tmY").text();
-					let plainNo=$(this).find("plainNo").text();
-					//차량번호 데이터로 for문
-					for(let i=0; i<carNum.length; i++){
-						//차량번호 유효성 검사
-						if(carNum[i]==plainNo){
-		
+	//차량 번호 만큼 반복문 (다수 차량 지도 표시를 위해 )
+	for(let i=0; i<carNum.length;i++){
+		$.ajax({
+																																								    //차량 아이디 vehId[i]		//차량 아이디값 변수를 이용하여 등록  111033115 
+			url:"http://ws.bus.go.kr/api/rest/buspos/getBusPosByVehId?serviceKey=V1D0RoBJCl1PTrNrdovcJHzbZkwiiyLMbHx%2FsQfaQfsvS0iIM3OQ2x91yr6PXyIFl0hj0ETaeC1Fvd0WoSMHmg%3D%3D&vehId=111033115",
+			type:"get",
+			dataType:"TEXT",
+			success:function(data){
+				if(data){
+					console.log(data);
+					$(data).find('itemList').each(function(){
+						
+						//데이터에서 좌표 불러오기 
+						let tmX= $(this).find("tmX").text();
+						let tmY= $(this).find("tmY").text();
+						let plainNo=$(this).find("plainNo").text();
+						//차량번호 데이터로 for문
+						for(let i=0; i<carNum.length; i++){
+							//차량번호 유효성 검사
+							if(carNum[i]==plainNo){
+								
 								//좌표 값 DB에 저장
-								$.ajax({
-									url:"LocationData",
-									data:{"tmY":tmY, "tmX":tmX ,"plainNo":plainNo , "cnum":cnum},
-									type:"get",
-									success:function(setData){
-									
-											if(setData){
-												console.log("1");
-											}else{
-												console.log("2");
+									$.ajax({
+										url:"LocationData",
+										data:{"tmY":tmY, "tmX":tmX ,"plainNo":plainNo , "cnum":cnum},
+										type:"get",
+										success:function(setData){
+										
+												if(setData){
+													console.log("1");
+												}else{
+													console.log("2");
+												}
 											}
-										}
-								});
-								//맵 생성
-								mapOption = { 
-										center: new kakao.maps.LatLng(tmY, tmX), // 지도의 중심좌표
-										level: 2 // 지도의 확대 레벨
-								};
-									
-								map = new kakao.maps.Map(mapContainer, mapOption); 
-								//마커 생성
-								maker= new kakao.maps.Marker ({
-					
-									position: new kakao.maps.LatLng(tmY,tmX),
-									image: new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-									map:map
-								});
-							}else{
-								$("#map").html("");
-								$("#mapinfo").html("현재 등록한 차량이 존재하지 않습니다. 다시한번 확인해 주십시오.");
-							}
-						};
-				
-					 
-				});
-			}else{
-				console.log("에러가 났어요~!");
+									});
+									//맵 생성
+									mapOption = { 
+											center: new kakao.maps.LatLng(tmY, tmX), // 지도의 중심좌표
+											level: 2 // 지도의 확대 레벨
+									};
+										
+									map = new kakao.maps.Map(mapContainer, mapOption); 
+									//마커 생성
+									maker= new kakao.maps.Marker ({
+						
+										position: new kakao.maps.LatLng(tmY,tmX),
+										image: new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+										map:map
+									});
+								}else{
+									$("#map").html("");
+									$("#mapinfo").html("현재 등록한 차량이 존재하지 않습니다. 다시한번 확인해 주십시오.");
+								}
+							};
+					});
+				}else{
+					console.log("에러가 났어요~!");
+				}
 			}
+		});
 		}
-	});
 	},10000);
 	
 }); //실행문서코드 끝

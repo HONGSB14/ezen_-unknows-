@@ -16,14 +16,14 @@ import dto.Car;
 /**
  * Servlet implementation class GetCarNum
  */
-@WebServlet("/car/GetCarNum")
-public class GetCarNum extends HttpServlet {
+@WebServlet("/car/GetCarInfo")
+public class GetCarInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetCarNum() {
+    public GetCarInfo() {
         super();
         // TODO Auto-generated constructor stub
     }
