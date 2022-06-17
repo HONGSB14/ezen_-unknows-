@@ -81,7 +81,7 @@ $(function(){
 							//차량번호 유효성 검사
 							if(carNum[i]==plainNo){
 								
-								//좌표 값 DB에 저장
+									//좌표 값 DB에 저장
 									$.ajax({
 										url:"LocationData",
 										data:{"tmY":tmY, "tmX":tmX ,"plainNo":plainNo , "cnum":cnum},
