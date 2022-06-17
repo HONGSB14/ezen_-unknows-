@@ -38,9 +38,11 @@ public class GetCarInfo extends HttpServlet {
 		JSONArray ja= new JSONArray();
 		for(Car car : carList) {
 			String carNum=car.getCarNum();
+			String carId=car.getCarId();
 			try {
 				JSONObject jo= new JSONObject();
 				jo.put("carNum",carNum);
+				jo.put("carId", carId);
 				ja.put(jo);
 			} catch (JSONException e) {
 				System.out.println("JSON ERROR");

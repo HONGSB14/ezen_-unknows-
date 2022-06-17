@@ -2,24 +2,27 @@
 let cnum=$("#cnum").val();
 //차량 번호 배열
 let carNum=[];
-//차량등록 시 아이디 값을 가져와야함 (맵핑숙제)
+//차량등록 시 아이디 값을 가져와야함
 let vehId=[];
 //맵 표시 유무 안내 공백설정
 $("mapinfo").html("");
-//각회사의 차량 번호 가져오기
-$.ajax({
-	
-	url:"car/GetCarInfo",
-	data:{"cnum":cnum},
-	success:function(data){
-		for(let i=0; i<data.length; i++){
-			let num=data[i]["carNum"];
-			carNum.push(num);
+//각회사의 차량 정보 가져오기
+	$.ajax({
+		
+		url:"car/GetCarInfo",
+		data:{"cnum":cnum},
+		success:function(data){
+			for(let i=0; i<data.length; i++){
+				
+				carNum.push(data[i]["carNum"]);
+				vehId.push(data[i]["carId"]);
+			}
 		}
-	}
-});
+	});
 
 $(function(){
+	
+	
 	
 	///////////////////////////////////////////////지도 생성///////////////////////////////////////////////////
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -61,7 +64,7 @@ $(function(){
 	for(let i=0; i<carNum.length;i++){
 		$.ajax({
 																																								   //차량 아이디 vehId[i]//차량 아이디값 변수를 이용하여 등록  111033115 
-			url:"http://ws.bus.go.kr/api/rest/buspos/getBusPosByVehId?serviceKey=V1D0RoBJCl1PTrNrdovcJHzbZkwiiyLMbHx%2FsQfaQfsvS0iIM3OQ2x91yr6PXyIFl0hj0ETaeC1Fvd0WoSMHmg%3D%3D&vehId=111033115",
+			url:"http://ws.bus.go.kr/api/rest/buspos/getBusPosByVehId?serviceKey=V1D0RoBJCl1PTrNrdovcJHzbZkwiiyLMbHx%2FsQfaQfsvS0iIM3OQ2x91yr6PXyIFl0hj0ETaeC1Fvd0WoSMHmg%3D%3D&vehId="+vehId[i],
 			type:"get",
 			dataType:"TEXT",
 			success:function(data){
@@ -92,13 +95,16 @@ $(function(){
 												}
 											}
 									});
+									
 									//맵 생성
 									mapOption = { 
 											center: new kakao.maps.LatLng(tmY, tmX), // 지도의 중심좌표
 											level: 2 // 지도의 확대 레벨
 									};
 										
-									map = new kakao.maps.Map(mapContainer, mapOption); 
+									map = new kakao.maps.Map(mapContainer, mapOption);
+									
+									
 									//마커 생성
 									maker= new kakao.maps.Marker ({
 						
@@ -106,6 +112,7 @@ $(function(){
 										image: new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 										map:map
 									});
+									
 								}else{
 									$("#map").html("");
 									$("#mapinfo").html("현재 등록한 차량이 존재하지 않습니다. 다시한번 확인해 주십시오.");
