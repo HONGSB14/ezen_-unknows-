@@ -80,27 +80,27 @@ $(function(){
 							//차량번호 유효성 검사
 							if(carNum[i]==plainNo){
 							
-										//좌표 값 DB에 저장
-										$.ajax({
-											url:"LocationData",
-											data:{"tmY":tmY, "tmX":tmX ,"plainNo":plainNo , "cnum":cnum},
-											type:"get",
-											success:function(setData){
-													if(setData){
-														console.log("1");
-													}else{
-														console.log("2");
-													}
-												}
-										});
+								//좌표 값 DB에 저장
+								$.ajax({
+									url:"LocationData",
+									data:{"tmY":tmY, "tmX":tmX ,"plainNo":plainNo , "cnum":cnum},
+									type:"get",
+									success:function(setData){
+											if(setData){
+												console.log("1");
+											}else{
+												console.log("2");
+											}
+										}
+								});
 										
 					
-										//마커 생성
-										marker= new kakao.maps.Marker ({
-											position: new kakao.maps.LatLng(tmY,tmX),
-											image: new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-											map:map
-										});
+								//마커 생성
+								marker= new kakao.maps.Marker ({
+									position: new kakao.maps.LatLng(tmY,tmX),
+									image: new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+									map:map
+								});
 										
 								
 							}else{
@@ -114,7 +114,7 @@ $(function(){
 				}
 			});
 		}
-	},5000);
+	},10000);
 	
 }); //실행문서코드 끝
 
