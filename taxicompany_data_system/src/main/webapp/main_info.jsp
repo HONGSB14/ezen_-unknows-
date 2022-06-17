@@ -62,7 +62,7 @@
 			
 			
 			<!-- 지도 -->
-			<div id="map" style="width:100%;height:350px;">
+			<div id="map" style="width:100%;height:700px;">
 				<!-- 로딩 스피너 -->
 				<div class="my-5 py-5">
 					<div class="spinner-border text-warning" role="status"></div>
@@ -85,14 +85,6 @@
 				<!---------------------------------------------------------------- 현재 운행 리스트-------------------------------------------------->
 				<div class="col-md-12 row">
 					<h1>탑승 위치 데이터</h1>
-					
-					<!--지도 생성-->
-					<div id="mapdata" style="width:100%;height:700px;">
-						<div class=" py-5 my-5 text-center" id="info">
-							<h4>하단 버튼을 클릭하면 지도가 나타납니다.</h4>
-						</div>
-					</div>
-					
 					<!-- 통계 지도  버튼-->
 					<div class="row py-5">
 						<div class="col-md-4">
@@ -105,6 +97,15 @@
 							<button onclick="onYear('<%=cnum%>')" class="form-control">데이터 보기 (1년)</button>
 						</div>
 					</div>
+					
+					<!--지도 생성-->
+					<div id="mapdata" style="width:100%;height:700px;">
+						<div class=" py-5 my-5 text-center" id="info">
+							<h4>상단 버튼을 클릭하면 지도가 나타납니다.</h4>
+						</div>
+					</div>
+					
+				
 				</div>
 			
 			<% 		

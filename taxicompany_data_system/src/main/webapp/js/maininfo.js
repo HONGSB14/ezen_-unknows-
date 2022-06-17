@@ -21,7 +21,8 @@ $("mapinfo").html("");
 	});
 
 $(function(){
-	
+	//마커저장배열
+	let markers=[];
 
 	///////////////////////////////////////////////지도 생성///////////////////////////////////////////////////
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -57,7 +58,10 @@ $(function(){
 	///////////////////////////////////////////////////////////차량 위치 ////////////////////////////////////////////
 	
 	setInterval(function(){
-		
+		//마커 제거	
+		for (var i = 0; i < markers.length; i++) {
+	        markers[i].setMap(null);
+	    }            
 		//차량 번호 만큼 반복문 (다수 차량 지도 표시를 위해 )
 		for(let i=0; i<carNum.length;i++){
 			//마커 초기화 (기존 마커 제거)	
@@ -101,7 +105,7 @@ $(function(){
 									image: new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 									map:map
 								});
-										
+								markers.push(marker);		
 								
 							}else{
 								$("#map").html("");
