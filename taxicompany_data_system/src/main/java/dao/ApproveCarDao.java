@@ -32,7 +32,7 @@ public class ApproveCarDao extends Dao {
 			}
 			return list;
 		} catch (Exception e) {
-			System.out.println("승인차량 호출 실패 !" +e);
+			System.out.println("승인차량 리스트 호출 실패 !" +e);
 		}
 		
 		return null;
@@ -41,19 +41,19 @@ public class ApproveCarDao extends Dao {
 	//차량 승인 값 바꾸기
 	public void updateState(String carNum) {
 		
-		String sql="UPDATE FROM taxisaledata.approvecar SET apstate=0 WHERE="+carNum;
+		String sql="UPDATE FROM taxisaledata.approvecar SET apstate=0 WHERE apcarnum='"+carNum+'"';
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.executeUpdate();
 		}catch (Exception e) {
-			System.out.println("차량 상태값 바꾸기 실패 !! "+e);
+			System.out.println("b차량 상태값 바꾸기 실패 !! "+e);
 		}
 		
 	}
 	//차량 아이디 값 가져오기
 	public String getCarid(String carNum) {
 		
-		String sql="SELECT carid taxisaledata.approvecar WHERE="+carNum;
+		String sql="SELECT apcarid FROM taxisaledata.approvecar WHERE apcarnum='"+carNum+'"';
 		try {
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
@@ -61,7 +61,7 @@ public class ApproveCarDao extends Dao {
 				return rs.getString(1);
 			}
 		} catch (Exception e) {
-			System.out.println("차량 아이디 값 가져오기 실패!" +e);
+			System.out.println("c차량 아이디 값 가져오기 실패!" +e);
 		}
 		return null;
 	}

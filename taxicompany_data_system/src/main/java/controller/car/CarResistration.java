@@ -38,10 +38,11 @@ public class CarResistration extends HttpServlet {
 		String carType = request.getParameter("selectCarType");
 		String carName = request.getParameter("carname");
 		String fule= request.getParameter("selectFuel");
+
 		//차량 아이디 가져오기
 		String carId=ApproveCarDao.getApproveCarDao().getCarid(carNum);
 		
-		Car car =new Car(cnum, carNum,carId, carType, carName, fule);
+		Car car =new Car(cnum, carNum, carId, carType, carName, fule);
 		
 		//승인 차량 상태 변경 (사용가능->사용중)
 		ApproveCarDao.getApproveCarDao().updateState(carNum);
