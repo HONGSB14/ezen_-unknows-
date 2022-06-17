@@ -1,3 +1,5 @@
+<%@page import="dao.ApproveCarDao"%>
+<%@page import="dto.ApproveCar"%>
 <%@page import="dao.CarDao"%>
 <%@page import="dto.Car"%>
 <%@page import="java.util.ArrayList"%>
@@ -15,22 +17,38 @@
 	<%
 		session.getAttribute("cnum");	
 		ArrayList<Car> carList = CarDao.getcarDao().carlist(cnum); 
+		ArrayList<ApproveCar> approveCarList=ApproveCarDao.getApproveCarDao().approveCarList();
 	%>
 	<div class="Container">
-		<!-- 기사 등록 란  -->
+		<!-- 차량 등록 란  -->
 		<div id="driverSignup" class="offset-4 col-md-4 py-5">
+		
 			<div class="text-center">
 				<h1>차량등록</h1>
 			</div>
+		
 			<form method="get" action="../car/CarResistration" id="carResistrationForm">
 				<input type="hidden" name="cnum" value="<%=cnum%>">
-				
+					<!-- 차량 등록 버튼 -->
+				<div class="offset-10 col-md-2 py-2">
+					<button class="form-control" type="submit" type="button">차량 등록</button>
+				</div>
 				<table class="table table-warning">
 					<tr><th>차 번호</th> <th>차량 종류</th> <th>차량 이름</th> <th>연료 종류</th> <tr>
 					<tr>
 						
 						<!-- 차량 번호 기입 란 -->
-						<td><input type="text" class="form-control" id="carnum" name="carnum"></td>
+						<td>
+							<select class="form-select" id="selectCarNum" name="selectCarNum">
+							<%
+								for(ApproveCar approveCar : approveCarList){
+							%>
+								<option value="<%=approveCar.getApCarNum()%>"><%=approveCar.getApCarNum()%></option>
+							<%		
+								}
+							%>
+							</select>
+						</td>
 						
 						<!-- 차량 종류 선택 란 -->
 						<td>
@@ -60,15 +78,7 @@
 						 
 					</tr>
 				</table>
-				<div class="text-center">
-					<span id="carcheck"></span>	
-					<span id="carcheck2"></span>	
-				</div>
 			</form>	
-			<!-- 차량 등록 버튼 -->
-			<div class="offset-4 col-md-4 py-2">
-				<button class="form-control" onclick="carResistration()" type="button">차량 등록</button>
-			</div>
 		</div>
 		<!-- 테이블 표 -->
 		<div class="col-md-12">
@@ -90,6 +100,29 @@
 				</table>
 			</div>
 		</div>
+		<!-- 승인 차량 테이블 표  -->
+		<div class="text-center py-5">
+			<h1>승인 차량 리스트</h1>
+		</div>
+		
+		<div class="col-md-12">
+			<div class="offset-4 col-md-4">
+				<table class="table table-boarded text-center">
+					<tr class="table-warning"><th>차량번호  (사용가능)</th><th>차량 아이디</th></tr>
+					<%
+						for(ApproveCar approveCar : approveCarList){ 
+					%>
+					<tr>
+						<td><%=approveCar.getApCarNum()%></td>
+						<td><%=approveCar.getApCarId() %></td>
+					</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
+		</div>
+			
 	</div>
 	
 	<script src="/taxicompany_data_system/js/carResistration.js" type="text/javascript"></script>

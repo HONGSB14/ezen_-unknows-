@@ -50,7 +50,7 @@ public class CarDao extends Dao {
 			rs=ps.executeQuery();
 			while(rs.next()) {
 				
-				Car car = new Car(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(5));
+				Car car = new Car(rs.getInt(1),rs.getString(2), rs.getString(3),rs.getString(4), rs.getString(5), rs.getString(6));
 				carlist.add(car);
 			}
 			return carlist;

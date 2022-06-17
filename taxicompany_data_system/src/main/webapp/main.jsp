@@ -22,7 +22,7 @@
 				<div class="col-md-4 px-5">
 					<img  id="mainlogo" src="img/mainlogo.png">
 				</div>
-
+				
 			</div>
 			<!--로그인 시 매출 화면 바로가기 -->
 			<div class="text-center py-5">

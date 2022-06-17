@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ApproveCarDao;
 import dao.CarDao;
 import dto.Car;
 
@@ -31,13 +32,21 @@ public class CarResistration extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			
 		request.setCharacterEncoding("UTF-8");
+		
 		int cnum= Integer.parseInt(request.getParameter("cnum"));
-		String carNum = request.getParameter("carnum");
+		String carNum = request.getParameter("selectCarNum");
 		String carType = request.getParameter("selectCarType");
 		String carName = request.getParameter("carname");
 		String fule= request.getParameter("selectFuel");
+		//차량 아이디 가져오기
+		String carId=ApproveCarDao.getApproveCarDao().getCarid(carNum);
 		
-		Car car =new Car(cnum, carNum, carType, carName, fule);
+		Car car =new Car(cnum, carNum,carId, carType, carName, fule);
+		
+		//승인 차량 상태 변경 (사용가능->사용중)
+		ApproveCarDao.getApproveCarDao().updateState(carNum);
+		
+		//차량 등록
 		boolean result = CarDao.getcarDao().carresistration(car);
 		
 		if(result) {
