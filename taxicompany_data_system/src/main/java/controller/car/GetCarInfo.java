@@ -34,6 +34,7 @@ public class GetCarInfo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cnum=Integer.parseInt(request.getParameter("cnum"));
 		ArrayList<Car> carList=CarDao.getcarDao().carlist(cnum);
+		System.out.println(carList.toString());
 		JSONArray ja= new JSONArray();
 		for(Car car : carList) {
 			String carNum=car.getCarNum();

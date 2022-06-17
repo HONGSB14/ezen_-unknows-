@@ -22,7 +22,7 @@ public class ApproveCarDao extends Dao {
 	public ArrayList<ApproveCar> approveCarList(){
 		ArrayList<ApproveCar> list= new ArrayList<ApproveCar>();
 		
-		String sql="SELECT * FROM taxisaledata.approvecar WHERE apstate=1";
+		String sql="SELECT * FROM taxisaledata.approvecar WHERE apstate='1'";
 		try {
 			ps=conn.prepareStatement(sql);
 			rs=ps.executeQuery();
@@ -38,31 +38,33 @@ public class ApproveCarDao extends Dao {
 		return null;
 	}
 	
+	//차량 아이디 값 가져오기
+		public String getCarid(String carNum) {
+			
+			String sql="SELECT apcarid FROM taxisaledata.approvecar WHERE apcarnum='"+carNum+"'";
+			try {
+				ps=conn.prepareStatement(sql);
+				rs=ps.executeQuery();
+				if(rs.next()) {
+					return rs.getString(1);
+				}
+			} catch (Exception e) {
+				System.out.println("B차량 아이디 값 가져오기 실패!" +e);
+			}
+			return null;
+		}
+	
 	//차량 승인 값 바꾸기
 	public void updateState(String carNum) {
 		
-		String sql="UPDATE FROM taxisaledata.approvecar SET apstate=0 WHERE apcarnum='"+carNum+'"';
+		String sql="UPDATE taxisaledata.approvecar SET apstate='0' WHERE apcarnum='"+carNum+"'";
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.executeUpdate();
 		}catch (Exception e) {
-			System.out.println("b차량 상태값 바꾸기 실패 !! "+e);
+			System.out.println("C차량 상태값 바꾸기 실패 !! "+e);
 		}
 		
 	}
-	//차량 아이디 값 가져오기
-	public String getCarid(String carNum) {
-		
-		String sql="SELECT apcarid FROM taxisaledata.approvecar WHERE apcarnum='"+carNum+'"';
-		try {
-			ps=conn.prepareStatement(sql);
-			rs=ps.executeQuery();
-			if(rs.next()) {
-				return rs.getString(1);
-			}
-		} catch (Exception e) {
-			System.out.println("c차량 아이디 값 가져오기 실패!" +e);
-		}
-		return null;
-	}
+	
 }

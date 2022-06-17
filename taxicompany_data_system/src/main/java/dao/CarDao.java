@@ -20,15 +20,16 @@ public class CarDao extends Dao {
 	//차량 등록 메소드
 	public boolean carresistration (Car car) {
 		
-		String sql="INSERT INTO taxisaledata.car (cnum,carnum,cartype,carname,fueltype) VALUES (?,?,?,?,?)";
+		String sql="INSERT INTO taxisaledata.car (cnum,carnum,carid,cartype,carname,fueltype) VALUES (?,?,?,?,?,?)";
 		
 		try {
 			ps=conn.prepareStatement(sql);
 			ps.setInt(1, car.getCnum());
 			ps.setString(2, car.getCarNum());
-			ps.setString(3, car.getCarType());
-			ps.setString(4, car.getCarName());
-			ps.setString(5, car.getFuelType());
+			ps.setString(3, car.getCarId());
+			ps.setString(4, car.getCarType());
+			ps.setString(5, car.getCarName());
+			ps.setString(6, car.getFuelType());
 			ps.executeUpdate();
 			return true;
 			
