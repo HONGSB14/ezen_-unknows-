@@ -33,7 +33,7 @@
 				<br>
 				<br>
 				<h2 style="color: white;">
-				연락처 : 010-1234-1234
+				연락처 : 010-5063-3489
 				</h2>
 				<br>
 				<h4 style="color: white;">

@@ -31,7 +31,7 @@
 							<div class="text-left">이메일</div>
 							<div>
 								<input type="text" name="memail" class="form-control" placeholder="가입하신 이메일을 입력하여주세요.">
-								<span id="check" class="check">아이디찾기 라벨</span>
+								
 							</div>
 						</div>
 						<div>

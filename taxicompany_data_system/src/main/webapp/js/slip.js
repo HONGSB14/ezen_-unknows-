@@ -15,7 +15,7 @@ $(function(){
 		
 		let carnum =$("#carnum").val();
 		
-		let carnumc=/^([0-9]{2,3})([가-힣]{1,1})([0-9]{4,4})$/;
+		let carnumc=/^([가-힣]{2,2})([0-9]{2,3})([가-힣]{1,1})([0-9]{4,4})$/;
 		
 		if(carnumc.test(carnum)){
 			pass[0]=true;
@@ -238,7 +238,7 @@ function saleDelete(cnum){
 					success:function(data){
 						if(data==1){
 							num.splice(0,num.length);
-							alert("선택 하신 매출이 삭제 되었습니다.");
+							location.reload();
 						}else{
 							alert("삭제진행 오류가 발생하였습니다. 관리자에게 문의해주십시오.");
 						}
@@ -278,6 +278,7 @@ function saleUpdate(cnum){
 				}
 			});
 		}
+			alert("선택하신 항목이 수정 완료되었습니다.");
 			num.splice(0,num.length);
 			location.reload();
 }

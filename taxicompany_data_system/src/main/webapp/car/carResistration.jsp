@@ -29,13 +29,17 @@
 		
 			<form method="get" action="../car/CarResistration" id="carResistrationForm">
 				<input type="hidden" name="cnum" value="<%=cnum%>">
-					<!-- 차량 등록 버튼 -->
+				<!-- 차량 등록 버튼 -->
+				<div class="row">
 				<div class="offset-10 col-md-2 py-2">
 					<button class="form-control" type="submit" type="button">차량 등록</button>
 				</div>
-				<table class="table table-warning">
+				
+				</div>
+				<table class="table table-warning text-center">
 					<tr><th>차 번호</th> <th>차량 종류</th> <th>차량 이름</th> <th>연료 종류</th> <tr>
 					<tr>
+					
 						
 						<!-- 차량 번호 기입 란 -->
 						<td>
@@ -80,15 +84,16 @@
 				</table>
 			</form>	
 		</div>
-		<!-- 테이블 표 -->
+		<!-- 등록 된 차량 리스트 테이블 표 -->
 		<div class="col-md-12">
 			<div class="offset-4 col-md-4">
-				<table class="table table-bordered">
-					<tr class="table-warning"><th>차 번호</th> <th>차량 종류</th> <th>차량 이름</th> <th>연료 종류</th></tr>
+				<table class="table table-bordered text-center">
+					<tr class="table-warning"><th>선택</th><th>차 번호</th> <th>차량 종류</th> <th>차량 이름</th> <th>연료 종류</th></tr>
 					<%
 						for(Car car :carList){	
 					%>
 						<tr>
+							<td><input type="checkbox" class="form-check-input text-center" id="deletecar" value="<%=car.getCarNum()%>"></td>
 							<td><%=car.getCarNum() %></td>
 							<td><%=car.getCarType() %></td>
 							<td><%=car.getCarName() %></td>
@@ -124,9 +129,7 @@
 		</div>
 			
 	</div>
-	
-	<script src="/taxicompany_data_system/js/carResistration.js" type="text/javascript"></script>
-	
+
 	<%@include file ="../footer.jsp" %>
 	
 </body>

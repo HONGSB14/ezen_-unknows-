@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+
 </head>
 <body>
 
@@ -27,7 +27,7 @@
 							<div class="text-left">이름</div>
 							<div>
 								<input type="text" name="mname" class="form-control" placeholder="가입하신 이름을 입력하여주세요.">
-								<span id="check" class="check">비밀번호찾기 라벨 </span>
+							
 							</div>
 						</div>
 						<div>

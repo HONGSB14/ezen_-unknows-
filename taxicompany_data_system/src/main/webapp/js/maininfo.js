@@ -53,7 +53,18 @@ $(function(){
   		 clickable: true
 	});
 
+
 	marker.setMap(map);
+	
+	var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+    iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+	// 인포윈도우를 생성합니다
+	var infowindow = new kakao.maps.InfoWindow({
+	    content : iwContent,
+	    removable : iwRemoveable
+	});
+	
 
 	///////////////////////////////////////////////////////////차량 위치 ////////////////////////////////////////////
 	
@@ -105,6 +116,8 @@ $(function(){
 									image: new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
 									map:map
 								});
+								
+								//마커를 배열에 저장
 								markers.push(marker);		
 								
 							}else{
@@ -118,7 +131,7 @@ $(function(){
 				}
 			});
 		}
-	},10000);
+	},5000);
 	
 }); //실행문서코드 끝
 
@@ -175,7 +188,7 @@ function onWeek(cnum){
 				}
 			}
 		});	
-	},5000);
+	},7000);
 }
 
 
